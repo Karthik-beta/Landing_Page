@@ -29,7 +29,7 @@ export const Footer = () => {
 
         <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">Follow US</h3>
-          <div>
+          {/* <div>
             <a
               rel="noreferrer noopener"
               href="#"
@@ -37,9 +37,9 @@ export const Footer = () => {
             >
               Github
             </a>
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <a
               rel="noreferrer noopener"
               href="#"
@@ -47,15 +47,16 @@ export const Footer = () => {
             >
               Twitter
             </a>
-          </div>
+          </div> */}
 
           <div>
             <a
+              target="_blank"
               rel="noreferrer noopener"
-              href="#"
+              href="https://www.linkedin.com/company/pivotr/"
               className="opacity-60 hover:opacity-100"
             >
-              Dribbble
+              LinkedIn
             </a>
           </div>
         </div>
@@ -98,14 +99,14 @@ export const Footer = () => {
           <div>
             <a
               rel="noreferrer noopener"
-              href="#"
+              href="#features"
               className="opacity-60 hover:opacity-100"
             >
               Features
             </a>
           </div>
 
-          <div>
+          {/* <div>
             <a
               rel="noreferrer noopener"
               href="#"
@@ -113,12 +114,12 @@ export const Footer = () => {
             >
               Pricing
             </a>
-          </div>
+          </div> */}
 
           <div>
             <a
               rel="noreferrer noopener"
-              href="#"
+              href="#faq"
               className="opacity-60 hover:opacity-100"
             >
               FAQ
@@ -128,7 +129,7 @@ export const Footer = () => {
 
         <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">Community</h3>
-          <div>
+          {/* <div>
             <a
               rel="noreferrer noopener"
               href="#"
@@ -136,7 +137,7 @@ export const Footer = () => {
             >
               Youtube
             </a>
-          </div>
+          </div> */}
 
           <div>
             <a
@@ -148,7 +149,7 @@ export const Footer = () => {
             </a>
           </div>
 
-          <div>
+          {/* <div>
             <a
               rel="noreferrer noopener"
               href="#"
@@ -156,7 +157,7 @@ export const Footer = () => {
             >
               Twitch
             </a>
-          </div>
+          </div> */}
         </div>
       </section>
 

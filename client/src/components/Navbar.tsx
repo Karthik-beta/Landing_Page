@@ -48,7 +48,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   // const { theme } = useTheme();
 
-  // const logoIcon =
+  // const logoIcon = 
   //   theme === "dark" ? <LogoIconDark /> : <LogoIconLight />;
 
   return (
@@ -63,7 +63,7 @@ export const Navbar = () => {
             >
               {/* {logoIcon} */}
               {/* <LogoIcon /> */}
-              Pivotr
+              Pivotr.
             </a>
           </NavigationMenuItem>
 
@@ -87,7 +87,7 @@ export const Navbar = () => {
               <SheetContent side={"left"}>
                 <SheetHeader>
                   <SheetTitle className="font-bold text-xl">
-                    Shadcn/React
+                    Pivotr.
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col justify-center items-center gap-2 mt-4">
