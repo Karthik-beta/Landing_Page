@@ -24,10 +24,11 @@ export const Cta = () => {
         <div className="space-y-4 lg:col-start-2">
           <Button className="w-full md:mr-4 md:w-auto">Request a Demo</Button>
           <Button
+            asChild
             variant="outline"
             className="w-full md:w-auto"
           >
-            View all features
+            <a href="#features">View all features</a>
           </Button>
         </div>
       </div>
