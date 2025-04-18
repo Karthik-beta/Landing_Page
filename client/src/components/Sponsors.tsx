@@ -62,6 +62,7 @@ import opticos from "../assets/opticos.svg";
 import quansys from "../assets/quansys.png";
 import dwpGlobal from "../assets/dwp-global.png"; 
 import vikas from "../assets/vikas.jpg"; 
+import vikasSchool from "../assets/vikas-school.png";
 
 interface ClientProps { // Renamed interface for clarity
   icon?: JSX.Element; // Icon is optional, you'll likely use images for logos
@@ -88,26 +89,32 @@ const clients: ClientProps[] = [
     // icon: <Radar size={34} />,
     image: opticos,
     name: "Opticos",
-     url: "#"
+    url: "#"
   },
   {
     // icon: <Radar size={34} />,
     image: quansys,
     name: "Quansys",
-     url: "#"
+    url: "#"
   },
   {
     // icon: <Radar size={34} />,
     image: dwpGlobal,
     name: "DWP Global",
-     url: "#"
+    url: "#"
   },
   {
     // icon: <Radar size={34} />,
     image: vikas,
     name: "Vikas",
-     url: "#"
+    url: "#"
   },
+  {
+    // icon: <Radar size={34} />,
+    image: vikasSchool,
+    name: "Vikas School",
+    url: "#"
+  }
 ];
 
 // Renamed component for clarity - you can keep 'Sponsors' if you prefer
