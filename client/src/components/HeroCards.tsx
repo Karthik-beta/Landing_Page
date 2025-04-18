@@ -12,12 +12,13 @@
 // import { Check, Linkedin } from "lucide-react";
 // import { LightBulbIcon } from "./Icons";
 // import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import userAvatar from "@/assets/undraw_all-the-data_5lil.svg";
 
 export const HeroCards = () => {
   return (
     <div className="hidden lg:flex flex-row flex-wrap gap-8 relative w-[700px] h-[500px]">
       <img
-            src="src/assets/undraw_all-the-data_5lil.svg"
+            src={userAvatar}
             alt="user avatar"
             // className="absolute grayscale-[0%] -top-12 rounded-full w-24 h-24 aspect-square object-cover"
           />
