@@ -8,7 +8,7 @@ import { HowItWorks } from "./components/HowItWorks";
 import { Navbar } from "./components/Navbar";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { Services } from "./components/Services";
-import { Sponsors } from "./components/Sponsors";
+import { ClientsSection } from "./components/Sponsors";
 // import { Team } from "./components/Team";
 // import { Testimonials } from "./components/Testimonials";
 import { ScrollFadeIn } from "./components/ScrollFadeIn";
@@ -19,7 +19,7 @@ function App() {
     <>
       <Navbar />
       <Hero />
-      <Sponsors />
+      <ClientsSection />
       <ScrollFadeIn><About /></ScrollFadeIn>
       <ScrollFadeIn delay={0.1}><HowItWorks /></ScrollFadeIn>
       <ScrollFadeIn delay={0.2}><Features /></ScrollFadeIn>

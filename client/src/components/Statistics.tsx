@@ -26,8 +26,8 @@ export const Statistics = () => {
       description: "Customer Support",
     },
     {
-      quantity: "50+",
-      description: "Integrations Available",
+      quantity: "50%",
+      description: "Efficiency Gains",
     },
     // {
     //   quantity: "2x",
@@ -35,12 +35,12 @@ export const Statistics = () => {
     // },
     {
       // quantity: "ISO 27001",
-      quantity: "SOC 2 Type II",
-      description: "Certified Security",
+      quantity: "30%",
+      description: "Cost Reduction",
     },
     {
-      quantity: "1M+",
-      description: "Transactions Processed",
+      quantity: "100+",
+      description: "Happy Customers",
     },
   ];
 
