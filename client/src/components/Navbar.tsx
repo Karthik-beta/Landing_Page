@@ -68,7 +68,7 @@ export const Navbar = () => {
           </NavigationMenuItem>
 
           {/* mobile */}
-          <span className="flex md:hidden">
+          {/* <span className="flex md:hidden">
             <ModeToggle />
 
             <Sheet
@@ -102,7 +102,7 @@ export const Navbar = () => {
                       {label}
                     </a>
                   ))}
-                  {/* <a
+                   <a
                     rel="noreferrer noopener"
                     href="https://github.com/leoMirandaa/shadcn-landing-page.git"
                     target="_blank"
@@ -112,14 +112,43 @@ export const Navbar = () => {
                   >
                     <GitHubLogoIcon className="mr-2 w-5 h-5" />
                     Github
-                  </a> */}
+                  </a> 
                 </nav>
               </SheetContent>
             </Sheet>
-          </span>
+          </span> */}
+          <NavigationMenuItem key="MobileMenu">
+            <div className="flex md:hidden">
+              <ModeToggle />
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger className="px-2" aria-label="Toggle navigation menu">
+                  <Menu className="h-5 w-5" onClick={() => setIsOpen(true)}>
+                    <span className="sr-only">Menu Icon</span>
+                  </Menu>
+                </SheetTrigger>
+                <SheetContent side="left">
+                  <SheetHeader>
+                    <SheetTitle className="font-bold text-xl">Pivotr.</SheetTitle>
+                  </SheetHeader>
+                  <nav className="flex flex-col items-center gap-2 mt-4">
+                    {routeList.map(({ href, label }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        onClick={() => setIsOpen(false)}
+                        className={buttonVariants({ variant: "ghost" })}
+                      >
+                        {label}
+                      </a>
+                    ))}
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </NavigationMenuItem>
 
           {/* desktop */}
-          <nav className="hidden md:flex gap-2">
+          {/* <nav className="hidden md:flex gap-2">
             {routeList.map((route: RouteProps, i) => (
               <a
                 rel="noreferrer noopener"
@@ -132,10 +161,30 @@ export const Navbar = () => {
                 {route.label}
               </a>
             ))}
-          </nav>
+          </nav> */}
+          <NavigationMenuItem key="DesktopNav">
+            <nav className="hidden md:flex gap-2">
+              {routeList.map((route, i) => (
+                <a
+                  key={i}
+                  href={route.href}
+                  className={`text-[17px] ${buttonVariants({ variant: "ghost" })}`}
+                  rel="noreferrer noopener"
+                >
+                  {route.label}
+                </a>
+              ))}
+            </nav>
+          </NavigationMenuItem>
 
-          <div className="hidden md:flex gap-2">
-            {/* <a
+          <NavigationMenuItem key="DesktopActions">
+            <div className="hidden md:flex gap-2">
+              <ModeToggle />
+            </div>
+          </NavigationMenuItem>
+
+          {/* <div className="hidden md:flex gap-2">
+            <a
               rel="noreferrer noopener"
               href="https://github.com/leoMirandaa/shadcn-landing-page.git"
               target="_blank"
@@ -143,10 +192,10 @@ export const Navbar = () => {
             >
               <GitHubLogoIcon className="mr-2 w-5 h-5" />
               Github
-            </a> */}
+            </a>
 
             <ModeToggle />
-          </div>
+          </div> */}
         </NavigationMenuList>
       </NavigationMenu>
     </header>

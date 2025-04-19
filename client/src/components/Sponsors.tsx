@@ -149,6 +149,7 @@ export const ClientsSection = () => { // Renamed component for clarity
                     // Kept h-10 and object-contain to fit within the container
                     width={120} // Explicit width
                     height={40} // Explicit height
+                    loading="lazy" // only load when in viewport
                     className="h-10 object-contain grayscale opacity-60 hover:grayscale-0 transition-all"
                 />
             )}
