@@ -55,7 +55,7 @@ export const Navbar = () => {
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
-          <NavigationMenuItem className="font-bold flex">
+          <NavigationMenuItem className="font-bold flex" key="Logo">
             <a
               rel="noreferrer noopener"
               href="/"
@@ -75,7 +75,7 @@ export const Navbar = () => {
               open={isOpen}
               onOpenChange={setIsOpen}
             >
-              <SheetTrigger className="px-2">
+              <SheetTrigger className="px-2" aria-label="Toggle navigation menu">
                 <Menu
                   className="flex md:hidden h-5 w-5"
                   onClick={() => setIsOpen(true)}

@@ -57,11 +57,11 @@
 //   );
 
 import m2nxt from "../assets/m2nxt.png"; 
-import barbarian from "../assets/barbarian.png";
+import barbarian from "../assets/barbarian.webp";
 import opticos from "../assets/opticos.svg"; 
 import quansys from "../assets/quansys.png";
 import dwpGlobal from "../assets/dwp-global.png"; 
-import vikas from "../assets/vikas.jpg"; 
+// import vikas from "../assets/vikas.jpg"; 
 import vikasSchool from "../assets/vikas-school.png";
 
 interface ClientProps { // Renamed interface for clarity
@@ -103,12 +103,12 @@ const clients: ClientProps[] = [
     name: "DWP Global",
     url: "#"
   },
-  {
-    // icon: <Radar size={34} />,
-    image: vikas,
-    name: "Vikas",
-    url: "#"
-  },
+  // {
+  //   // icon: <Radar size={34} />,
+  //   image: vikas,
+  //   name: "Vikas",
+  //   url: "#"
+  // },
   {
     // icon: <Radar size={34} />,
     image: vikasSchool,
@@ -147,6 +147,8 @@ export const ClientsSection = () => { // Renamed component for clarity
                     src={image}
                     alt={`${name} Logo`}
                     // Kept h-10 and object-contain to fit within the container
+                    width={120} // Explicit width
+                    height={40} // Explicit height
                     className="h-10 object-contain grayscale opacity-60 hover:grayscale-0 transition-all"
                 />
             )}
