@@ -27,10 +27,27 @@ const Footer = React.lazy(() => import("./components/Footer").then(module => ({ 
 
 // Define a loading component
 const LoadingFallback = () => (
-  <div className="container py-16 flex flex-col items-center gap-4">
-    <Skeleton className="h-12 w-1/2" />
-    <Skeleton className="h-8 w-3/4" />
-    <Skeleton className="h-8 w-3/4" />
+  <div className="container py-16 space-y-8"> {/* Added space-y for vertical spacing */}
+    {/* Section Title Skeleton */}
+    <div className="flex flex-col items-center gap-2">
+      <Skeleton className="h-10 w-1/2 sm:w-1/3" /> {/* Centered title */}
+      <Skeleton className="h-6 w-3/4 sm:w-1/2" /> {/* Centered subtitle */}
+    </div>
+
+    {/* Content Skeleton (e.g., mimicking cards or feature lists) */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Repeat a card-like skeleton structure */}
+      {[...Array(3)].map((_, index) => (
+        <div key={index} className="flex flex-col space-y-3 p-4 border rounded-lg"> {/* Added border and padding */}
+          <Skeleton className="h-32 w-full rounded-md" /> {/* Image/Icon placeholder */}
+          <div className="space-y-2">
+            <Skeleton className="h-6 w-3/4" /> {/* Card title */}
+            <Skeleton className="h-4 w-full" /> {/* Card description line 1 */}
+            <Skeleton className="h-4 w-5/6" /> {/* Card description line 2 */}
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 );
 
