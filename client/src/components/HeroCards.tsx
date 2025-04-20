@@ -1,17 +1,3 @@
-// import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-// import { Badge } from "./ui/badge";
-// import { Button, buttonVariants } from "@/components/ui/button";
-// import {
-//   Card,
-//   CardContent,
-//   CardDescription,
-//   CardHeader,
-//   CardTitle,
-//   CardFooter,
-// } from "@/components/ui/card";
-// import { Check, Linkedin } from "lucide-react";
-// import { LightBulbIcon } from "./Icons";
-// import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import userAvatar from "@/assets/undraw_all-the-data_5lil.svg";
 
 export const HeroCards = () => {

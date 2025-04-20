@@ -6,9 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import image from "../assets/growth.png";
-// import image3 from "../assets/reflecting.png";
-// import image4 from "../assets/looking-ahead.png";
 import cloudImage from "../assets/undraw_cloud-hosting_tfeh.svg";
 import serverImage from "../assets/undraw_secure-server_lz9x.svg";
 import iotImage from "../assets/undraw_visionary-technology_6ouq.svg";
@@ -40,17 +37,6 @@ const features: FeatureProps[] = [
   },
 ];
 
-// const featureList: string[] = [
-//   "Dark/Light theme",
-//   "Reviews",
-//   "Features",
-//   "Pricing",
-//   "Contact form",
-//   "Our team",
-//   "Responsive design",
-//   "Newsletter",
-//   "Minimalist",
-// ];
 const featureList: string[] = [
   "Enterprise Solutions", 
   "SaaS", 

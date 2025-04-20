@@ -5,22 +5,6 @@ export const Statistics = () => {
   }
 
   const stats: statsProps[] = [
-    // {
-    //   quantity: "2.7K+",
-    //   description: "Users",
-    // },
-    // {
-    //   quantity: "1.8K+",
-    //   description: "Subscribers",
-    // },
-    // {
-    //   quantity: "112",
-    //   description: "Downloads",
-    // },
-    // {
-    //   quantity: "4",
-    //   description: "Products",
-    // },
     {
       quantity: "24/7",
       description: "Customer Support",
@@ -29,12 +13,7 @@ export const Statistics = () => {
       quantity: "50%",
       description: "Efficiency Gains",
     },
-    // {
-    //   quantity: "2x",
-    //   description: "Faster Deployment",
-    // },
     {
-      // quantity: "ISO 27001",
       quantity: "30%",
       description: "Cost Reduction",
     },

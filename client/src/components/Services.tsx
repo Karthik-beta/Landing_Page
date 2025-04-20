@@ -1,7 +1,5 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { MagnifierIcon, WalletIcon, ChartIcon } from "./Icons";
-// import cubeLeg from "../assets/cube-leg.png";
-// import servicePicture from "../assets/undraw_services_dhxj.svg";
 import servicePicture from "../assets/undraw_business-chat_xea1.svg";
 
 interface ServiceProps {
@@ -70,6 +68,8 @@ export const Services = () => {
           src={servicePicture}
           className="w-[300px] md:w-[500px] lg:w-[600px] object-contain"
           alt="About services"
+          width={600} // Set to the largest width used (matches lg:w-[600px])
+          height={400} // Set to the expected aspect ratio (adjust as needed)
         />
       </div>
     </section>

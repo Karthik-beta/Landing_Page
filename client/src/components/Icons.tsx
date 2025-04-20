@@ -26,9 +26,9 @@ export const LogoIcon = () => {
 export const LogoIconDark = () => {
   return (
     <img
-      src="/src/assets/logo_trans_wide_dark_mode.svg"
+      src="/src/assets/logo_trans_wide.svg"
       alt="Logo"
-      className="lucide lucide-panels-top-left mr-2 w-6 h-6"
+      className="lucide lucide-panels-top-left mr-2 w-24 h-24"
     />
   );
 };

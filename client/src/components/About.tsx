@@ -1,5 +1,4 @@
 import { Statistics } from "./Statistics";
-// import pilot from "../assets/pilot.png";
 import aboutUs from "../assets/undraw_team-work_i1f3.svg";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
