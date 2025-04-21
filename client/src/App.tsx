@@ -6,6 +6,8 @@ import React, { Suspense } from "react";
 // import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Products } from "./components/Products";
+import { Partnerships } from "./components/Partnerships";
+import { Certifications } from "./components/Certifications";
 // import { HowItWorks } from "./components/HowItWorks";
 import { Navbar } from "./components/Navbar";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -58,6 +60,7 @@ function App() {
       <Navbar />
       <Hero />
       <ClientsSection />
+      <ScrollFadeIn delay={0.05}><Partnerships /></ScrollFadeIn>
       {/* Wrap lazy-loaded components in Suspense */}
       <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn><About /></ScrollFadeIn>
@@ -65,6 +68,7 @@ function App() {
         <ScrollFadeIn delay={0.2}><HowItWorks /></ScrollFadeIn>
         <ScrollFadeIn delay={0.3}><Features /></ScrollFadeIn>
         <ScrollFadeIn delay={0.4}><Services /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.45}><Certifications /></ScrollFadeIn>
         <ScrollFadeIn delay={0.5}><Cta /></ScrollFadeIn>
         <ScrollFadeIn delay={0.6}><FAQ /></ScrollFadeIn>
         <ScrollFadeIn delay={0.7}><Footer /></ScrollFadeIn>
