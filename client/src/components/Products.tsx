@@ -59,7 +59,7 @@ export const Products = () => {
               <img
                 src={illustration}
                 alt={`${title} illustration`}
-                className="w-full h-auto rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
+                className="w-full h-auto"
               />
             </div>
 
