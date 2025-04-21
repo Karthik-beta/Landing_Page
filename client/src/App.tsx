@@ -5,6 +5,7 @@ import React, { Suspense } from "react";
 // import { Features } from "./components/Features";
 // import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
+import { Products } from "./components/Products";
 // import { HowItWorks } from "./components/HowItWorks";
 import { Navbar } from "./components/Navbar";
 import { ScrollToTop } from "./components/ScrollToTop";
@@ -60,12 +61,13 @@ function App() {
       {/* Wrap lazy-loaded components in Suspense */}
       <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn><About /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.1}><HowItWorks /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.2}><Features /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.3}><Services /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.4}><Cta /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.4}><FAQ /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.5}><Footer /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.1}><Products /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.2}><HowItWorks /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.3}><Features /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.4}><Services /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.5}><Cta /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.6}><FAQ /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.7}><Footer /></ScrollFadeIn>
       </Suspense>
       {/* <HowItWorks />
       <Features />
