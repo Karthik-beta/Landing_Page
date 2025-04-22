@@ -6,7 +6,8 @@ import crmIllustration from "../assets/crm-illustration.svg"; // Import illustra
 interface ProductProps {
   title: string;
   description: string;
-  illustration: string; // Path to the illustration image
+  illustration: string; 
+  url: string;
 }
 
 const products: ProductProps[] = [
@@ -14,19 +15,22 @@ const products: ProductProps[] = [
     title: "Inventory Management System",
     description:
       "Optimize your inventory with real-time tracking, automated stock updates, and insightful analytics.",
-    illustration: inventoryIllustration, // Replace with actual illustration path
+    illustration: inventoryIllustration, 
+    url: "https://inventory.pivotr.in"
   },
   {
     title: "Human Resource Management System (HRMS)",
     description:
       "Streamline HR processes with tools for payroll, attendance, recruitment, and employee engagement.",
-    illustration: hrmsIllustration, // Replace with actual illustration path
+    illustration: hrmsIllustration, 
+    url: ""
   },
   {
     title: "Customer Relationship Management (CRM)",
     description:
       "Enhance customer relationships with a centralized platform for sales, marketing, and support.",
-    illustration: crmIllustration, // Replace with actual illustration path
+    illustration: crmIllustration, 
+    url: ""
   },
 ];
 
@@ -47,7 +51,7 @@ export const Products = () => {
       </p>
 
       <div className="space-y-24">
-        {products.map(({ title, description, illustration }: ProductProps, index) => (
+        {products.map(({ title, description, illustration, url }: ProductProps, index) => (
           <div
             key={title}
             className={`relative flex flex-col lg:flex-row items-center gap-12 ${
@@ -71,12 +75,25 @@ export const Products = () => {
                     {title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-8 text-muted-foreground space-y-4">
+                {/* <CardContent className="p-8 text-muted-foreground space-y-4">
                   <p className="text-base leading-relaxed">{description}</p>
                   <div className="flex justify-center">
                     <button className="px-6 py-2 bg-primary text-white rounded-md shadow-md hover:bg-primary/90 transition-colors">
-                      Learn More
+                      Try Demo
                     </button>
+                  </div>
+                </CardContent> */}
+                <CardContent className="p-8 text-muted-foreground space-y-4">
+                  <p className="text-base leading-relaxed">{description}</p>
+                  <div className="flex justify-center">
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-6 py-2 bg-primary text-white rounded-md shadow-md hover:bg-primary/90 transition-colors"
+                    >
+                      Try Demo
+                    </a>
                   </div>
                 </CardContent>
               </Card>
