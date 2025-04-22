@@ -34,8 +34,8 @@ export default defineConfig({
     // assetsInlineLimit: 0,
   },
   cacheDir: "node_modules/.vite",
-  packageManager: "pnpm@^10.0.0",
+  // packageManager: "pnpm@^10.0.0",
   scripts: {
-    preinstall: "corepack prepare pnpm@latest --activate",
+    preinstall: "corepack prepare pnpm@10.x --activate",
   },
 });
