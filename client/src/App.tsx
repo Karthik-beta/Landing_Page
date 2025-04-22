@@ -1,25 +1,16 @@
 import React, { Suspense } from "react";
-// import { About } from "./components/About";
-// import { Cta } from "./components/Cta";
-// import { FAQ } from "./components/FAQ";
-// import { Features } from "./components/Features";
-// import { Footer } from "./components/Footer";
+import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
-import { Products } from "./components/Products";
+import { ClientsSection } from "./components/Sponsors";
 import { Partnerships } from "./components/Partnerships";
 import { Certifications } from "./components/Certifications";
-// import { HowItWorks } from "./components/HowItWorks";
-import { Navbar } from "./components/Navbar";
+import { ContactForm } from "./components/ContactForm";
 import { ScrollToTop } from "./components/ScrollToTop";
-// import { Services } from "./components/Services";
-import { ClientsSection } from "./components/Sponsors";
-// import { Team } from "./components/Team";
-// import { Testimonials } from "./components/Testimonials";
+import { Toaster } from "./components/ui/toaster"; // Import the Toaster component
 import { ScrollFadeIn } from "./components/ScrollFadeIn";
-import { Skeleton } from "./components/ui/skeleton"; 
+import { Skeleton } from "./components/ui/skeleton";
 import "./App.css";
 
-// Lazy load components
 const About = React.lazy(() => import("./components/About").then(module => ({ default: module.About })));
 const HowItWorks = React.lazy(() => import("./components/HowItWorks").then(module => ({ default: module.HowItWorks })));
 const Features = React.lazy(() => import("./components/Features").then(module => ({ default: module.Features })));
@@ -28,7 +19,6 @@ const Cta = React.lazy(() => import("./components/Cta").then(module => ({ defaul
 const FAQ = React.lazy(() => import("./components/FAQ").then(module => ({ default: module.FAQ })));
 const Footer = React.lazy(() => import("./components/Footer").then(module => ({ default: module.Footer })));
 
-// Define a loading component
 const LoadingFallback = () => (
   <div className="container py-16 space-y-8"> {/* Added space-y for vertical spacing */}
     {/* Section Title Skeleton */}
@@ -61,27 +51,19 @@ function App() {
       <Hero />
       <ClientsSection />
       <ScrollFadeIn delay={0.05}><Partnerships /></ScrollFadeIn>
-      {/* Wrap lazy-loaded components in Suspense */}
       <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn><About /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.1}><Products /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.2}><HowItWorks /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.3}><Features /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.4}><Services /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.45}><Certifications /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.1}><HowItWorks /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.2}><Features /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.3}><Services /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.4}><Certifications /></ScrollFadeIn>
         <ScrollFadeIn delay={0.5}><Cta /></ScrollFadeIn>
         <ScrollFadeIn delay={0.6}><FAQ /></ScrollFadeIn>
-        <ScrollFadeIn delay={0.7}><Footer /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.7}><ContactForm /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.8}><Footer /></ScrollFadeIn>
       </Suspense>
-      {/* <HowItWorks />
-      <Features />
-      <Services />
-      <Cta />
-      <Testimonials />
-      <Team />
-      <FAQ /> 
-      <Footer /> */}
       <ScrollToTop />
+      <Toaster /> 
     </>
   );
 }
