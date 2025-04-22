@@ -34,7 +34,7 @@ export const Products = () => {
   return (
     <section
       id="products"
-      className="container py-24 sm:py-32 space-y-16"
+      className="container py-12 sm:py-24 space-y-8"
     >
       <h2 className="text-3xl md:text-4xl font-bold text-center">
         Our{" "}
