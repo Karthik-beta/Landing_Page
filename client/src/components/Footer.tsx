@@ -140,7 +140,8 @@ export const Footer = () => {
           <div>
             <a
               rel="noreferrer noopener"
-              href="#"
+              target="_blank"
+              href="https://discord.com/"
               className="opacity-60 hover:opacity-100"
             >
               Discord
