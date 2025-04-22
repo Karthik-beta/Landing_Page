@@ -2,9 +2,6 @@ import React, { Suspense } from "react";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { ClientsSection } from "./components/Sponsors";
-import { Partnerships } from "./components/Partnerships";
-import { Certifications } from "./components/Certifications";
-import { ContactForm } from "./components/ContactForm";
 import { ScrollToTop } from "./components/ScrollToTop";
 import { Toaster } from "./components/ui/toaster"; // Import the Toaster component
 import { ScrollFadeIn } from "./components/ScrollFadeIn";
@@ -12,6 +9,10 @@ import { Skeleton } from "./components/ui/skeleton";
 import "./App.css";
 
 const About = React.lazy(() => import("./components/About").then(module => ({ default: module.About })));
+const Partnerships = React.lazy(() => import("./components/Partnerships").then(module => ({ default: module.Partnerships })));
+const Products = React.lazy(() => import("./components/Products").then(module => ({ default: module.Products })));
+const Certifications = React.lazy(() => import("./components/Certifications").then(module => ({ default: module.Certifications })));
+const ContactForm = React.lazy(() => import("./components/ContactForm").then(module => ({ default: module.ContactForm })));
 const HowItWorks = React.lazy(() => import("./components/HowItWorks").then(module => ({ default: module.HowItWorks })));
 const Features = React.lazy(() => import("./components/Features").then(module => ({ default: module.Features })));
 const Services = React.lazy(() => import("./components/Services").then(module => ({ default: module.Services })));
@@ -53,6 +54,7 @@ function App() {
       <ScrollFadeIn delay={0.05}><Partnerships /></ScrollFadeIn>
       <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn><About /></ScrollFadeIn>
+        <ScrollFadeIn delay={0.05}><Products /></ScrollFadeIn>
         <ScrollFadeIn delay={0.1}><HowItWorks /></ScrollFadeIn>
         <ScrollFadeIn delay={0.2}><Features /></ScrollFadeIn>
         <ScrollFadeIn delay={0.3}><Services /></ScrollFadeIn>
