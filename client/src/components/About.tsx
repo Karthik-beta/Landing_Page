@@ -29,7 +29,7 @@ export const About = () => {
           <img
             src={aboutUs}
             alt=""
-            className="w-[300px] object-contain rounded-lg"
+            className="w-[300px] object-contain rounded-lg mx-auto md:mx-0"
           />
           <div className="bg-green-0 flex flex-col justify-between">
             <div className="pb-6">
