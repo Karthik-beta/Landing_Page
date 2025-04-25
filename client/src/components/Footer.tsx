@@ -161,15 +161,15 @@ export const Footer = () => {
       </section>
 
       <section className="container pb-14 text-center">
-        <h3><a
+        <h3>&copy; {new Date().getFullYear()},{" "}<a
             rel="noreferrer noopener"
             target="_blank"
             href="https://www.pivotr.in"
             className="text-primary transition-all border-primary hover:border-b-2"
           >
-            Pivotr Technologies Private Limited.{" "}
+            Pivotr Technologies Pvt Ltd.{" "}
           </a>
-          &copy; 2025. All rights reserved.
+          All rights reserved.
         </h3>
       </section>
     </footer>
