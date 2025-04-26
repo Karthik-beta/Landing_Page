@@ -15,5 +15,10 @@
         { "key": "Content-Type", "value": "application/javascript" }
       ]
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "VERCEL_PROJECT_RUNTIME": "bun"
+    }
+  }
 }
