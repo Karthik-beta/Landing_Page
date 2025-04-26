@@ -1,10 +1,10 @@
 {
-  "name": "shadcn-landing-page-template",
-  "description": "Landing page template utilizing Shadcn, React, Typescript, and Tailwind CSS for rapid development and responsive design.",
+  "name": "Pivotr Landing Page",
+  "description": "Landing page template designed for Pivotr, leveraging Shadcn, React, Typescript, and Tailwind CSS to deliver scalable, responsive, and modern web solutions tailored for enterprise digital transformation.",
   "author": {
-    "name": "Leopoldo Miranda",
-    "email": "leomirandadev@gmail.com",
-    "url": "https://github.com/leoMirandaa"
+    "name": "Karthik",
+    "email": "karthik@pivotr.in",
+    "url": "https://github.com/Karthik-beta"
   },
   "license": "MIT",
   "keywords": [
@@ -15,7 +15,21 @@
     "tailwind",
     "landing-page",
     "template",
-    "responsive-design"
+    "responsive-design",
+    "vite",
+    "radix-ui",
+    "framer-motion",
+    "lucide-react",
+    "enterprise-solutions",
+    "digital-transformation",
+    "iot",
+    "cloud-services",
+    "automation",
+    "data-insights",
+    "b2b-software",
+    "crm",
+    "hrms",
+    "inventory-management"
   ],
   "private": true,
   "version": "1.1.0",
