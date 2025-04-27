@@ -43,7 +43,7 @@ export const Partnerships = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {partners.map(({ name, logo, description }) => (
-            <Card key={name} className="bg-muted/50 shadow-lg hover:scale-105 transition-transform">
+            <Card key={name} className="shadow-lg hover:scale-105 transition-transform">
                 <CardHeader className="flex flex-col items-center space-y-4 p-6">
                 <img
                     src={logo}
