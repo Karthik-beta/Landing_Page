@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import microsoft from "../assets/Microsoft_logo.svg";
 import lenovo from "../assets/Lenovo_logo.svg";
 import HP from "../assets/HP_logo.svg"; 
-import odoo from "../assets/odoo_logo.svg"; // Assuming you have an Odoo logo
+import odoo from "../assets/odoo_logo.svg"; 
 
 const partners = [
   {
@@ -48,7 +48,7 @@ export const Partnerships = () => {
                 <img
                     src={logo}
                     alt={`${name} logo`}
-                    className="w-20 h-20 object-contain block"
+                    className="w-24 h-24 object-contain block"
                 />
                 <CardTitle className="text-center text-lg font-semibold">
                     {name}
