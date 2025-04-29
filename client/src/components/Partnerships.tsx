@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import microsoft from "../assets/Microsoft_logo.svg";
 import lenovo from "../assets/Lenovo_logo.svg";
 import HP from "../assets/HP_logo.svg"; 
-import odoo from "../assets/odoo_logo.svg"; 
+import dell from "../assets/Dell_logo.svg";
 
 const partners = [
   {
@@ -16,9 +16,9 @@ const partners = [
     description: "Delivering smarter technology for all with cutting-edge devices and IT solutions.",
   },
   {
-    name: "odoo",
-    logo: odoo,
-    description: "Providing an all-in-one management software to help businesses streamline operations and enhance productivity.",
+    name: "Dell",
+    logo: dell,
+    description: "Empowering businesses and individuals with innovative technology solutions to drive growth and productivity.",
   },
   {
     name: "Hewlett-Packard",
