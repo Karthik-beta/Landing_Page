@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card";
-import erpIllustration from "../assets/inventory-illustration.svg";
+import bentoGrid from "../assets/undraw_bento-grid.svg";
 import { InfoIcon, LucidePuzzle, Network } from "lucide-react";
 
 export const Products = () => {
@@ -70,7 +70,7 @@ export const Products = () => {
         <div className="lg:col-span-6 relative">
           {/* <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/5 rounded-lg blur-xl"></div> */}
           <img
-            src={erpIllustration}
+            src={bentoGrid}
             alt="Business Operating System illustration"
             className="relative z-10 w-full h-auto"
           />
