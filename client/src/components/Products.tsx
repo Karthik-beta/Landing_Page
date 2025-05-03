@@ -78,7 +78,7 @@ export const Products = () => {
       </div>
 
       {/* Additional Features Section */}
-      <div className="py-8 px-8 sm:px-8">
+      <div className=" sm:px-8">
         <h3 className="text-4xl font-bold text-center mb-12  bg-gradient-to-tr from-primary/60 to-primary text-transparent bg-clip-text">
           Key Features of Pivotr Business Suite
         </h3>

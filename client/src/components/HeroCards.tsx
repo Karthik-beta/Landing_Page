@@ -2,7 +2,7 @@ import userAvatar from "@/assets/undraw_all-the-data_5lil.svg";
 
 export const HeroCards = () => {
   return (
-    <div className="hidden lg:flex flex-row flex-wrap gap-8 relative w-[700px] h-[500px]">
+    <div className="flex flex-col lg:flex-row flex-wrap gap-4 lg:gap-8 relative w-full lg:w-[700px] h-auto lg:h-[500px]">
       <img
             src={userAvatar}
             alt="user avatar"

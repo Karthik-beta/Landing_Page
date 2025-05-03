@@ -64,7 +64,7 @@ export const ClientsSection = () => { // Renamed component for clarity
   return (
     <section
       id="clients" // Changed ID to reflect content
-      className="container pt-24 sm:py-32"
+      className="container pt-6 pb-6 sm:py-32"
     >
       <h2 className="text-center text-md lg:text-xl font-bold mb-8 text-primary">
         {/* Updated Title */}
