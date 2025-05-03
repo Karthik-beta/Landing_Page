@@ -41,6 +41,10 @@ const routeList: RouteProps[] = [
     href: "#about",
     label: "About",
   },
+  {
+    href: 'https://wellfound.com/company/pivotr',
+    label: "Careers",
+  },
 ];
 
 export const Navbar = () => {

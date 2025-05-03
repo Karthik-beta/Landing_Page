@@ -22,13 +22,13 @@ export const Cta = () => {
         </div>
 
         <div className="space-y-4 lg:col-start-2">
-          <Button className="w-full md:mr-4 md:w-auto">Request a Demo</Button>
+          <Button className="w-full md:mr-4 md:w-auto" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Request a Demo</Button>
           <Button
             asChild
             variant="outline"
             className="w-full md:w-auto"
           >
-            <a href="#features">View all features</a>
+            <a href="#products">View all features</a>
           </Button>
         </div>
       </div>
