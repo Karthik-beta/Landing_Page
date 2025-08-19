@@ -79,44 +79,56 @@ const clients: ClientProps[] = [
 
 // Renamed component for clarity - you can keep 'Sponsors' if you prefer
 export const ClientsSection = () => { // Renamed component for clarity
+  // Split clients into two rows
+  const firstRow = clients.slice(0, Math.ceil(clients.length / 2));
+  const secondRow = clients.slice(Math.ceil(clients.length / 2));
+
+  const LogoItem = ({ client }: { client: ClientProps }) => (
+    <a
+      href={client.url || "#"}
+      target="_blank"
+      rel="noreferrer noopener"
+      className="flex justify-center items-center w-32 h-12 text-muted-foreground hover:opacity-100 transition-opacity flex-shrink-0"
+    >
+      {client.icon && <span>{client.icon}</span>}
+      {client.image && (
+        <img
+          src={client.image}
+          alt={`${client.name} Logo`}
+          width={120}
+          height={40}
+          loading="lazy"
+          className="h-10 object-contain grayscale opacity-60 hover:grayscale-0 transition-all"
+        />
+      )}
+    </a>
+  );
+
   return (
     <section
-      id="clients" // Changed ID to reflect content
+      id="clients"
       className="container pt-6 pb-6 sm:py-32"
     >
       <h2 className="text-center text-md lg:text-xl font-bold mb-8 text-primary">
-        {/* Updated Title */}
         Our Trusted Clients
       </h2>
 
-      <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8"> {/* Kept flex container */}
-        {clients.map(({ icon, image, name, url }: ClientProps) => (
-          <a
-             key={name}
-             href={url || "#"}
-             target="_blank"
-             rel="noreferrer noopener"
-             // Added fixed width (w-32) and height (h-12) to the container
-             // Used flex centering (justify-center, items-center)
-             className="flex justify-center items-center w-32 h-12 text-muted-foreground hover:opacity-100 transition-opacity" // Adjust w-32 and h-12 as needed
-           >
-             {/* Render icon or image */}
-            {icon && <span>{icon}</span>}
-            {image && (
-                <img
-                    src={image}
-                    alt={`${name} Logo`}
-                    // Kept h-10 and object-contain to fit within the container
-                    width={120} // Explicit width
-                    height={40} // Explicit height
-                    loading="lazy" // only load when in viewport
-                    className="h-10 object-contain grayscale opacity-60 hover:grayscale-0 transition-all"
-                />
-            )}
-             {/* Hide name text if using image logo */}
-             {/* Removed h3 text rendering here as logos usually replace text */}
-           </a>
-        ))}
+      <div className="relative overflow-hidden space-y-4">
+        {/* First row - sliding left to right */}
+        <div className="flex scroll-left">
+          {/* Duplicate the logos for seamless loop */}
+          {[...firstRow, ...firstRow].map((client, index) => (
+            <LogoItem key={`${client.name}-${index}`} client={client} />
+          ))}
+        </div>
+
+        {/* Second row - sliding right to left */}
+        <div className="flex scroll-right">
+          {/* Duplicate the logos for seamless loop */}
+          {[...secondRow, ...secondRow].map((client, index) => (
+            <LogoItem key={`${client.name}-${index}`} client={client} />
+          ))}
+        </div>
       </div>
     </section>
   );
