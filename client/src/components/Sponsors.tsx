@@ -119,7 +119,7 @@ export const ClientsSection = () => { // Renamed component for clarity
         {/* First row - sliding left to right */}
         <div className="flex scroll-left">
           {/* Triple the logos for seamless infinite scroll */}
-          {[...firstRow, ...firstRow, ...firstRow].map((client, index) => (
+          {[...firstRow, ...secondRow, ...firstRow].map((client, index) => (
             <LogoItem key={`first-${client.name}-${index}`} client={client} />
           ))}
         </div>
@@ -127,7 +127,7 @@ export const ClientsSection = () => { // Renamed component for clarity
         {/* Second row - sliding right to left */}
         <div className="flex scroll-right" style={{ transform: 'translateX(-50%)' }}>
           {/* Triple the logos for seamless infinite scroll */}
-          {[...secondRow, ...secondRow, ...secondRow].map((client, index) => (
+          {[...secondRow, ...firstRow, ...secondRow, ...firstRow, ...secondRow].map((client, index) => (
             <LogoItem key={`second-${client.name}-${index}`} client={client} />
           ))}
         </div>

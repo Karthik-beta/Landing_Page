@@ -8,6 +8,7 @@ html {
   100% { transform: translateX(-50%); }
 }
 
+/* Start filled (at -50%), then scroll to 0 so it moves right-to-left */
 @keyframes scroll-right {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }
@@ -16,11 +17,15 @@ html {
 .scroll-left {
   animation: scroll-left 30s linear infinite;
   width: fit-content;
+  will-change: transform;
 }
 
 .scroll-right {
+  /* Ensure we start fully filled */
+  transform: translateX(-50%);
   animation: scroll-right 30s linear infinite;
   width: fit-content;
+  will-change: transform;
 }
 
 .scroll-left:hover,
