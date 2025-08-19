@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { HeroCards } from "./HeroCards";
+import { TypewriterText } from "./TypewriterText";
 
 export const Hero = () => {
   return (
@@ -7,16 +8,23 @@ export const Hero = () => {
       <div className="text-center lg:text-start space-y-6">
         <main className="text-5xl md:text-6xl font-bold">
           <h1 className="inline">
-            <span className="inline bg-gradient-to-r from-[#F596D3]  to-[#D247BF] text-transparent bg-clip-text">
+            <span className="inline bg-gradient-to-r from-[#F596D3] to-[#D247BF] text-transparent bg-clip-text gradient-shimmer">
               Better
             </span>{" "}
             Solutions 
           </h1>{" "}
           for Your{" "}
           <h2 className="inline">
-            <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text">
-              Business
-            </span>{" "}
+            <TypewriterText 
+              words={["Business", "Teams", "Growth", "Success", "Future"]}
+              className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text"
+              typeSpeed={120}
+              deleteSpeed={80}
+              delayBetweenWords={2500}
+              showCursor={true}
+              cursorClassName="bg-gradient-to-r from-[#61DAFB] to-[#03a3d7]"
+            />
+            {" "}
             {/* developers */}
           </h2>
         </main>
