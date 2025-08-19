@@ -5,6 +5,9 @@ import quansys from "../assets/quansys.png";
 import dwpGlobal from "../assets/dwp-global.png"; 
 // import vikas from "../assets/vikas.jpg"; 
 import vikasSchool from "../assets/vikas-school.png";
+import planafin from "../assets/planafin.png";
+import adian from "../assets/Adian.png"; 
+import irTech from "../assets/IR_tech.png"; // Assuming you have this image
 
 interface ClientProps { // Renamed interface for clarity
   icon?: JSX.Element; // Icon is optional, you'll likely use images for logos
@@ -55,6 +58,21 @@ const clients: ClientProps[] = [
     // icon: <Radar size={34} />,
     image: vikasSchool,
     name: "Vikas School",
+    url: "#"
+  },
+  {
+    image: planafin,
+    name: "Planafin",
+    url: "#"
+  },
+  {
+    image: adian,
+    name: "Adian",
+    url: "#"
+  },
+  {
+    image: irTech,
+    name: "IR Tech",
     url: "#"
   }
 ];
