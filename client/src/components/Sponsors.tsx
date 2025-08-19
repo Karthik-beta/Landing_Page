@@ -84,24 +84,26 @@ export const ClientsSection = () => { // Renamed component for clarity
   const secondRow = clients.slice(Math.ceil(clients.length / 2));
 
   const LogoItem = ({ client }: { client: ClientProps }) => (
-    <a
-      href={client.url || "#"}
-      target="_blank"
-      rel="noreferrer noopener"
-      className="flex justify-center items-center w-32 h-12 text-muted-foreground hover:opacity-100 transition-opacity flex-shrink-0"
-    >
-      {client.icon && <span>{client.icon}</span>}
-      {client.image && (
-        <img
-          src={client.image}
-          alt={`${client.name} Logo`}
-          width={120}
-          height={40}
-          loading="lazy"
-          className="h-10 object-contain grayscale opacity-60 hover:grayscale-0 transition-all"
-        />
-      )}
-    </a>
+    <div className="flex justify-center items-center w-32 h-12 text-muted-foreground hover:opacity-100 transition-opacity flex-shrink-0 mx-4">
+      <a
+        href={client.url || "#"}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="flex justify-center items-center w-full h-full"
+      >
+        {client.icon && <span>{client.icon}</span>}
+        {client.image && (
+          <img
+            src={client.image}
+            alt={`${client.name} Logo`}
+            width={120}
+            height={40}
+            loading="lazy"
+            className="h-10 object-contain grayscale opacity-60 hover:grayscale-0 transition-all"
+          />
+        )}
+      </a>
+    </div>
   );
 
   return (
@@ -113,20 +115,20 @@ export const ClientsSection = () => { // Renamed component for clarity
         Our Trusted Clients
       </h2>
 
-      <div className="relative overflow-hidden space-y-4">
+      <div className="relative overflow-hidden space-y-6">
         {/* First row - sliding left to right */}
         <div className="flex scroll-left">
-          {/* Duplicate the logos for seamless loop */}
-          {[...firstRow, ...firstRow].map((client, index) => (
-            <LogoItem key={`${client.name}-${index}`} client={client} />
+          {/* Triple the logos for seamless infinite scroll */}
+          {[...firstRow, ...firstRow, ...firstRow].map((client, index) => (
+            <LogoItem key={`first-${client.name}-${index}`} client={client} />
           ))}
         </div>
 
         {/* Second row - sliding right to left */}
-        <div className="flex scroll-right">
-          {/* Duplicate the logos for seamless loop */}
-          {[...secondRow, ...secondRow].map((client, index) => (
-            <LogoItem key={`${client.name}-${index}`} client={client} />
+        <div className="flex scroll-right" style={{ transform: 'translateX(-50%)' }}>
+          {/* Triple the logos for seamless infinite scroll */}
+          {[...secondRow, ...secondRow, ...secondRow].map((client, index) => (
+            <LogoItem key={`second-${client.name}-${index}`} client={client} />
           ))}
         </div>
       </div>
