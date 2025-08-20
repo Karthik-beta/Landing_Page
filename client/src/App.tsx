@@ -51,19 +51,47 @@ function App() {
       <Navbar />
       <Hero />
       <ClientsSection />
-      <ScrollFadeIn delay={0.05}><Partnerships /></ScrollFadeIn>
+      <ScrollFadeIn delay={0.05}>
+        <Suspense fallback={<LoadingFallback />}>
+          <Partnerships />
+        </Suspense>
+      </ScrollFadeIn>
+      
+      {/* Group related sections for better loading UX */}
       <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn><About /></ScrollFadeIn>
+      </Suspense>
+      
+      <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn delay={0.05}><Products /></ScrollFadeIn>
+      </Suspense>
+      
+      <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn delay={0.1}><HowItWorks /></ScrollFadeIn>
+      </Suspense>
+      
+      {/* Group features and services together */}
+      <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn delay={0.2}><Features /></ScrollFadeIn>
         <ScrollFadeIn delay={0.3}><Services /></ScrollFadeIn>
+      </Suspense>
+      
+      {/* Group certification and CTA */}
+      <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn delay={0.4}><Certifications /></ScrollFadeIn>
         <ScrollFadeIn delay={0.5}><Cta /></ScrollFadeIn>
+      </Suspense>
+      
+      {/* Group FAQ and contact form */}
+      <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn delay={0.6}><FAQ /></ScrollFadeIn>
         <ScrollFadeIn delay={0.7}><ContactForm /></ScrollFadeIn>
+      </Suspense>
+      
+      <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn delay={0.8}><Footer /></ScrollFadeIn>
       </Suspense>
+      
       <ScrollToTop />
       <Toaster /> 
     </>

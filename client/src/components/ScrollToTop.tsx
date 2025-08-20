@@ -1,19 +1,38 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "./ui/button";
 import { ArrowUpToLine } from "lucide-react";
 
 export const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) {
-        setShowTopBtn(true);
-      } else {
-        setShowTopBtn(false);
-      }
-    });
+  // Throttled scroll handler for better performance
+  const handleScroll = useCallback(() => {
+    const shouldShow = window.scrollY > 400;
+    setShowTopBtn(shouldShow);
   }, []);
+
+  useEffect(() => {
+    let ticking = false;
+    
+    // Throttled handler using requestAnimationFrame
+    const throttledScrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    // Add event listener with passive flag for better performance
+    window.addEventListener("scroll", throttledScrollHandler, { passive: true });
+    
+    // Cleanup function to prevent memory leaks
+    return () => {
+      window.removeEventListener("scroll", throttledScrollHandler);
+    };
+  }, [handleScroll]);
 
   const goToTop = () => {
     window.scroll({

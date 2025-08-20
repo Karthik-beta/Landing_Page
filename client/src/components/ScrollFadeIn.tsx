@@ -1,7 +1,6 @@
-// components/ScrollFadeIn.tsx
-import { motion, useAnimation } from "framer-motion";
+// components/ScrollFadeIn.tsx - Optimized CSS-based alternative
 import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -9,27 +8,33 @@ type Props = {
 };
 
 export const ScrollFadeIn = ({ children, delay = 0 }: Props) => {
-  const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
     if (inView) {
-      controls.start("visible");
+      // Apply delay before triggering animation
+      const timer = setTimeout(() => {
+        setShouldAnimate(true);
+      }, delay * 1000);
+      
+      return () => clearTimeout(timer);
     }
-  }, [inView, controls]);
+  }, [inView, delay]);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial="hidden"
-      animate={controls}
-      transition={{ duration: 0.6, ease: "easeOut", delay }}
-      variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0 },
+      className={`transition-all duration-700 ease-out ${
+        shouldAnimate 
+          ? 'opacity-100 translate-y-0' 
+          : 'opacity-0 translate-y-12'
+      }`}
+      style={{
+        transitionDelay: shouldAnimate ? '0ms' : `${delay * 1000}ms`,
       }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 };

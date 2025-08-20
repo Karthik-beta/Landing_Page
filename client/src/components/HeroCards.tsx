@@ -1,10 +1,16 @@
 import userAvatar from "@/assets/undraw_all-the-data_5lil.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 export const HeroCards = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Use refs for high-frequency updates instead of state
+  const mousePositionRef = useRef({ x: 0, y: 0 });
+  const animationFrameRef = useRef<number>();
+  const imageRef = useRef<HTMLImageElement>(null);
+  const particlesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const cursorFollowerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,13 +33,56 @@ export const HeroCards = () => {
     setTimeout(() => setIsClicked(false), 600);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  // Optimized mouse handler using rAF for smooth 60fps updates
+  const updateTransforms = useCallback(() => {
+    const { x, y } = mousePositionRef.current;
+    
+    // Update image transform directly via DOM
+    if (imageRef.current) {
+      const rotateX = (y - 0.5) * 5;
+      const rotateY = (x - 0.5) * -5;
+      imageRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+    
+    // Update floating particles
+    particlesRef.current.forEach((particle) => {
+      if (particle) {
+        const offsetX = x * 10;
+        const offsetY = y * 10;
+        particle.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      }
+    });
+    
+    // Update cursor follower
+    if (cursorFollowerRef.current) {
+      cursorFollowerRef.current.style.left = `${x * 100}%`;
+      cursorFollowerRef.current.style.top = `${y * 100}%`;
+    }
+  }, []);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
+    mousePositionRef.current = {
       x: (e.clientX - rect.left) / rect.width,
       y: (e.clientY - rect.top) / rect.height,
-    });
-  };
+    };
+    
+    // Cancel previous frame and schedule new one
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+    
+    animationFrameRef.current = requestAnimationFrame(updateTransforms);
+  }, [updateTransforms]);
+
+  // Cleanup animation frame on unmount
+  useEffect(() => {
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="flex flex-col lg:flex-row flex-wrap gap-4 lg:gap-8 relative w-full lg:w-[700px] h-auto lg:h-[500px]">
@@ -44,6 +93,7 @@ export const HeroCards = () => {
         onMouseMove={handleMouseMove}
       >
         <img
+          ref={imageRef}
           src={userAvatar}
           alt="Data visualization illustration"
           className={`
@@ -56,7 +106,6 @@ export const HeroCards = () => {
           `}
           style={{
             filter: 'drop-shadow(0 10px 25px rgba(0, 0, 0, 0.1))',
-            transform: `perspective(1000px) rotateX(${(mousePosition.y - 0.5) * 5}deg) rotateY(${(mousePosition.x - 0.5) * -5}deg)`,
           }}
         />
         
@@ -76,6 +125,7 @@ export const HeroCards = () => {
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
+              ref={(el) => (particlesRef.current[i] = el)}
               className={`
                 absolute w-1.5 h-1.5 bg-gradient-to-r from-[#61DAFB] to-[#03a3d7] rounded-full
                 opacity-0 group-hover:opacity-70
@@ -87,7 +137,6 @@ export const HeroCards = () => {
                 top: `${25 + (i % 4) * 18}%`,
                 animationDelay: `${i * 150}ms`,
                 animationDuration: `${2500 + i * 300}ms`,
-                transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
               }}
             />
           ))}
@@ -126,10 +175,9 @@ export const HeroCards = () => {
         
         {/* Cursor follower effect */}
         <div 
+          ref={cursorFollowerRef}
           className="absolute w-6 h-6 bg-gradient-to-r from-[#61DAFB]/30 to-[#03a3d7]/30 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
-            left: `${mousePosition.x * 100}%`,
-            top: `${mousePosition.y * 100}%`,
             transform: 'translate(-50%, -50%)',
           }}
         />

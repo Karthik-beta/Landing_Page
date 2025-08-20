@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -7,18 +7,21 @@ import { ToastAction } from "@/components/ui/toast";
 
 export const ContactForm = () => {
     const { toast } = useToast();
-    const [formData, setFormData] = useState({
+    const [loading, setLoading] = useState(false);
+    
+    // Use refs for form data to avoid re-renders on every keystroke
+    const formDataRef = useRef({
         name: "",
         email: "",
         subject: "",
         message: "",
     });
-    const [loading, setLoading] = useState(false);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    
+    // Optimized change handler - no object recreation
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
+        formDataRef.current[name as keyof typeof formDataRef.current] = value;
+    }, []);
 
     const handleSubmit = async (e?: React.FormEvent) => {
         if (e) e.preventDefault();
@@ -28,7 +31,7 @@ export const ContactForm = () => {
             const response = await fetch("https://formspree.io/f/mldrnwbb", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(formDataRef.current),
             });
 
             if (response.ok) {
@@ -37,18 +40,15 @@ export const ContactForm = () => {
                     description: "Your message has been sent successfully!",
                     variant: "default",
                 });
-                setFormData({ name: "", email: "", subject: "", message: "" });
+                
+                // Reset form
+                const form = e?.target as HTMLFormElement;
+                if (form) {
+                    form.reset();
+                    formDataRef.current = { name: "", email: "", subject: "", message: "" };
+                }
             } else {
-                toast({
-                    title: "Uh oh! Something went wrong.",
-                    description: "There was a problem with your request.",
-                    variant: "destructive",
-                    action: (
-                        <ToastAction altText="Try again" onClick={handleSubmit}>
-                            Try again
-                        </ToastAction>
-                    ),
-                });
+                throw new Error('Network response was not ok');
             }
         } catch {
             toast({
@@ -84,7 +84,6 @@ export const ContactForm = () => {
                     <Input
                         name="name"
                         placeholder="Your Name"
-                        value={formData.name}
                         onChange={handleChange}
                         required
                         className="bg-muted/50 dark:bg-muted/80"
@@ -93,7 +92,6 @@ export const ContactForm = () => {
                         name="email"
                         type="email"
                         placeholder="Your Email"
-                        value={formData.email}
                         onChange={handleChange}
                         required
                         className="bg-muted/50 dark:bg-muted/80"
@@ -101,7 +99,6 @@ export const ContactForm = () => {
                     <Input
                         name="subject"
                         placeholder="Subject"
-                        value={formData.subject}
                         onChange={handleChange}
                         required
                         className="bg-muted/50 dark:bg-muted/80"
@@ -109,7 +106,6 @@ export const ContactForm = () => {
                     <Textarea
                         name="message"
                         placeholder="Your Message"
-                        value={formData.message}
                         onChange={handleChange}
                         required
                         className="bg-muted/50 dark:bg-muted/80"

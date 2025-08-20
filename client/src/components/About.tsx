@@ -1,23 +1,60 @@
 import { Statistics } from "./Statistics";
 import aboutUs from "../assets/undraw_team-work_i1f3.svg";
-import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export const About = () => {
-
   const paragraphText = `Transforming Enterprises Through Technology.\n\nPivotr delivers innovative solutions, seamlessly integrating hardware and software for comprehensive business transformation.  We specialize in optimizing operations and streamlining workflows across enterprise operations, scalable cloud storage and advanced automation.`;
+  
   const [displayedText, setDisplayedText] = useState("");
-  const [charIndex, setCharIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout>();
 
+  // Start animation when component becomes visible
   useEffect(() => {
-    if (charIndex < paragraphText.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prevText) => prevText + paragraphText[charIndex]);
-        setCharIndex(charIndex + 1);
-      }, 10); // Adjust the timeout for typing speed
-      return () => clearTimeout(timeout); // Clear timeout on unmount or text change
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      observer.observe(aboutSection);
     }
-  }, [charIndex, paragraphText]);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Typewriter animation with optimized intervals
+  useEffect(() => {
+    if (!isVisible) return;
+
+    if (currentIndex < paragraphText.length) {
+      intervalRef.current = setTimeout(() => {
+        setDisplayedText((prev) => prev + paragraphText[currentIndex]);
+        setCurrentIndex((prev) => prev + 1);
+      }, 50); // 50ms = 20 FPS, much better than 10ms = 100 FPS
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearTimeout(intervalRef.current);
+      }
+    };
+  }, [currentIndex, paragraphText, isVisible]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearTimeout(intervalRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section
@@ -42,22 +79,15 @@ export const About = () => {
               {/* <p className="text-xl text-muted-foreground mt-4">
                 At Pivotr, we lead the way in delivering innovative enterprise systems that seamlessly integrate hardware and software for comprehensive business solutions. Our expertise in digital transformation and advanced automation positions us as key enablers of operational excellence and business process optimization across a wide range of industries. 
               </p> */}
-              <motion.p
-                className="text-xl text-muted-foreground mt-4"
-                initial={{ opacity: 0 }} // Optionally fade-in the whole paragraph
-                animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.2 } }} // Optional fade-in animation
-              >
+              <p className="text-xl text-muted-foreground mt-4">
                 {displayedText}
-                {charIndex < paragraphText.length && (
-                  <motion.span
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0, transition: { duration: 0.7, repeat: Infinity, repeatType: "reverse", repeatDelay: 0 } }}
-                    style={{ display: 'inline-block' }} // Keep cursor inline
-                  >
-                    |
-                  </motion.span>
+                {currentIndex < paragraphText.length && (
+                  <span 
+                    className="inline-block w-0.5 h-[1em] ml-1 bg-gradient-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse"
+                    style={{ animationDuration: '1s' }}
+                  />
                 )}
-              </motion.p>
+              </p>
               {/* <Typewriter text="At Pivotr, we lead the way in delivering innovative enterprise systems that seamlessly integrate hardware and software for comprehensive business solutions. Our expertise in digital transformation and advanced automation positions us as key enablers of operational excellence and business process optimization across a wide range of industries." /> */}
             </div>
 
