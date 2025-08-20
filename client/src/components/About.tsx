@@ -37,7 +37,7 @@ export const About = () => {
       intervalRef.current = setTimeout(() => {
         setDisplayedText((prev) => prev + paragraphText[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
-      }, 50); // 50ms = 20 FPS, much better than 10ms = 100 FPS
+      }, 25); // 25ms = 40 FPS, much better than 10ms = 100 FPS
     }
 
     return () => {
