@@ -181,3 +181,44 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom animations for micro-interactions */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-8px) scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-4px) scale(0.9);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-12px) scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes gradient-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.gradient-shimmer {
+  background-size: 200% 200%;
+  animation: gradient-shimmer 3s ease infinite;
+}

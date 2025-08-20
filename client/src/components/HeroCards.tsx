@@ -1,13 +1,139 @@
 import userAvatar from "@/assets/undraw_all-the-data_5lil.svg";
+import { useState, useEffect } from "react";
 
 export const HeroCards = () => {
+  const [isClicked, setIsClicked] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const element = document.getElementById('hero-svg');
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleImageClick = () => {
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 600);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: (e.clientX - rect.left) / rect.width,
+      y: (e.clientY - rect.top) / rect.height,
+    });
+  };
+
   return (
     <div className="flex flex-col lg:flex-row flex-wrap gap-4 lg:gap-8 relative w-full lg:w-[700px] h-auto lg:h-[500px]">
-      <img
-            src={userAvatar}
-            alt="user avatar"
-            // className="absolute grayscale-[0%] -top-12 rounded-full w-24 h-24 aspect-square object-cover"
-          />
+      <div 
+        id="hero-svg"
+        className="relative group cursor-pointer"
+        onClick={handleImageClick}
+        onMouseMove={handleMouseMove}
+      >
+        <img
+          src={userAvatar}
+          alt="Data visualization illustration"
+          className={`
+            transition-all duration-700 ease-out
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
+            ${isClicked ? 'scale-105 rotate-1' : 'scale-100'}
+            hover:scale-102 hover:-translate-y-2 hover:drop-shadow-2xl
+            group-hover:brightness-110
+            transform-gpu
+          `}
+          style={{
+            filter: 'drop-shadow(0 10px 25px rgba(0, 0, 0, 0.1))',
+            transform: `perspective(1000px) rotateX(${(mousePosition.y - 0.5) * 5}deg) rotateY(${(mousePosition.x - 0.5) * -5}deg)`,
+          }}
+        />
+        
+        {/* Animated glow effect on hover */}
+        <div 
+          className={`
+            absolute inset-0 -z-10 rounded-lg
+            bg-gradient-to-r from-[#F596D3]/20 via-[#61DAFB]/20 to-[#03a3d7]/20
+            opacity-0 group-hover:opacity-100 blur-xl
+            transition-opacity duration-500
+            ${isClicked ? 'animate-pulse' : ''}
+          `}
+        />
+        
+        {/* Interactive floating particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className={`
+                absolute w-1.5 h-1.5 bg-gradient-to-r from-[#61DAFB] to-[#03a3d7] rounded-full
+                opacity-0 group-hover:opacity-70
+                transition-all duration-1000 ease-out
+                ${isVisible ? 'animate-float' : ''}
+              `}
+              style={{
+                left: `${15 + i * 12}%`,
+                top: `${25 + (i % 4) * 18}%`,
+                animationDelay: `${i * 150}ms`,
+                animationDuration: `${2500 + i * 300}ms`,
+                transform: `translate(${mousePosition.x * 10}px, ${mousePosition.y * 10}px)`,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Data pulse indicators */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={`pulse-${i}`}
+              className={`
+                absolute w-3 h-3 rounded-full
+                bg-gradient-to-r from-[#F596D3] to-[#D247BF]
+                opacity-0 group-hover:opacity-60
+                transition-all duration-500
+                animate-pulse
+              `}
+              style={{
+                left: `${30 + i * 20}%`,
+                top: `${40 + (i % 2) * 25}%`,
+                animationDelay: `${i * 400}ms`,
+                animationDuration: '2s',
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Success ripple effect on click */}
+        {isClicked && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-4 h-4 bg-gradient-to-r from-[#F596D3] to-[#D247BF] rounded-full animate-ping opacity-75" />
+            <div className="absolute w-8 h-8 bg-gradient-to-r from-[#61DAFB] to-[#03a3d7] rounded-full animate-ping opacity-50" style={{ animationDelay: '150ms' }} />
+            <div className="absolute w-12 h-12 bg-gradient-to-r from-[#F596D3] to-[#03a3d7] rounded-full animate-ping opacity-25" style={{ animationDelay: '300ms' }} />
+          </div>
+        )}
+        
+        {/* Cursor follower effect */}
+        <div 
+          className="absolute w-6 h-6 bg-gradient-to-r from-[#61DAFB]/30 to-[#03a3d7]/30 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          style={{
+            left: `${mousePosition.x * 100}%`,
+            top: `${mousePosition.y * 100}%`,
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+      </div>
       {/* Testimonial */}
       {/* <Card className="absolute w-[340px] -top-[15px] drop-shadow-xl shadow-black/10 dark:shadow-white/10">
         <CardHeader className="flex flex-row items-center gap-4 pb-2">
