@@ -1,6 +1,27 @@
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 export const Cta = () => {
+  const handleDemoRequest = () => {
+    toast.success("🎯 Great choice! Taking you to our contact form.", {
+      description: "We'll help you get started with a personalized demo.",
+      duration: 3000,
+    });
+    
+    setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  };
+
+  const handleViewFeatures = () => {
+    toast.info("📋 Exploring our features and products", {
+      duration: 2500,
+    });
+    
+    setTimeout(() => {
+      document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+    }, 500);
+  };
   return (
     <section
       id="cta"
@@ -22,13 +43,18 @@ export const Cta = () => {
         </div>
 
         <div className="space-y-4 lg:col-start-2">
-          <Button className="w-full md:mr-4 md:w-auto" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Request a Demo</Button>
-          <Button
-            asChild
-            variant="outline"
-            className="w-full md:w-auto"
+          <Button 
+            className="w-full md:mr-4 md:w-auto transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25" 
+            onClick={handleDemoRequest}
           >
-            <a href="#products">View all features</a>
+            Request a Demo
+          </Button>
+          <Button
+            variant="outline"
+            className="w-full md:w-auto transition-all duration-300 hover:scale-105 hover:shadow-md"
+            onClick={handleViewFeatures}
+          >
+            View all features
           </Button>
         </div>
       </div>

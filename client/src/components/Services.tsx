@@ -1,4 +1,5 @@
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
 import { MagnifierIcon, WalletIcon, ChartIcon } from "./Icons";
 import servicePicture from "../assets/undraw_business-chat_xea1.svg";
 
@@ -6,6 +7,7 @@ interface ServiceProps {
   title: string;
   description: string;
   icon: JSX.Element;
+  details?: string;
 }
 
 const serviceList: ServiceProps[] = [
@@ -14,24 +16,27 @@ const serviceList: ServiceProps[] = [
     description:
       "Transform your business with expert implementation and integration of cutting-edge SaaS, ERP systems, and custom enterprise applications.",
     icon: <ChartIcon />,
+    details: "Including Salesforce, SAP, Microsoft Dynamics, and custom enterprise solutions with full integration support."
   },
   {
     title: "Cloud & Infrastructure Services",
     description:
       "Build a scalable and secure foundation for your operations with our cloud, network, computing power, and flexible storage solutions.",
     icon: <WalletIcon />,
+    details: "AWS, Azure, Google Cloud infrastructure with 99.9% uptime guarantee and 24/7 monitoring."
   },
   {
     title: "Managed Services & Support",
     description:
       "Ensure peak performance and reliability with 24/7 dedicated support, seamless system management, and continuous optimization for your technology ecosystem.",
     icon: <MagnifierIcon />,
+    details: "Round-the-clock support with average response time under 15 minutes for critical issues."
   },
 ];
 
 export const Services = () => {
   return (
-    <section className="container py-24 sm:py-32">
+    <section id="services" className="container py-24 sm:py-32">
       <div className="grid lg:grid-cols-[1fr,1fr] gap-8 place-items-center">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-center">
@@ -46,17 +51,34 @@ export const Services = () => {
           </p>
 
           <div className="flex flex-col gap-8">
-            {serviceList.map(({ icon, title, description }: ServiceProps) => (
-              <Card key={title}>
+            {serviceList.map(({ icon, title, description, details }: ServiceProps) => (
+              <Card 
+                key={title}
+                className="group cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 bg-gradient-to-br from-background to-background/50"
+              >
                 <CardHeader className="space-y-1 flex md:flex-row justify-start items-start gap-4">
-                  <div className="mt-1 bg-primary/20 p-1 rounded-2xl">
+                  <div className="mt-1 bg-primary/20 p-1 rounded-2xl group-hover:bg-primary/30 transition-colors duration-300 group-hover:scale-110 transform">
                     {icon}
                   </div>
-                  <div>
-                    <CardTitle>{title}</CardTitle>
-                    <CardDescription className="text-md mt-2">
+                  <div className="flex-1">
+                    <CardTitle className="group-hover:text-primary transition-colors duration-300">
+                      {title}
+                    </CardTitle>
+                    <CardDescription className="text-md mt-2 leading-relaxed">
                       {description}
                     </CardDescription>
+                    {details && (
+                      <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-0 group-hover:max-h-20 group-hover:mt-3">
+                        <div className="pt-2 border-t border-border/40">
+                          <Badge variant="secondary" className="mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                            Details
+                          </Badge>
+                          <p className="text-sm text-muted-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
+                            {details}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </CardHeader>
               </Card>

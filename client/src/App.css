@@ -222,3 +222,70 @@
   background-size: 200% 200%;
   animation: gradient-shimmer 3s ease infinite;
 }
+
+/* User Companion System Styles */
+.companion-toast {
+  border-left: 3px solid hsl(var(--primary));
+  background: hsl(var(--background) / 0.95);
+  backdrop-filter: blur(8px);
+}
+
+.companion-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.companion-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: progress-shimmer 2s infinite;
+}
+
+@keyframes progress-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Service card hover effects */
+.service-card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+              hsl(var(--primary) / 0.1), 
+              transparent 40%);
+  opacity: 0;
+  transition: opacity 300ms;
+  pointer-events: none;
+}
+
+.service-card-glow:hover::before {
+  opacity: 1;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .companion-toast,
+  .animate-float,
+  .gradient-shimmer,
+  .service-card-glow::before {
+    animation: none;
+  }
+  
+  .companion-progress::after {
+    display: none;
+  }
+}

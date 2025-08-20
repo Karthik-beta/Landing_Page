@@ -3,9 +3,11 @@ import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { ClientsSection } from "./components/Sponsors";
 import { ScrollToTop } from "./components/ScrollToTop";
-import { Toaster } from "./components/ui/toaster"; // Import the Toaster component
+import { Toaster } from "./components/ui/toaster"; 
+import { Toaster as SonnerToaster } from "./components/ui/sonner";
 import { ScrollFadeIn } from "./components/ScrollFadeIn";
 import { Skeleton } from "./components/ui/skeleton";
+import { useUserCompanion } from "./hooks/use-user-companion";
 import "./App.css";
 
 const About = React.lazy(() => import("./components/About").then(module => ({ default: module.About })));
@@ -46,9 +48,11 @@ const LoadingFallback = () => (
 );
 
 function App() {
+  const companion = useUserCompanion();
+
   return (
     <>
-      <Navbar />
+      <Navbar companion={companion} />
       <Hero />
       <ClientsSection />
       <ScrollFadeIn delay={0.05}>
@@ -93,7 +97,8 @@ function App() {
       </Suspense>
       
       <ScrollToTop />
-      <Toaster /> 
+      <Toaster />
+      <SonnerToaster />
     </>
   );
 }

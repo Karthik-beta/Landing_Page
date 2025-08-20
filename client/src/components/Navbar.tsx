@@ -14,6 +14,7 @@ import {
 import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
+import { ProgressIndicator } from "./ProgressIndicator";
 
 interface RouteProps {
   href: string;
@@ -47,11 +48,25 @@ const routeList: RouteProps[] = [
   },
 ];
 
-export const Navbar = () => {
+interface CompanionData {
+  scrollProgress: number;
+  visitedSections: Set<string>;
+  currentSection: string;
+}
+
+export const Navbar = ({ companion }: { companion?: CompanionData }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
+      {/* Progress indicator at the top */}
+      {companion && (
+        <ProgressIndicator 
+          progress={companion.scrollProgress}
+          visitedSections={companion.visitedSections}
+          currentSection={companion.currentSection}
+        />
+      )}
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between items-center">
           <NavigationMenuItem className="font-bold flex" key="Logo">
