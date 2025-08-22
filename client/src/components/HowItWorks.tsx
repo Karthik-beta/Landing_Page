@@ -3,7 +3,7 @@ import { MedalIcon, MapIcon, PlaneIcon, GiftIcon } from "../components/Icons";
 
 interface FeatureProps {
   key: string;
-  icon: JSX.Element;
+  icon: React.JSX.Element;
   title: string;
   description: string;
 }

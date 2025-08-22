@@ -10,7 +10,7 @@ import adian from "../assets/Adian.png";
 import irTech from "../assets/IR_tech.png"; // Assuming you have this image
 
 interface ClientProps { // Renamed interface for clarity
-  icon?: JSX.Element; // Icon is optional, you'll likely use images for logos
+  icon?: React.JSX.Element; // Icon is optional, you'll likely use images for logos
   image?: string; // Added image property for logos
   name: string;
   url?: string; // Optional: Add URL for clicking through to client websites/case studies

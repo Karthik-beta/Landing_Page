@@ -6,7 +6,7 @@ import servicePicture from "../assets/undraw_business-chat_xea1.svg";
 interface ServiceProps {
   title: string;
   description: string;
-  icon: JSX.Element;
+  icon: React.JSX.Element;
   details?: string;
 }
 

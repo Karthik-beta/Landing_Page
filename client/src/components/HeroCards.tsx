@@ -7,7 +7,7 @@ export const HeroCards = () => {
   
   // Use refs for high-frequency updates instead of state
   const mousePositionRef = useRef({ x: 0, y: 0 });
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | null>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const particlesRef = useRef<(HTMLDivElement | null)[]>([]);
   const cursorFollowerRef = useRef<HTMLDivElement>(null);
@@ -125,7 +125,7 @@ export const HeroCards = () => {
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              ref={(el) => (particlesRef.current[i] = el)}
+              ref={(el) => { particlesRef.current[i] = el; }}
               className={`
                 absolute w-1.5 h-1.5 bg-gradient-to-r from-[#61DAFB] to-[#03a3d7] rounded-full
                 opacity-0 group-hover:opacity-70
