@@ -24,7 +24,9 @@ Successfully migrated Pivotr Landing Page from React 18 to React 19 with compreh
 - ✅ **Updated**: `vercel.json` for React 19 and PNPM compatibility
 - ✅ **Added**: Immutable cache headers for static assets
 - ✅ **Configured**: Image optimization with WebP/AVIF support
-- ✅ **Enhanced**: API route handling for serverless functions
+- ✅ **Added**: Proper Vite framework configuration
+- ✅ **Fixed**: Build command and output directory specification
+- ✅ **Removed**: Problematic functions configuration causing deployment errors
 - ✅ **Removed**: Bun runtime reference
 
 ### 4. React 19 Performance Features
@@ -198,8 +200,13 @@ Successfully migrated Pivotr Landing Page from React 18 to React 19 with compreh
 ### Troubleshooting
 - **Build Issues**: Check Vite configuration compatibility
 - **Type Errors**: Verify React 19 type definitions
-- **Deployment Issues**: Review vercel.json configuration
+- **Deployment Issues**:
+  - Ensure `vercel.json` has proper framework configuration
+  - Verify PNPM version compatibility (v9)
+  - Check for conflicting function configurations
+  - Use `pnpm run build` for local testing
 - **Performance Issues**: Use built-in performance monitoring
+- **Function Runtime Errors**: Remove invalid functions configuration from vercel.json
 
 ---
 

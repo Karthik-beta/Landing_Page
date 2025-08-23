@@ -36,15 +36,13 @@
       ]
     }
   ],
+  "framework": "vite",
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist",
   "build": {
     "env": {
       "NODE_VERSION": "20",
       "PNPM_VERSION": "9"
-    }
-  },
-  "functions": {
-    "pages/api/**/*.ts": {
-      "runtime": "@vercel/node"
     }
   },
   "rewrites": [
