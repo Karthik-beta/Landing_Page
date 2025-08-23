@@ -16,7 +16,6 @@ interface OptimizedImageProps {
   placeholder?: 'blur' | 'empty';
   blurDataURL?: string;
   sizes?: string;
-  quality?: number;
   loading?: 'lazy' | 'eager';
   onLoad?: () => void;
   onError?: () => void;

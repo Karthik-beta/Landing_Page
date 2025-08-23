@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { startTransition, useDeferredValue, useMemo, useCallback, useTransition } from 'react';
 
 /**
@@ -10,6 +11,9 @@ export const useOptimizedDeferredValue = <T>(value: T, options?: { priority?: 'h
   const deferredValue = useDeferredValue(value);
 
   // React 19: Add priority hint for better scheduling
+  // Note: options parameter is reserved for future React 19 features
+  void options;
+
   return deferredValue;
 };
 
@@ -19,6 +23,8 @@ export const useOptimizedCallback = <T extends (...args: any[]) => any>(
   deps: React.DependencyList,
   options?: { stable?: boolean }
 ): T => {
+  // Note: options parameter is reserved for future React 19 features
+  void options;
   return useCallback(callback, deps);
 };
 
@@ -141,6 +147,8 @@ export const usePerformanceMonitor = (componentName: string) => {
 export const createOptimizedBundle = {
   // Dynamic imports with better chunk naming
   createChunk: (name: string, factory: () => Promise<any>) => {
+    // Note: name parameter is reserved for future chunk naming features
+    void name;
     return factory();
   },
 
