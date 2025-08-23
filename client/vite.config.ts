@@ -7,7 +7,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
   plugins: [
     react({
-      // React 19: Enable automatic JSX runtime and optimization
+      // React 19: Enhanced JSX runtime with optimizations
       jsxRuntime: 'automatic',
     }),
     viteCompression({ 
@@ -36,6 +36,11 @@ export default defineConfig({
   build: {
     target: 'es2022', // Modern target for better optimizations
     minify: 'esbuild', // Faster minification
+    // React 19: Enhanced module preloading
+    modulePreload: {
+      polyfill: false,
+    },
+    // React 19: Optimize chunk generation
     rollupOptions: {
       treeshake: {
         preset: 'smallest', // Maximum tree shaking

@@ -161,7 +161,7 @@ export const Footer = () => {
       </section>
 
       <section className="container pb-14 text-center">
-        <h3>&copy; {new Date().getFullYear()},{" "}<a
+        <h3>&copy;2024 - {new Date().getFullYear()},{" "}<a
             rel="noreferrer noopener"
             target="_blank"
             href="https://www.pivotr.in"

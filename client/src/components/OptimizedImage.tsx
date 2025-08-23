@@ -1,4 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useCallback, memo } from 'react';
+import { useOptimizedIntersectionObserver, usePerformanceMonitor } from '@/utils/react19-performance';
+
+/**
+ * React 19 Optimized Image Component
+ * Enhanced image loading with modern performance features
+ */
 
 interface OptimizedImageProps {
   src: string;
@@ -7,146 +13,164 @@ interface OptimizedImageProps {
   height?: number;
   className?: string;
   priority?: boolean;
-  sizes?: string;
   placeholder?: 'blur' | 'empty';
+  blurDataURL?: string;
+  sizes?: string;
   quality?: number;
+  loading?: 'lazy' | 'eager';
+  onLoad?: () => void;
+  onError?: () => void;
+  style?: React.CSSProperties;
 }
 
-// Modern image component with WebP/AVIF support and lazy loading
-export const OptimizedImage = ({
+const OptimizedImageComponent: React.FC<OptimizedImageProps> = memo(({
   src,
   alt,
   width,
   height,
-  className = "",
+  className = '',
   priority = false,
-  sizes = "100vw",
-  placeholder = "empty",
-  quality = 75,
-  ...props
-}: OptimizedImageProps) => {
+  placeholder = 'empty',
+  blurDataURL,
+  sizes,
+  quality,
+  loading = 'lazy',
+  onLoad,
+  onError,
+  style,
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState<string>("");
-  const imgRef = useRef<HTMLImageElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const [currentSrc, setCurrentSrc] = useState<string>('');
 
-  // Generate modern format sources
-  const generateSources = useCallback((originalSrc: string) => {
-    const basePath = originalSrc.replace(/\.[^/.]+$/, "");
-    return {
-      avif: `${basePath}.avif`,
-      webp: `${basePath}.webp`,
-      original: originalSrc
-    };
-  }, []);
+  // React 19: Performance monitoring
+  usePerformanceMonitor('OptimizedImage');
 
-  // Check format support and load appropriate image
-  const loadOptimalImage = useCallback(async (imageSrc: string) => {
-    const sources = generateSources(imageSrc);
-    
-    // Check AVIF support
-    if (await checkImageSupport('data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgABogQEAwgMg8f8D///8WfhwB8+ErK42A=')) {
-      setCurrentSrc(sources.avif);
-    }
-    // Check WebP support
-    else if (await checkImageSupport('data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA')) {
-      setCurrentSrc(sources.webp);
-    }
-    // Fallback to original
-    else {
-      setCurrentSrc(sources.original);
-    }
-  }, [generateSources]);
+  // React 19: Optimized intersection observer
+  const imgRef = React.useRef<HTMLImageElement>(null);
+  const { isIntersecting } = useOptimizedIntersectionObserver(imgRef as React.RefObject<Element>, {
+    threshold: 0.1,
+    rootMargin: '50px',
+  });
 
-  // Check if image format is supported
-  const checkImageSupport = (dataURL: string): Promise<boolean> => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-      img.src = dataURL;
-    });
-  };
-
-  // Intersection Observer for lazy loading
-  useEffect(() => {
-    if (priority || !imgRef.current) return;
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting) {
-          loadOptimalImage(src);
-          observerRef.current?.disconnect();
-        }
-      },
-      {
-        rootMargin: '50px',
-        threshold: 0.1
-      }
-    );
-
-    observerRef.current.observe(imgRef.current);
-
-    return () => observerRef.current?.disconnect();
-  }, [src, priority, loadOptimalImage]);
-
-  // Load immediately if priority
-  useEffect(() => {
-    if (priority) {
-      loadOptimalImage(src);
-    }
-  }, [src, priority, loadOptimalImage]);
-
-  const handleLoad = useCallback(() => {
+  // React 19: Enhanced image loading logic
+  const handleImageLoad = useCallback(() => {
     setIsLoaded(true);
-  }, []);
+    onLoad?.();
+  }, [onLoad]);
 
-  const handleError = useCallback(() => {
+  const handleImageError = useCallback(() => {
     setHasError(true);
-    // Fallback to original image
-    if (currentSrc !== src) {
+    onError?.();
+  }, [onError]);
+
+  // React 19: Smart image source management
+  React.useEffect(() => {
+    if (priority || isIntersecting) {
       setCurrentSrc(src);
     }
-  }, [currentSrc, src]);
+  }, [src, priority, isIntersecting]);
+
+  // React 19: Optimized placeholder logic
+  const placeholderStyle = React.useMemo(() => {
+    if (placeholder === 'blur' && blurDataURL) {
+      return {
+        backgroundImage: `url(${blurDataURL})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        filter: 'blur(20px)',
+      };
+    }
+    return {};
+  }, [placeholder, blurDataURL]);
+
+  // React 19: Enhanced loading states
+  const imageStyle = React.useMemo(() => ({
+    opacity: isLoaded ? 1 : 0,
+    transition: 'opacity 0.3s ease-in-out',
+    ...placeholderStyle,
+    ...style,
+  }), [isLoaded, placeholderStyle, style]);
 
   return (
-    <div className={`relative ${className}`}>
+    <div
+      className={`relative overflow-hidden ${className}`}
+      style={{
+        width: width || 'auto',
+        height: height || 'auto',
+        aspectRatio: width && height ? `${width} / ${height}` : undefined,
+      }}
+    >
       {/* Placeholder */}
-      {placeholder === 'blur' && !isLoaded && (
-        <div 
-          className="absolute inset-0 bg-gray-200 animate-pulse rounded"
-          style={{ width, height }}
+      {!isLoaded && !hasError && placeholder === 'blur' && blurDataURL && (
+        <div
+          className="absolute inset-0 animate-pulse"
+          style={placeholderStyle}
+          aria-hidden="true"
         />
       )}
-      
-      {/* Main Image */}
-      <img
-        ref={imgRef}
-        src={currentSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        className={`transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
-        onLoad={handleLoad}
-        onError={handleError}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        {...props}
-      />
-      
-      {/* Error fallback */}
+
+      {/* Loading skeleton */}
+      {!isLoaded && !hasError && placeholder === 'empty' && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse" aria-hidden="true">
+          <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer" />
+        </div>
+      )}
+
+      {/* Main image */}
+      {currentSrc && (
+        <img
+          ref={imgRef}
+          src={currentSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={priority ? 'eager' : loading}
+          decoding="async"
+          crossOrigin="anonymous"
+          sizes={sizes}
+          style={imageStyle}
+          className="w-full h-full object-cover"
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+        />
+      )}
+
+      {/* Error state */}
       {hasError && (
-        <div 
-          className="absolute inset-0 bg-gray-100 flex items-center justify-center text-gray-400"
-          style={{ width, height }}
-        >
-          <span className="text-sm">Image failed to load</span>
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <div className="text-center text-gray-500">
+            <svg className="w-8 h-8 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+            </svg>
+            <p className="text-sm">Failed to load image</p>
+          </div>
         </div>
       )}
     </div>
   );
+});
+
+// React 19: Enhanced component with display name
+OptimizedImageComponent.displayName = 'OptimizedImage';
+
+export const OptimizedImage = OptimizedImageComponent;
+
+/**
+ * React 19: Preload utility for critical images
+ */
+export const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = reject;
+    img.src = src;
+  });
+};
+
+/**
+ * React 19: Batch image preloader
+ */
+export const preloadImages = (srcs: string[]): Promise<void[]> => {
+  return Promise.all(srcs.map(preloadImage));
 };
