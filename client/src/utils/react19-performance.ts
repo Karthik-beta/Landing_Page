@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { startTransition, useDeferredValue, useMemo, useCallback, useTransition } from 'react';
+import React, { useDeferredValue, useMemo, useCallback, useTransition } from 'react';
 
 /**
  * React 19 Performance Optimizations

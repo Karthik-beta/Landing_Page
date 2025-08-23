@@ -16,6 +16,7 @@ interface OptimizedImageProps {
   placeholder?: 'blur' | 'empty';
   blurDataURL?: string;
   sizes?: string;
+  quality?: number;
   loading?: 'lazy' | 'eager';
   onLoad?: () => void;
   onError?: () => void;
@@ -63,12 +64,18 @@ const OptimizedImageComponent: React.FC<OptimizedImageProps> = memo(({
     onError?.();
   }, [onError]);
 
-  // React 19: Smart image source management
+  // React 19: Smart image source management with quality optimization
   React.useEffect(() => {
     if (priority || isIntersecting) {
-      setCurrentSrc(src);
+      // Add quality parameter to URL if supported (for services like Cloudinary, etc.)
+      let optimizedSrc = src;
+      if (quality && typeof quality === 'number' && quality > 0 && quality <= 100) {
+        const separator = src.includes('?') ? '&' : '?';
+        optimizedSrc = `${src}${separator}q=${quality}`;
+      }
+      setCurrentSrc(optimizedSrc);
     }
-  }, [src, priority, isIntersecting]);
+  }, [src, priority, isIntersecting, quality]);
 
   // React 19: Optimized placeholder logic
   const placeholderStyle = React.useMemo(() => {
