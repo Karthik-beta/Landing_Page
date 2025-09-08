@@ -3,7 +3,7 @@ import aboutUs from "../assets/undraw_team-work_i1f3.svg";
 import { useState, useEffect, useRef } from "react";
 
 export const About = () => {
-  const paragraphText = `Transforming Enterprises Through Technology.\n\nPivotr delivers innovative solutions, seamlessly integrating hardware and software for comprehensive business transformation.  We specialize in optimizing operations and streamlining workflows across enterprise operations, scalable cloud storage and advanced automation.`;
+  const paragraphText = `At Pivotr, we are a software-first company dedicated to delivering integrated solutions built in-house. When a deployment calls for specific devices, we source them from trusted partners and bring everything together to ensure seamless performance. Our emphasis is on the complete solution—hardware is included only when needed to support our software, rather than as a standalone offering.`;
   
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
