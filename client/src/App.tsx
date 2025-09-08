@@ -66,11 +66,11 @@ function App() {
       <Hero />
       <ClientsSection />
       
-      <ScrollFadeIn delay={0.05}>
+      {/* <ScrollFadeIn delay={0.05}>
         <Suspense fallback={<LoadingFallback />}>
           <Partnerships />
         </Suspense>
-      </ScrollFadeIn>
+      </ScrollFadeIn> */}
       
       <Suspense fallback={<LoadingFallback />}>
         <ScrollFadeIn><About /></ScrollFadeIn>
