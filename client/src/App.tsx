@@ -12,7 +12,7 @@ import "./App.css";
 
 // React 19: Enhanced lazy loading with priority hints
 const About = React.lazy(() => import("./components/About").then(module => ({ default: module.About })));
-const Partnerships = React.lazy(() => import("./components/Partnerships").then(module => ({ default: module.Partnerships })));
+// const Partnerships = React.lazy(() => import("./components/Partnerships").then(module => ({ default: module.Partnerships })));
 const Products = React.lazy(() => import("./components/Products").then(module => ({ default: module.Products })));
 const Certifications = React.lazy(() => import("./components/Certifications").then(module => ({ default: module.Certifications })));
 const ContactForm = React.lazy(() => import("./components/ContactForm").then(module => ({ default: module.ContactForm })));
