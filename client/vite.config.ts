@@ -9,25 +9,25 @@ export default defineConfig({
   plugins: [
     react({
       // React 19: Enhanced JSX runtime with optimizations
-      jsxRuntime: 'automatic',
+      jsxRuntime: "automatic",
     }),
     tailwindcss(),
-    viteCompression({ 
+    viteCompression({
       algorithm: "brotliCompress",
       threshold: 1024, // Only compress files larger than 1KB
-      compressionOptions: { level: 11 } // Maximum compression
+      compressionOptions: { level: 11 }, // Maximum compression
     }),
-    viteCompression({ 
+    viteCompression({
       algorithm: "gzip",
       threshold: 1024,
-      compressionOptions: { level: 9 }
+      compressionOptions: { level: 9 },
     }),
     visualizer({
       filename: "dist/stats.html",
       open: false,
       gzipSize: true,
       brotliSize: true,
-      template: 'treemap' // Better visualization
+      template: "treemap", // Better visualization
     }),
   ],
   resolve: {
@@ -36,8 +36,8 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'es2022', // Modern target for better optimizations
-    minify: 'esbuild', // Faster minification
+    target: "es2022", // Modern target for better optimizations
+    minify: "esbuild", // Faster minification
     // React 19: Enhanced module preloading
     modulePreload: {
       polyfill: false,
@@ -45,43 +45,47 @@ export default defineConfig({
     // React 19: Optimize chunk generation
     rollupOptions: {
       treeshake: {
-        preset: 'smallest', // Maximum tree shaking
+        preset: "smallest", // Maximum tree shaking
         propertyReadSideEffects: false,
-        tryCatchDeoptimization: false
+        tryCatchDeoptimization: false,
       },
       output: {
         manualChunks(id) {
           // More granular chunking for better caching
-          if (id.includes('framer-motion')) {
+          if (id.includes("framer-motion")) {
             return "framer-motion";
           }
-          if (id.includes('@radix-ui')) {
+          if (id.includes("@radix-ui")) {
             return "radix-ui";
           }
-          if (id.includes('lucide-react')) {
+          if (id.includes("lucide-react")) {
             return "lucide-react";
           }
-          if (id.includes('react-intersection-observer')) {
+          if (id.includes("react-intersection-observer")) {
             return "intersection-observer";
           }
           // Separate vendor libraries by size
-          if (id.includes('node_modules')) {
+          if (id.includes("node_modules")) {
             // Large libraries get their own chunks
-            if (id.includes('react') || id.includes('react-dom')) {
+            if (id.includes("react") || id.includes("react-dom")) {
               return "react-vendor";
             }
             // Medium-sized utilities
-            if (id.includes('clsx') || id.includes('class-variance-authority') || id.includes('tailwind-merge')) {
+            if (
+              id.includes("clsx") ||
+              id.includes("class-variance-authority") ||
+              id.includes("tailwind-merge")
+            ) {
               return "utils";
             }
             // Everything else
             return "vendor";
           }
           // Component chunks by route/feature
-          if (id.includes('src/components/')) {
-            if (id.includes('ui/')) return 'ui-components';
-            if (id.includes('Hero') || id.includes('Navbar')) return 'critical-components';
-            return 'feature-components';
+          if (id.includes("src/components/")) {
+            if (id.includes("ui/")) return "ui-components";
+            if (id.includes("Hero") || id.includes("Navbar")) return "critical-components";
+            return "feature-components";
           }
         },
         chunkFileNames: (chunkInfo) => {
@@ -91,7 +95,7 @@ export default defineConfig({
         entryFileNames: "assets/[name]-[hash].js",
         assetFileNames: (assetInfo) => {
           // Organize assets by type
-          const info = assetInfo.name.split('.');
+          const info = assetInfo.name.split(".");
           const ext = info[info.length - 1];
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
             return `assets/images/[name]-[hash][extname]`;
@@ -117,29 +121,29 @@ export default defineConfig({
   // Optimization settings
   optimizeDeps: {
     include: [
-      'react',
-      'react-dom',
-      '@radix-ui/react-accordion',
-      '@radix-ui/react-avatar',
-      '@radix-ui/react-dialog',
-      '@radix-ui/react-dropdown-menu',
-      'framer-motion',
-      'lucide-react'
+      "react",
+      "react-dom",
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-avatar",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "framer-motion",
+      "lucide-react",
     ],
-    exclude: ['@vite/client', '@vite/env']
+    exclude: ["@vite/client", "@vite/env"],
   },
   // Server settings for development
   server: {
     hmr: {
-      overlay: false // Disable error overlay for better UX
-    }
+      overlay: false, // Disable error overlay for better UX
+    },
   },
   // Experimental features
   experimental: {
     renderBuiltUrl(filename) {
       // Custom asset URL handling for CDN
       return `/${filename}`;
-    }
+    },
   },
   cacheDir: "node_modules/.vite",
 });

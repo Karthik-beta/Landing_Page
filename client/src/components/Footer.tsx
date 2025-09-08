@@ -14,14 +14,14 @@ export const Footer = () => {
             Pivotr Technologies Pvt Ltd.
           </a>
           <p className="text-sm text-muted-foreground">
-             <span className="font-bold">CIN :</span>{" "}U62020KA2024PTC193295
+            <span className="font-bold">CIN :</span> U62020KA2024PTC193295
           </p>
           <p className="text-sm text-muted-foreground">
-             <span className="font-bold">GST :</span>{" "}29AAPCP0858F1Z0
+            <span className="font-bold">GST :</span> 29AAPCP0858F1Z0
           </p>
           <p className="text-sm text-muted-foreground">
-             <span className="font-bold">Address :</span>{" "}C/O 220, 2ND Main, 2ND Cross, CGI, Yamaluru, Marathahalli, Bangalore- 560037,
-             Karnataka 
+            <span className="font-bold">Address :</span> C/O 220, 2ND Main, 2ND Cross, CGI,
+            Yamaluru, Marathahalli, Bangalore- 560037, Karnataka
           </p>
         </div>
 
@@ -62,31 +62,19 @@ export const Footer = () => {
         <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">Platforms</h3>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
+            <a rel="noreferrer noopener" href="#" className="opacity-60 hover:opacity-100">
               Web
             </a>
           </div>
 
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
+            <a rel="noreferrer noopener" href="#" className="opacity-60 hover:opacity-100">
               Mobile
             </a>
           </div>
 
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#"
-              className="opacity-60 hover:opacity-100"
-            >
+            <a rel="noreferrer noopener" href="#" className="opacity-60 hover:opacity-100">
               Desktop
             </a>
           </div>
@@ -95,11 +83,7 @@ export const Footer = () => {
         <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">About</h3>
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#features"
-              className="opacity-60 hover:opacity-100"
-            >
+            <a rel="noreferrer noopener" href="#features" className="opacity-60 hover:opacity-100">
               Features
             </a>
           </div>
@@ -115,11 +99,7 @@ export const Footer = () => {
           </div> */}
 
           <div>
-            <a
-              rel="noreferrer noopener"
-              href="#faq"
-              className="opacity-60 hover:opacity-100"
-            >
+            <a rel="noreferrer noopener" href="#faq" className="opacity-60 hover:opacity-100">
               FAQ
             </a>
           </div>
@@ -161,7 +141,9 @@ export const Footer = () => {
       </section>
 
       <section className="container pb-14 text-center">
-        <h3>&copy;2024 - {new Date().getFullYear()},{" "}<a
+        <h3>
+          &copy;2024 - {new Date().getFullYear()},{" "}
+          <a
             rel="noreferrer noopener"
             target="_blank"
             href="https://www.pivotr.in"

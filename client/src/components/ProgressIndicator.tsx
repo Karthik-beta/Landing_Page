@@ -1,5 +1,5 @@
-import React from 'react';
-import { cn } from '@/lib/utils';
+import React from "react";
+import { cn } from "@/lib/utils";
 
 interface ProgressIndicatorProps {
   progress: number;
@@ -10,17 +10,17 @@ interface ProgressIndicatorProps {
 }
 
 const SECTION_LABELS = {
-  hero: 'Welcome',
-  about: 'About Us',
-  services: 'Services', 
-  products: 'Products',
-  features: 'Features',
-  'how-it-works': 'How It Works',
-  partnerships: 'Partners',
-  certifications: 'Certifications',
-  cta: 'Get Started',
-  faq: 'FAQ',
-  contact: 'Contact'
+  hero: "Welcome",
+  about: "About Us",
+  services: "Services",
+  products: "Products",
+  features: "Features",
+  "how-it-works": "How It Works",
+  partnerships: "Partners",
+  certifications: "Certifications",
+  cta: "Get Started",
+  faq: "FAQ",
+  contact: "Contact",
 };
 
 export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
@@ -28,23 +28,23 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   visitedSections,
   currentSection,
   className,
-  showDetails = false
+  showDetails = false,
 }) => {
   return (
     <div className={cn("w-full", className)}>
       {/* Main progress bar */}
       <div className="h-1 bg-muted/30 relative overflow-hidden">
-        <div 
+        <div
           className="h-full bg-linear-to-r from-primary via-primary/80 to-primary transition-all duration-700 ease-out"
           style={{ width: `${progress}%` }}
         />
         {/* Shimmer effect */}
-        <div 
+        <div
           className="absolute top-0 h-full w-20 bg-linear-to-r from-transparent via-white/20 to-transparent"
-          style={{ 
+          style={{
             left: `${Math.max(0, progress - 10)}%`,
-            animation: progress > 5 ? 'progress-shimmer 2s infinite' : 'none',
-            opacity: progress > 5 ? 1 : 0
+            animation: progress > 5 ? "progress-shimmer 2s infinite" : "none",
+            opacity: progress > 5 ? 1 : 0,
           }}
         />
       </div>
@@ -56,11 +56,13 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               <span className="font-medium">
-                {SECTION_LABELS[currentSection as keyof typeof SECTION_LABELS] || 'Exploring'}
+                {SECTION_LABELS[currentSection as keyof typeof SECTION_LABELS] || "Exploring"}
               </span>
             </div>
-            
-            <span>{visitedSections.size}/{Object.keys(SECTION_LABELS).length}</span>
+
+            <span>
+              {visitedSections.size}/{Object.keys(SECTION_LABELS).length}
+            </span>
           </div>
         </div>
       )}

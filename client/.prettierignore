@@ -1,0 +1,20 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+build
+
+# Vite caches
+.vite
+
+# Logs
+*.log
+
+# Misc
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+.next
+.vercel
+.DS_Store

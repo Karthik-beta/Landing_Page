@@ -4,13 +4,7 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
@@ -27,7 +21,7 @@ const routeList: RouteProps[] = [
     label: "Features",
   },
   {
-    href: 'https://blog.pivotr.in',
+    href: "https://blog.pivotr.in",
     label: "Blog",
   },
   {
@@ -43,7 +37,7 @@ const routeList: RouteProps[] = [
     label: "About",
   },
   {
-    href: 'https://wellfound.com/company/pivotr',
+    href: "https://wellfound.com/company/pivotr",
     label: "Careers",
   },
 ];
@@ -61,7 +55,7 @@ export const Navbar = ({ companion }: { companion?: CompanionData }) => {
     <header className="sticky border-b top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
       {/* Progress indicator at the top */}
       {companion && (
-        <ProgressIndicator 
+        <ProgressIndicator
           progress={companion.scrollProgress}
           visitedSections={companion.visitedSections}
           currentSection={companion.currentSection}
@@ -70,11 +64,7 @@ export const Navbar = ({ companion }: { companion?: CompanionData }) => {
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between items-center">
           <NavigationMenuItem className="font-bold flex" key="Logo">
-            <a
-              rel="noreferrer noopener"
-              href="/"
-              className="ml-2 font-bold text-4xl flex"
-            >
+            <a rel="noreferrer noopener" href="/" className="ml-2 font-bold text-4xl flex">
               Pivotr.
             </a>
           </NavigationMenuItem>
@@ -92,12 +82,15 @@ export const Navbar = ({ companion }: { companion?: CompanionData }) => {
                   {route.label}
                 </a>
               ))}
-            <ModeToggle /> 
+              <ModeToggle />
             </nav>
           </NavigationMenuItem>
 
           {/* mobile */}
-          <NavigationMenuItem key="MobileMenu" className="flex md:hidden justify-end items-center gap-2">
+          <NavigationMenuItem
+            key="MobileMenu"
+            className="flex md:hidden justify-end items-center gap-2"
+          >
             <ModeToggle />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger className="px-2" aria-label="Toggle navigation menu">

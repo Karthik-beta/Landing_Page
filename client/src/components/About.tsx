@@ -4,12 +4,11 @@ import { useState, useEffect, useRef } from "react";
 
 export const About = () => {
   const paragraphText = `At Pivotr, we are a software-first company dedicated to delivering integrated solutions built in-house. When a deployment calls for specific devices, we source them from trusted partners and bring everything together to ensure seamless performance. Our emphasis is on the complete solution—hardware is included only when needed to support our software, rather than as a standalone offering.`;
-  
+
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  
 
   // Start animation when component becomes visible
   useEffect(() => {
@@ -19,10 +18,10 @@ export const About = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
-    const aboutSection = document.getElementById('about');
+    const aboutSection = document.getElementById("about");
     if (aboutSection) {
       observer.observe(aboutSection);
     }
@@ -58,10 +57,7 @@ export const About = () => {
   }, []);
 
   return (
-    <section
-      id="about"
-      className="container py-24 sm:py-32"
-    >
+    <section id="about" className="container py-24 sm:py-32">
       <div className="bg-muted/50 border rounded-lg py-12">
         <div className="px-6 flex flex-col-reverse md:flex-row gap-8 md:gap-12">
           <img
@@ -83,9 +79,9 @@ export const About = () => {
               <p className="text-xl text-muted-foreground mt-4">
                 {displayedText}
                 {currentIndex < paragraphText.length && (
-                  <span 
+                  <span
                     className="inline-block w-0.5 h-[1em] ml-1 bg-linear-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse"
-                    style={{ animationDuration: '1s' }}
+                    style={{ animationDuration: "1s" }}
                   />
                 )}
               </p>

@@ -1,15 +1,16 @@
-import m2nxt from "../assets/m2nxt.png"; 
+import m2nxt from "../assets/m2nxt.png";
 import barbarian from "../assets/barbarian.webp";
-import opticos from "../assets/opticos.svg"; 
+import opticos from "../assets/opticos.svg";
 import quansys from "../assets/quansys.png";
-import dwpGlobal from "../assets/dwp-global.png"; 
-// import vikas from "../assets/vikas.jpg"; 
+import dwpGlobal from "../assets/dwp-global.png";
+// import vikas from "../assets/vikas.jpg";
 import vikasSchool from "../assets/vikas-school.png";
 import planafin from "../assets/planafin.png";
-import adian from "../assets/Adian.png"; 
+import adian from "../assets/Adian.png";
 import irTech from "../assets/IR_tech.png"; // Assuming you have this image
 
-interface ClientProps { // Renamed interface for clarity
+interface ClientProps {
+  // Renamed interface for clarity
   icon?: React.JSX.Element; // Icon is optional, you'll likely use images for logos
   image?: string; // Added image property for logos
   name: string;
@@ -22,31 +23,31 @@ const clients: ClientProps[] = [
     // icon: <Radar size={34} />,
     image: m2nxt,
     name: "M2NXT", // Replace with actual client name
-    url: "#" // Optional: Link to client website or a case study page
+    url: "#", // Optional: Link to client website or a case study page
   },
   {
     // icon: <Radar size={34} />,
     image: barbarian,
     name: "Barbarian",
-    url: "#"
+    url: "#",
   },
   {
     // icon: <Radar size={34} />,
     image: opticos,
     name: "Opticos",
-    url: "#"
+    url: "#",
   },
   {
     // icon: <Radar size={34} />,
     image: quansys,
     name: "Quansys",
-    url: "#"
+    url: "#",
   },
   {
     // icon: <Radar size={34} />,
     image: dwpGlobal,
     name: "DWP Global",
-    url: "#"
+    url: "#",
   },
   // {
   //   // icon: <Radar size={34} />,
@@ -58,27 +59,28 @@ const clients: ClientProps[] = [
     // icon: <Radar size={34} />,
     image: vikasSchool,
     name: "Vikas School",
-    url: "#"
+    url: "#",
   },
   {
     image: planafin,
     name: "Planafin",
-    url: "#"
+    url: "#",
   },
   {
     image: adian,
     name: "Adian",
-    url: "#"
+    url: "#",
   },
   {
     image: irTech,
     name: "IR Tech",
-    url: "#"
-  }
+    url: "#",
+  },
 ];
 
 // Renamed component for clarity - you can keep 'Sponsors' if you prefer
-export const ClientsSection = () => { // Renamed component for clarity
+export const ClientsSection = () => {
+  // Renamed component for clarity
   // Split clients into two rows
   const firstRow = clients.slice(0, Math.ceil(clients.length / 2));
   const secondRow = clients.slice(Math.ceil(clients.length / 2));
@@ -107,10 +109,7 @@ export const ClientsSection = () => { // Renamed component for clarity
   );
 
   return (
-    <section
-      id="clients"
-      className="container pt-6 pb-6 sm:py-32"
-    >
+    <section id="clients" className="container pt-6 pb-6 sm:py-32">
       <h2 className="text-center text-md lg:text-xl font-bold mb-8 text-primary">
         Our Trusted Clients
       </h2>
@@ -125,11 +124,13 @@ export const ClientsSection = () => { // Renamed component for clarity
         </div>
 
         {/* Second row - sliding right to left */}
-        <div className="flex scroll-right" style={{ transform: 'translateX(-50%)' }}>
+        <div className="flex scroll-right" style={{ transform: "translateX(-50%)" }}>
           {/* Triple the logos for seamless infinite scroll */}
-          {[...secondRow, ...firstRow, ...secondRow, ...firstRow, ...secondRow].map((client, index) => (
-            <LogoItem key={`second-${client.name}-${index}`} client={client} />
-          ))}
+          {[...secondRow, ...firstRow, ...secondRow, ...firstRow, ...secondRow].map(
+            (client, index) => (
+              <LogoItem key={`second-${client.name}-${index}`} client={client} />
+            ),
+          )}
         </div>
       </div>
     </section>

@@ -17,7 +17,7 @@ export const ScrollFadeIn = ({ children, delay = 0 }: Props) => {
       const timer = setTimeout(() => {
         setShouldAnimate(true);
       }, delay * 1000);
-      
+
       return () => clearTimeout(timer);
     }
   }, [inView, delay]);
@@ -26,12 +26,10 @@ export const ScrollFadeIn = ({ children, delay = 0 }: Props) => {
     <div
       ref={ref}
       className={`transition-all duration-700 ease-out ${
-        shouldAnimate 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-12'
+        shouldAnimate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
       }`}
       style={{
-        transitionDelay: shouldAnimate ? '0ms' : `${delay * 1000}ms`,
+        transitionDelay: shouldAnimate ? "0ms" : `${delay * 1000}ms`,
       }}
     >
       {children}

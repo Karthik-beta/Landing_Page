@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useDeferredValue, useMemo, useCallback, useTransition } from 'react';
+import React, { useDeferredValue, useMemo, useCallback, useTransition } from "react";
 
 /**
  * React 19 Performance Optimizations
@@ -7,7 +7,10 @@ import React, { useDeferredValue, useMemo, useCallback, useTransition } from 're
  */
 
 // React 19: Enhanced useDeferredValue with priority hints
-export const useOptimizedDeferredValue = <T>(value: T, options?: { priority?: 'high' | 'low' | 'user-visible' }): T => {
+export const useOptimizedDeferredValue = <T>(
+  value: T,
+  options?: { priority?: "high" | "low" | "user-visible" },
+): T => {
   const deferredValue = useDeferredValue(value);
 
   // React 19: Add priority hint for better scheduling
@@ -21,7 +24,7 @@ export const useOptimizedDeferredValue = <T>(value: T, options?: { priority?: 'h
 export const useOptimizedCallback = <T extends (...args: any[]) => any>(
   callback: T,
   deps: React.DependencyList,
-  options?: { stable?: boolean }
+  options?: { stable?: boolean },
 ): T => {
   // Note: options parameter is reserved for future React 19 features
   void options;
@@ -37,12 +40,15 @@ export const useOptimizedMemo = <T>(factory: () => T, deps: React.DependencyList
 export const useOptimizedTransition = () => {
   const [isPending, startTransitionCallback] = useTransition();
 
-  const startOptimizedTransition = useCallback((callback: () => void) => {
-    startTransitionCallback(() => {
-      // React 19: Enhanced transition with better scheduling
-      callback();
-    });
-  }, [startTransitionCallback]);
+  const startOptimizedTransition = useCallback(
+    (callback: () => void) => {
+      startTransitionCallback(() => {
+        // React 19: Enhanced transition with better scheduling
+        callback();
+      });
+    },
+    [startTransitionCallback],
+  );
 
   return {
     isPending,
@@ -52,7 +58,7 @@ export const useOptimizedTransition = () => {
 
 // React 19: Component preloading utility
 export const preloadComponent = (importFunc: () => Promise<any>) => {
-  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+  if (typeof window !== "undefined" && "requestIdleCallback" in window) {
     requestIdleCallback(() => {
       importFunc().catch(() => {
         // Silently fail preloading
@@ -64,10 +70,10 @@ export const preloadComponent = (importFunc: () => Promise<any>) => {
 // React 19: Enhanced lazy loading with priority
 export const createLazyComponent = (
   importFunc: () => Promise<{ default: React.ComponentType<any> }>,
-  options?: { priority?: 'high' | 'low' }
+  options?: { priority?: "high" | "low" },
 ) => {
   return React.lazy(() => {
-    if (options?.priority === 'high') {
+    if (options?.priority === "high") {
       // React 19: High priority loading
       return importFunc();
     }
@@ -76,24 +82,30 @@ export const createLazyComponent = (
 };
 
 // React 19: Optimized image loading with priority hints
-export const useOptimizedImage = (src: string, options?: {
-  priority?: 'high' | 'low';
-  loading?: 'lazy' | 'eager';
-  sizes?: string;
-}) => {
-  return useMemo(() => ({
-    src,
-    loading: options?.loading ?? 'lazy',
-    decoding: 'async' as const,
-    crossOrigin: 'anonymous' as const,
-    ...options,
-  }), [src, options]);
+export const useOptimizedImage = (
+  src: string,
+  options?: {
+    priority?: "high" | "low";
+    loading?: "lazy" | "eager";
+    sizes?: string;
+  },
+) => {
+  return useMemo(
+    () => ({
+      src,
+      loading: options?.loading ?? "lazy",
+      decoding: "async" as const,
+      crossOrigin: "anonymous" as const,
+      ...options,
+    }),
+    [src, options],
+  );
 };
 
 // React 19: Enhanced intersection observer with better performance
 export const useOptimizedIntersectionObserver = (
   ref: React.RefObject<Element>,
-  options?: IntersectionObserverInit
+  options?: IntersectionObserverInit,
 ) => {
   const [isIntersecting, setIsIntersecting] = React.useState(false);
   const [entry, setEntry] = React.useState<IntersectionObserverEntry | null>(null);
@@ -109,9 +121,9 @@ export const useOptimizedIntersectionObserver = (
       },
       {
         threshold: 0.1,
-        rootMargin: '50px',
+        rootMargin: "50px",
         ...options,
-      }
+      },
     );
 
     observer.observe(element);
@@ -127,7 +139,7 @@ export const useOptimizedIntersectionObserver = (
 // React 19: Performance monitoring hook
 export const usePerformanceMonitor = (componentName: string) => {
   React.useEffect(() => {
-    if (typeof window !== 'undefined' && 'performance' in window) {
+    if (typeof window !== "undefined" && "performance" in window) {
       const startTime = performance.now();
 
       return () => {
@@ -135,7 +147,8 @@ export const usePerformanceMonitor = (componentName: string) => {
         const renderTime = endTime - startTime;
 
         // Log render time for optimization insights
-        if (renderTime > 16.67) { // More than one frame
+        if (renderTime > 16.67) {
+          // More than one frame
           console.warn(`Component ${componentName} took ${renderTime.toFixed(2)}ms to render`);
         }
       };
@@ -154,9 +167,9 @@ export const createOptimizedBundle = {
 
   // Preload critical resources
   preloadCritical: (resources: Array<{ href: string; as: string; rel?: string }>) => {
-    if (typeof document !== 'undefined') {
-      resources.forEach(({ href, as, rel = 'preload' }) => {
-        const link = document.createElement('link');
+    if (typeof document !== "undefined") {
+      resources.forEach(({ href, as, rel = "preload" }) => {
+        const link = document.createElement("link");
         link.rel = rel;
         link.as = as;
         link.href = href;
@@ -166,23 +179,21 @@ export const createOptimizedBundle = {
   },
 
   // Smart asset loading
-  loadAsset: (src: string, type: 'script' | 'style' | 'image') => {
+  loadAsset: (src: string, type: "script" | "style" | "image") => {
     return new Promise((resolve, reject) => {
-      if (typeof document === 'undefined') {
+      if (typeof document === "undefined") {
         resolve(void 0);
         return;
       }
 
       const element = document.createElement(
-        type === 'script' ? 'script' :
-        type === 'style' ? 'link' :
-        'img'
+        type === "script" ? "script" : type === "style" ? "link" : "img",
       );
 
-      if (type === 'style') {
-        (element as HTMLLinkElement).rel = 'stylesheet';
+      if (type === "style") {
+        (element as HTMLLinkElement).rel = "stylesheet";
         (element as HTMLLinkElement).href = src;
-      } else if (type === 'script') {
+      } else if (type === "script") {
         (element as HTMLScriptElement).src = src;
         (element as HTMLScriptElement).async = true;
       } else {
@@ -198,7 +209,9 @@ export const createOptimizedBundle = {
 };
 
 // React 19: Enhanced error boundary helper
-export const createErrorBoundary = (fallbackComponent: React.ComponentType<{ error: Error; resetError: () => void }>) => {
+export const createErrorBoundary = (
+  fallbackComponent: React.ComponentType<{ error: Error; resetError: () => void }>,
+) => {
   return class ErrorBoundary extends React.Component<
     { children: React.ReactNode },
     { hasError: boolean; error: Error | null }
@@ -214,7 +227,7 @@ export const createErrorBoundary = (fallbackComponent: React.ComponentType<{ err
 
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
       // React 19: Enhanced error reporting
-      console.error('Error boundary caught an error:', error, errorInfo);
+      console.error("Error boundary caught an error:", error, errorInfo);
     }
 
     resetError = () => {

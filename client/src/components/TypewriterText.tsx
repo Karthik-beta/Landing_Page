@@ -1,4 +1,4 @@
-import { useTypewriter } from '../hooks/use-typewriter';
+import { useTypewriter } from "../hooks/use-typewriter";
 
 interface TypewriterTextProps {
   words: string[];
@@ -13,13 +13,13 @@ interface TypewriterTextProps {
 
 export const TypewriterText = ({
   words,
-  className = '',
+  className = "",
   typeSpeed = 150,
   deleteSpeed = 100,
   delayBetweenWords = 2000,
   loop = true,
   showCursor = true,
-  cursorClassName = '',
+  cursorClassName = "",
 }: TypewriterTextProps) => {
   const { text, isDeleting } = useTypewriter({
     words,
@@ -33,14 +33,14 @@ export const TypewriterText = ({
     <span className={className}>
       {text}
       {showCursor && (
-        <span 
+        <span
           className={`inline-block w-0.5 h-[1em] ml-1 transition-colors duration-300 ${
-            isDeleting 
-              ? 'bg-red-400 animate-pulse' 
-              : 'bg-linear-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse'
+            isDeleting
+              ? "bg-red-400 animate-pulse"
+              : "bg-linear-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse"
           } ${cursorClassName}`}
           style={{
-            animationDuration: isDeleting ? '0.5s' : '1s',
+            animationDuration: isDeleting ? "0.5s" : "1s",
           }}
         />
       )}

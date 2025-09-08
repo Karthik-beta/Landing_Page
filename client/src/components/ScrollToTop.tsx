@@ -13,7 +13,7 @@ export const ScrollToTop = () => {
 
   useEffect(() => {
     let ticking = false;
-    
+
     // Throttled handler using requestAnimationFrame
     const throttledScrollHandler = () => {
       if (!ticking) {
@@ -24,10 +24,10 @@ export const ScrollToTop = () => {
         ticking = true;
       }
     };
-    
+
     // Add event listener with passive flag for better performance
     window.addEventListener("scroll", throttledScrollHandler, { passive: true });
-    
+
     // Cleanup function to prevent memory leaks
     return () => {
       window.removeEventListener("scroll", throttledScrollHandler);

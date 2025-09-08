@@ -6,13 +6,13 @@ This is a modern, responsive landing page for Pivotr, built with React, TypeScri
 
 **Key Technologies:**
 
-*   **Framework:** React 19
-*   **Language:** TypeScript
-*   **Styling:** Tailwind CSS
-*   **UI Components:** shadcn/ui
-*   **Build Tool:** Vite
-*   **Linting:** ESLint
-*   **Package Manager:** pnpm
+- **Framework:** React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** shadcn/ui
+- **Build Tool:** Vite
+- **Linting:** ESLint
+- **Package Manager:** pnpm
 
 ## Building and Running
 
@@ -55,9 +55,9 @@ pnpm preview
 
 ## Development Conventions
 
-*   **Component-Based Architecture:** The project follows a component-based architecture, with components located in the `src/components` directory.
-*   **Styling:** Tailwind CSS is used for styling. Utility classes are preferred over custom CSS.
-*   **UI Components:** The shadcn/ui component library is used for UI components. These components are located in the `src/components/ui` directory.
-*   **Performance:** The project is optimized for performance. Components are lazy-loaded using `React.lazy` and `Suspense`. The Vite configuration is tuned for optimal chunking and compression.
-*   **Path Aliases:** The project uses path aliases to simplify imports. The `@` alias is configured to point to the `src` directory.
-*   **Coding Style:** The project uses ESLint to enforce a consistent coding style.
+- **Component-Based Architecture:** The project follows a component-based architecture, with components located in the `src/components` directory.
+- **Styling:** Tailwind CSS is used for styling. Utility classes are preferred over custom CSS.
+- **UI Components:** The shadcn/ui component library is used for UI components. These components are located in the `src/components/ui` directory.
+- **Performance:** The project is optimized for performance. Components are lazy-loaded using `React.lazy` and `Suspense`. The Vite configuration is tuned for optimal chunking and compression.
+- **Path Aliases:** The project uses path aliases to simplify imports. The `@` alias is configured to point to the `src` directory.
+- **Coding Style:** The project uses ESLint to enforce a consistent coding style.

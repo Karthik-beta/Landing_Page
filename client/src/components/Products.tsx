@@ -4,10 +4,7 @@ import { InfoIcon, LucidePuzzle, Network } from "lucide-react";
 
 export const Products = () => {
   return (
-    <section
-      id="products"
-      className="container py-20 sm:py-28 space-y-16"
-    >
+    <section id="products" className="container py-20 sm:py-28 space-y-16">
       {/* Section Header */}
       <div className="text-center space-y-6">
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
@@ -17,7 +14,10 @@ export const Products = () => {
           </span>
         </h2>
         <p className="md:w-3/4 mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed">
-          Pivotr is a modular Business Operating System designed to meet the needs of small to mid-sized enterprises (SMEs). It provides a reliable, structured, and scalable solution, offering the functionality of an internal operating system without the complexity and cost of traditional enterprise software.
+          Pivotr is a modular Business Operating System designed to meet the needs of small to
+          mid-sized enterprises (SMEs). It provides a reliable, structured, and scalable solution,
+          offering the functionality of an internal operating system without the complexity and cost
+          of traditional enterprise software.
         </p>
       </div>
 
@@ -25,16 +25,15 @@ export const Products = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         {/* Product Details */}
         <div className="lg:col-span-6 space-y-8">
-          <h3 className="text-3xl font-bold text-primary">
-            Why Choose Pivotr Business Suite?
-          </h3>
+          <h3 className="text-3xl font-bold text-primary">Why Choose Pivotr Business Suite?</h3>
           <ul className="space-y-6">
             <li className="flex items-start gap-4">
               <div className="shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
                 ✓
               </div>
               <p className="text-lg text-muted-foreground flex-1">
-                <strong>Modular Design:</strong> Tailor the system to meet your unique business requirements.
+                <strong>Modular Design:</strong> Tailor the system to meet your unique business
+                requirements.
               </p>
             </li>
             <li className="flex items-start gap-4">
@@ -42,7 +41,8 @@ export const Products = () => {
                 ✓
               </div>
               <p className="text-lg text-muted-foreground flex-1">
-                <strong>Scalable Solutions:</strong> Seamlessly grow with your business as it expands.
+                <strong>Scalable Solutions:</strong> Seamlessly grow with your business as it
+                expands.
               </p>
             </li>
             <li className="flex items-start gap-4">
@@ -50,7 +50,8 @@ export const Products = () => {
                 ✓
               </div>
               <p className="text-lg text-muted-foreground flex-1">
-                <strong>Affordable & Simple:</strong> Avoid bloated, overpriced software with a streamlined, cost-effective solution.
+                <strong>Affordable & Simple:</strong> Avoid bloated, overpriced software with a
+                streamlined, cost-effective solution.
               </p>
             </li>
           </ul>
@@ -95,7 +96,8 @@ export const Products = () => {
             </CardHeader>
             <CardContent className="p-6">
               <CardDescription className="text-muted-foreground text-center">
-                Build a system tailored to your business needs by selecting from a wide range of modular components.
+                Build a system tailored to your business needs by selecting from a wide range of
+                modular components.
               </CardDescription>
             </CardContent>
           </Card>
@@ -112,7 +114,8 @@ export const Products = () => {
             </CardHeader>
             <CardContent className="p-6">
               <CardDescription className="text-muted-foreground text-center">
-                Access actionable insights with real-time data and analytics to make informed decisions quickly.
+                Access actionable insights with real-time data and analytics to make informed
+                decisions quickly.
               </CardDescription>
             </CardContent>
           </Card>
@@ -129,7 +132,8 @@ export const Products = () => {
             </CardHeader>
             <CardContent className="p-6">
               <CardDescription className="text-muted-foreground text-center">
-                Effortlessly integrate Pivotr with your existing tools and workflows for a unified experience.
+                Effortlessly integrate Pivotr with your existing tools and workflows for a unified
+                experience.
               </CardDescription>
             </CardContent>
           </Card>

@@ -29,8 +29,7 @@ const pricingList: PricingProps[] = [
     title: "Free",
     popular: 0,
     price: 0,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+    description: "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
     buttonText: "Get Started",
     benefitList: [
       "1 Team member",
@@ -44,8 +43,7 @@ const pricingList: PricingProps[] = [
     title: "Premium",
     popular: 1,
     price: 5,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+    description: "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
     buttonText: "Start Free Trial",
     benefitList: [
       "4 Team member",
@@ -59,8 +57,7 @@ const pricingList: PricingProps[] = [
     title: "Enterprise",
     popular: 0,
     price: 40,
-    description:
-      "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
+    description: "Lorem ipsum dolor sit, amet ipsum consectetur adipisicing elit.",
     buttonText: "Contact US",
     benefitList: [
       "10 Team member",
@@ -74,10 +71,7 @@ const pricingList: PricingProps[] = [
 
 export const Pricing = () => {
   return (
-    <section
-      id="pricing"
-      className="container py-24 sm:py-32"
-    >
+    <section id="pricing" className="container py-24 sm:py-32">
       <h2 className="text-3xl md:text-4xl font-bold text-center">
         Get
         <span className="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
@@ -87,8 +81,7 @@ export const Pricing = () => {
         Access
       </h2>
       <h3 className="text-xl text-center text-muted-foreground pt-4 pb-8">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-        reiciendis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias reiciendis.
       </h3>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {pricingList.map((pricing: PricingProps) => (
@@ -104,10 +97,7 @@ export const Pricing = () => {
               <CardTitle className="flex item-center justify-between">
                 {pricing.title}
                 {pricing.popular === PopularPlanType.YES ? (
-                  <Badge
-                    variant="secondary"
-                    className="text-sm text-primary"
-                  >
+                  <Badge variant="secondary" className="text-sm text-primary">
                     Most popular
                   </Badge>
                 ) : null}
@@ -129,12 +119,8 @@ export const Pricing = () => {
             <CardFooter className="flex">
               <div className="space-y-4">
                 {pricing.benefitList.map((benefit: string) => (
-                  <span
-                    key={benefit}
-                    className="flex"
-                  >
-                    <Check className="text-green-500" />{" "}
-                    <h3 className="ml-2">{benefit}</h3>
+                  <span key={benefit} className="flex">
+                    <Check className="text-green-500" /> <h3 className="ml-2">{benefit}</h3>
                   </span>
                 ))}
               </div>
