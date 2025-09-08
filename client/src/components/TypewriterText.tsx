@@ -37,7 +37,7 @@ export const TypewriterText = ({
           className={`inline-block w-0.5 h-[1em] ml-1 transition-colors duration-300 ${
             isDeleting 
               ? 'bg-red-400 animate-pulse' 
-              : 'bg-gradient-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse'
+              : 'bg-linear-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse'
           } ${cursorClassName}`}
           style={{
             animationDuration: isDeleting ? '0.5s' : '1s',

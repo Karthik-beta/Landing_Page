@@ -69,7 +69,7 @@ export const ContactForm = () => {
     return (
         <section id="contact" className="container py-16 space-y-12">
             <h2 className="text-3xl md:text-4xl font-bold text-center">
-                Get in <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">Touch</span>
+                Get in <span className="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">Touch</span>
             </h2>
             <p className="text-muted-foreground text-xl text-center">
                 Have questions or need assistance? Send us a message, and we’ll get back to you shortly.

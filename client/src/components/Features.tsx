@@ -61,7 +61,7 @@ export const Features = () => {
     >
       <h2 className="text-3xl lg:text-4xl font-bold text-center">
         Our Core{" "}
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+        <span className="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
           Capabilities
         </span>
       </h2>

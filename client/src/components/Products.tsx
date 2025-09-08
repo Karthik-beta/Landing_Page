@@ -12,7 +12,7 @@ export const Products = () => {
       <div className="text-center space-y-6">
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
           Empower Your Business with Our{" "}
-          <span className="bg-gradient-to-r from-primary/60 to-primary text-transparent bg-clip-text">
+          <span className="bg-linear-to-r from-primary/60 to-primary text-transparent bg-clip-text">
             Business Operating System
           </span>
         </h2>
@@ -30,7 +30,7 @@ export const Products = () => {
           </h3>
           <ul className="space-y-6">
             <li className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+              <div className="shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
                 ✓
               </div>
               <p className="text-lg text-muted-foreground flex-1">
@@ -38,7 +38,7 @@ export const Products = () => {
               </p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+              <div className="shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
                 ✓
               </div>
               <p className="text-lg text-muted-foreground flex-1">
@@ -46,7 +46,7 @@ export const Products = () => {
               </p>
             </li>
             <li className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+              <div className="shrink-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
                 ✓
               </div>
               <p className="text-lg text-muted-foreground flex-1">
@@ -68,7 +68,7 @@ export const Products = () => {
 
         {/* Illustration */}
         <div className="lg:col-span-6 relative">
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-primary/5 rounded-lg blur-xl"></div> */}
+          {/* <div className="absolute inset-0 bg-linear-to-b from-primary/10 to-primary/5 rounded-lg blur-xl"></div> */}
           <img
             src={bentoGrid}
             alt="Business Operating System illustration"
@@ -79,7 +79,7 @@ export const Products = () => {
 
       {/* Additional Features Section */}
       <div className="sm:px-8">
-        <h3 className="text-4xl font-bold text-center mb-12  bg-gradient-to-tr from-primary/60 to-primary text-transparent bg-clip-text">
+        <h3 className="text-4xl font-bold text-center mb-12  bg-linear-to-tr from-primary/60 to-primary text-transparent bg-clip-text">
           Key Features of Pivotr Business Suite
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">

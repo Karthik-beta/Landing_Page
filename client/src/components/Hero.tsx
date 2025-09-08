@@ -8,7 +8,7 @@ export const Hero = () => {
       <div className="text-center lg:text-start space-y-6">
         <main className="text-5xl md:text-6xl font-bold">
           <h1 className="inline">
-            <span className="inline bg-gradient-to-r from-[#F596D3] to-[#D247BF] text-transparent bg-clip-text gradient-shimmer">
+            <span className="inline bg-linear-to-r from-[#F596D3] to-[#D247BF] text-transparent bg-clip-text gradient-shimmer">
               Better
             </span>{" "}
             Solutions 
@@ -17,12 +17,12 @@ export const Hero = () => {
           <h2 className="inline">
             <TypewriterText 
               words={["Business", "Teams", "Growth", "Success", "Future"]}
-              className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text"
+              className="inline bg-linear-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text"
               typeSpeed={120}
               deleteSpeed={80}
               delayBetweenWords={2500}
               showCursor={true}
-              cursorClassName="bg-gradient-to-r from-[#61DAFB] to-[#03a3d7]"
+              cursorClassName="bg-linear-to-r from-[#61DAFB] to-[#03a3d7]"
             />
             {" "}
             {/* developers */}
@@ -41,7 +41,7 @@ export const Hero = () => {
             href="https://github.com/leoMirandaa/shadcn-landing-page.git"
             target="_blank"
             className={`w-full md:w-1/3 ${buttonVariants({
-              variant: "outline",
+              variant: "outline-solid",
             })}`}
           >
             Github Repository

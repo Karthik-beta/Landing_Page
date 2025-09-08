@@ -13,7 +13,7 @@ interface OptimizedImageProps {
   height?: number;
   className?: string;
   priority?: boolean;
-  placeholder?: 'blur' | 'empty';
+  placeholder?: 'blur-sm' | 'empty';
   blurDataURL?: string;
   sizes?: string;
   quality?: number;
@@ -79,7 +79,7 @@ const OptimizedImageComponent: React.FC<OptimizedImageProps> = memo(({
 
   // React 19: Optimized placeholder logic
   const placeholderStyle = React.useMemo(() => {
-    if (placeholder === 'blur' && blurDataURL) {
+    if (placeholder === 'blur-sm' && blurDataURL) {
       return {
         backgroundImage: `url(${blurDataURL})`,
         backgroundSize: 'cover',
@@ -108,7 +108,7 @@ const OptimizedImageComponent: React.FC<OptimizedImageProps> = memo(({
       }}
     >
       {/* Placeholder */}
-      {!isLoaded && !hasError && placeholder === 'blur' && blurDataURL && (
+      {!isLoaded && !hasError && placeholder === 'blur-sm' && blurDataURL && (
         <div
           className="absolute inset-0 animate-pulse"
           style={placeholderStyle}
@@ -119,7 +119,7 @@ const OptimizedImageComponent: React.FC<OptimizedImageProps> = memo(({
       {/* Loading skeleton */}
       {!isLoaded && !hasError && placeholder === 'empty' && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse" aria-hidden="true">
-          <div className="w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer" />
+          <div className="w-full h-full bg-linear-to-r from-gray-200 via-gray-300 to-gray-200 animate-shimmer" />
         </div>
       )}
 

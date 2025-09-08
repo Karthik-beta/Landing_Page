@@ -84,7 +84,7 @@ export const ClientsSection = () => { // Renamed component for clarity
   const secondRow = clients.slice(Math.ceil(clients.length / 2));
 
   const LogoItem = ({ client }: { client: ClientProps }) => (
-    <div className="flex justify-center items-center w-32 h-12 text-muted-foreground hover:opacity-100 transition-opacity flex-shrink-0 mx-4">
+    <div className="flex justify-center items-center w-32 h-12 text-muted-foreground hover:opacity-100 transition-opacity shrink-0 mx-4">
       <a
         href={client.url || "#"}
         target="_blank"

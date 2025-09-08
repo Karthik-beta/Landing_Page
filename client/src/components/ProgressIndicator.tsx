@@ -35,12 +35,12 @@ export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
       {/* Main progress bar */}
       <div className="h-1 bg-muted/30 relative overflow-hidden">
         <div 
-          className="h-full bg-gradient-to-r from-primary via-primary/80 to-primary transition-all duration-700 ease-out"
+          className="h-full bg-linear-to-r from-primary via-primary/80 to-primary transition-all duration-700 ease-out"
           style={{ width: `${progress}%` }}
         />
         {/* Shimmer effect */}
         <div 
-          className="absolute top-0 h-full w-20 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          className="absolute top-0 h-full w-20 bg-linear-to-r from-transparent via-white/20 to-transparent"
           style={{ 
             left: `${Math.max(0, progress - 10)}%`,
             animation: progress > 5 ? 'progress-shimmer 2s infinite' : 'none',

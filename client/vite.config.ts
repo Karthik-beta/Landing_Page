@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import viteCompression from "vite-plugin-compression";
 import { visualizer } from "rollup-plugin-visualizer";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [
@@ -10,6 +11,7 @@ export default defineConfig({
       // React 19: Enhanced JSX runtime with optimizations
       jsxRuntime: 'automatic',
     }),
+    tailwindcss(),
     viteCompression({ 
       algorithm: "brotliCompress",
       threshold: 1024, // Only compress files larger than 1KB

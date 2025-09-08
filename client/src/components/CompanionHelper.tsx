@@ -123,7 +123,7 @@ export const CompanionHelper: React.FC<CompanionHelperProps> = ({
           size="lg"
           className={cn(
             "rounded-full w-14 h-14 shadow-lg border-2 border-primary/20",
-            "bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary",
+            "bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary",
             "transition-all duration-300 ease-in-out transform hover:scale-110",
             shouldPulse && "animate-pulse shadow-primary/25 shadow-2xl"
           )}
@@ -135,8 +135,8 @@ export const CompanionHelper: React.FC<CompanionHelperProps> = ({
       ) : (
         // Expanded state - helper card
         <Card className={cn(
-          "w-80 shadow-xl border-primary/20 bg-gradient-to-br from-background to-background/95",
-          "backdrop-blur-sm animate-in slide-in-from-bottom-2 duration-300"
+          "w-80 shadow-xl border-primary/20 bg-linear-to-br from-background to-background/95",
+          "backdrop-blur-xs animate-in slide-in-from-bottom-2 duration-300"
         )}>
           <CardContent className="p-4">
             <div className="flex items-start justify-between mb-3">
@@ -195,7 +195,7 @@ export const CompanionHelper: React.FC<CompanionHelperProps> = ({
               </div>
               <div className="w-full h-1 bg-muted rounded-full mt-1 overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-primary to-primary/80 transition-all duration-500"
+                  className="h-full bg-linear-to-r from-primary to-primary/80 transition-all duration-500"
                   style={{ width: `${(visitedSections.size / 11) * 100}%` }}
                 />
               </div>

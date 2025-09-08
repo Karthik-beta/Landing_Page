@@ -113,7 +113,7 @@ export const HeroCards = () => {
         <div 
           className={`
             absolute inset-0 -z-10 rounded-lg
-            bg-gradient-to-r from-[#F596D3]/20 via-[#61DAFB]/20 to-[#03a3d7]/20
+            bg-linear-to-r from-[#F596D3]/20 via-[#61DAFB]/20 to-[#03a3d7]/20
             opacity-0 group-hover:opacity-100 blur-xl
             transition-opacity duration-500
             ${isClicked ? 'animate-pulse' : ''}
@@ -127,7 +127,7 @@ export const HeroCards = () => {
               key={i}
               ref={(el) => { particlesRef.current[i] = el; }}
               className={`
-                absolute w-1.5 h-1.5 bg-gradient-to-r from-[#61DAFB] to-[#03a3d7] rounded-full
+                absolute w-1.5 h-1.5 bg-linear-to-r from-[#61DAFB] to-[#03a3d7] rounded-full
                 opacity-0 group-hover:opacity-70
                 transition-all duration-1000 ease-out
                 ${isVisible ? 'animate-float' : ''}
@@ -149,7 +149,7 @@ export const HeroCards = () => {
               key={`pulse-${i}`}
               className={`
                 absolute w-3 h-3 rounded-full
-                bg-gradient-to-r from-[#F596D3] to-[#D247BF]
+                bg-linear-to-r from-[#F596D3] to-[#D247BF]
                 opacity-0 group-hover:opacity-60
                 transition-all duration-500
                 animate-pulse
@@ -167,16 +167,16 @@ export const HeroCards = () => {
         {/* Success ripple effect on click */}
         {isClicked && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-4 h-4 bg-gradient-to-r from-[#F596D3] to-[#D247BF] rounded-full animate-ping opacity-75" />
-            <div className="absolute w-8 h-8 bg-gradient-to-r from-[#61DAFB] to-[#03a3d7] rounded-full animate-ping opacity-50" style={{ animationDelay: '150ms' }} />
-            <div className="absolute w-12 h-12 bg-gradient-to-r from-[#F596D3] to-[#03a3d7] rounded-full animate-ping opacity-25" style={{ animationDelay: '300ms' }} />
+            <div className="w-4 h-4 bg-linear-to-r from-[#F596D3] to-[#D247BF] rounded-full animate-ping opacity-75" />
+            <div className="absolute w-8 h-8 bg-linear-to-r from-[#61DAFB] to-[#03a3d7] rounded-full animate-ping opacity-50" style={{ animationDelay: '150ms' }} />
+            <div className="absolute w-12 h-12 bg-linear-to-r from-[#F596D3] to-[#03a3d7] rounded-full animate-ping opacity-25" style={{ animationDelay: '300ms' }} />
           </div>
         )}
         
         {/* Cursor follower effect */}
         <div 
           ref={cursorFollowerRef}
-          className="absolute w-6 h-6 bg-gradient-to-r from-[#61DAFB]/30 to-[#03a3d7]/30 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          className="absolute w-6 h-6 bg-linear-to-r from-[#61DAFB]/30 to-[#03a3d7]/30 rounded-full blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
           style={{
             transform: 'translate(-50%, -50%)',
           }}
@@ -208,7 +208,7 @@ export const HeroCards = () => {
           <img
             src="https://i.pravatar.cc/150?img=58"
             alt="user avatar"
-            className="absolute grayscale-[0%] -top-12 rounded-full w-24 h-24 aspect-square object-cover"
+            className="absolute grayscale-0 -top-12 rounded-full w-24 h-24 aspect-square object-cover"
           />
           <CardTitle className="text-center">Leo Miranda</CardTitle>
           <CardDescription className="font-normal text-primary">

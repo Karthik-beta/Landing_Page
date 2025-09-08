@@ -37,10 +37,10 @@ const serviceList: ServiceProps[] = [
 export const Services = () => {
   return (
     <section id="services" className="container py-24 sm:py-32">
-      <div className="grid lg:grid-cols-[1fr,1fr] gap-8 place-items-center">
+      <div className="grid lg:grid-cols-[1fr_1fr] gap-8 place-items-center">
         <div>
           <h2 className="text-3xl md:text-4xl font-bold text-center">
-            <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+            <span className="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
             Our{" "}
             </span>
             Services
@@ -54,7 +54,7 @@ export const Services = () => {
             {serviceList.map(({ icon, title, description, details }: ServiceProps) => (
               <Card 
                 key={title}
-                className="group cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 bg-gradient-to-br from-background to-background/50"
+                className="group cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 bg-linear-to-br from-background to-background/50"
               >
                 <CardHeader className="space-y-1 flex md:flex-row justify-start items-start gap-4">
                   <div className="mt-1 bg-primary/20 p-1 rounded-2xl group-hover:bg-primary/30 transition-colors duration-300 group-hover:scale-110 transform">

@@ -31,7 +31,7 @@ export const Cta = () => {
         <div className="lg:col-start-1">
           <h2 className="text-3xl md:text-4xl font-bold ">
               Ready to
-            <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+            <span className="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
               {" "}
               Transform Your Business{" "}
             </span>

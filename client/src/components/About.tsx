@@ -72,7 +72,7 @@ export const About = () => {
           <div className="bg-green-0 flex flex-col justify-between">
             <div className="pb-6">
               <h2 className="text-3xl md:text-4xl font-bold">
-                <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+                <span className="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
                   About{" "}
                 </span>
                 Us
@@ -84,7 +84,7 @@ export const About = () => {
                 {displayedText}
                 {currentIndex < paragraphText.length && (
                   <span 
-                    className="inline-block w-0.5 h-[1em] ml-1 bg-gradient-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse"
+                    className="inline-block w-0.5 h-[1em] ml-1 bg-linear-to-b from-[#61DAFB] to-[#03a3d7] animate-pulse"
                     style={{ animationDuration: '1s' }}
                   />
                 )}
