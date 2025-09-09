@@ -37,6 +37,10 @@ const routeList: RouteProps[] = [
     label: "About",
   },
   {
+    href: "#roi-calculator",
+    label: "ROI Calculator",
+  },
+  {
     href: "https://wellfound.com/company/pivotr",
     label: "Careers",
   },
