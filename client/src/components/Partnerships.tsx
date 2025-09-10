@@ -4,6 +4,14 @@ import lenovo from "../assets/Lenovo_logo.svg";
 import HP from "../assets/HP_logo.svg";
 import dell from "../assets/Dell_logo.svg";
 
+/**
+ * Renders the Partnerships section of the website.
+ *
+ * This component displays a grid of partner companies, each with its logo,
+ * name, and a brief description.
+ *
+ * @returns {JSX.Element} The rendered Partnerships section.
+ */
 const partners = [
   {
     name: "Microsoft",
@@ -31,6 +39,14 @@ const partners = [
   },
 ];
 
+/**
+ * Renders the Partnerships section of the website.
+ *
+ * This component displays a grid of partner companies, each with its logo,
+ * name, and a brief description.
+ *
+ * @returns {JSX.Element} The rendered Partnerships section.
+ */
 export const Partnerships = () => {
   return (
     <section id="partnerships" className="py-24 sm:py-32 bg-muted">

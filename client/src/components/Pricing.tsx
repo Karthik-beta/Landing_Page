@@ -10,17 +10,31 @@ import {
 } from "@/components/ui/card";
 import { Check } from "lucide-react";
 
+/**
+ * Enum for popular plan types.
+ * @enum {number}
+ */
 enum PopularPlanType {
   NO = 0,
   YES = 1,
 }
 
+/**
+ * Props for a single pricing plan.
+ * @interface PricingProps
+ */
 interface PricingProps {
+  /** The title of the pricing plan. */
   title: string;
+  /** Whether the plan is popular. */
   popular: PopularPlanType;
+  /** The price of the plan. */
   price: number;
+  /** A description of the plan. */
   description: string;
+  /** The text for the call-to-action button. */
   buttonText: string;
+  /** A list of benefits included in the plan. */
   benefitList: string[];
 }
 
@@ -69,6 +83,15 @@ const pricingList: PricingProps[] = [
   },
 ];
 
+/**
+ * Renders the pricing section of the website.
+ *
+ * This component displays a list of pricing plans, each with its own card
+ * containing details about the plan, such as its title, price, description,
+ * and a list of benefits.
+ *
+ * @returns {JSX.Element} The rendered pricing section.
+ */
 export const Pricing = () => {
   return (
     <section id="pricing" className="container py-24 sm:py-32">

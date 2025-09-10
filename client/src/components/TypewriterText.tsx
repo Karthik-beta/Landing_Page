@@ -1,16 +1,38 @@
 import { useTypewriter } from "../hooks/use-typewriter";
 
+/**
+ * Props for the TypewriterText component.
+ * @interface TypewriterTextProps
+ */
 interface TypewriterTextProps {
+  /** An array of words to be typed and deleted. */
   words: string[];
+  /** Additional CSS classes for the component. */
   className?: string;
+  /** The speed at which to type the words, in milliseconds per character. */
   typeSpeed?: number;
+  /** The speed at which to delete the words, in milliseconds per character. */
   deleteSpeed?: number;
+  /** The delay between words, in milliseconds. */
   delayBetweenWords?: number;
+  /** Whether the typewriter effect should loop indefinitely. */
   loop?: boolean;
+  /** Whether to show the cursor. */
   showCursor?: boolean;
+  /** Additional CSS classes for the cursor. */
   cursorClassName?: string;
 }
 
+/**
+ * A component that displays text with a typewriter effect.
+ *
+ * This component types out and deletes a series of words, creating a dynamic
+ * and engaging text effect. The speed and behavior of the effect can be
+ * customized through props.
+ *
+ * @param {TypewriterTextProps} props The props for the component.
+ * @returns {JSX.Element} The rendered typewriter text.
+ */
 export const TypewriterText = ({
   words,
   className = "",

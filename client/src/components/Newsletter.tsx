@@ -1,6 +1,14 @@
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
+/**
+ * Renders the newsletter subscription section.
+ *
+ * This component displays a form that allows users to subscribe to the
+ * newsletter by providing their email address.
+ *
+ * @returns {JSX.Element} The rendered newsletter section.
+ */
 export const Newsletter = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,3 +1,11 @@
+/**
+ * Renders the footer section of the website.
+ *
+ * This component displays company information, social media links, and navigation
+ * to other parts of the site. It also includes the copyright notice.
+ *
+ * @returns {JSX.Element} The rendered footer section.
+ */
 export const Footer = () => {
   return (
     <footer id="footer">

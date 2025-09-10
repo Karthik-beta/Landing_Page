@@ -2,6 +2,15 @@ import { Statistics } from "./Statistics";
 import aboutUs from "../assets/undraw_team-work_i1f3.svg";
 import { useState, useEffect, useRef } from "react";
 
+/**
+ * Renders the About Us section of the website.
+ *
+ * This component displays information about the company, including a descriptive
+ * paragraph with a typewriter animation effect. The animation is triggered
+ * when the component becomes visible in the viewport.
+ *
+ * @returns {JSX.Element} The rendered About Us section.
+ */
 export const About = () => {
   const paragraphText = `At Pivotr, we are a software-first company dedicated to delivering integrated solutions built in-house. When a deployment calls for specific devices, we source them from trusted partners and bring everything together to ensure seamless performance. Our emphasis is on the complete solution—hardware is included only when needed to support our software, rather than as a standalone offering.`;
 

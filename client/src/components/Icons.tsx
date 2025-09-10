@@ -1,3 +1,7 @@
+/**
+ * Renders the logo icon.
+ * @returns {JSX.Element} The rendered logo icon.
+ */
 export const LogoIcon = () => {
   return (
     <svg
@@ -17,6 +21,10 @@ export const LogoIcon = () => {
   );
 };
 
+/**
+ * Renders the dark mode logo icon.
+ * @returns {JSX.Element} The rendered dark mode logo icon.
+ */
 export const LogoIconDark = () => {
   return (
     <img
@@ -27,6 +35,10 @@ export const LogoIconDark = () => {
   );
 };
 
+/**
+ * Renders the light mode logo icon.
+ * @returns {JSX.Element} The rendered light mode logo icon.
+ */
 export const LogoIconLight = () => {
   return (
     <img
@@ -37,6 +49,10 @@ export const LogoIconLight = () => {
   );
 };
 
+/**
+ * Renders the medal icon.
+ * @returns {JSX.Element} The rendered medal icon.
+ */
 export const MedalIcon = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-14 fill-primary">
@@ -111,6 +127,10 @@ export const MedalIcon = () => {
   );
 };
 
+/**
+ * Renders the map icon.
+ * @returns {JSX.Element} The rendered map icon.
+ */
 export const MapIcon = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-14 fill-primary">
@@ -175,6 +195,10 @@ export const MapIcon = () => {
   );
 };
 
+/**
+ * Renders the plane icon.
+ * @returns {JSX.Element} The rendered plane icon.
+ */
 export const PlaneIcon = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-14 fill-primary">
@@ -229,6 +253,10 @@ export const PlaneIcon = () => {
   );
 };
 
+/**
+ * Renders the gift icon.
+ * @returns {JSX.Element} The rendered gift icon.
+ */
 export const GiftIcon = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-14 fill-primary">
@@ -323,6 +351,10 @@ export const GiftIcon = () => {
   );
 };
 
+/**
+ * Renders the lightbulb icon.
+ * @returns {JSX.Element} The rendered lightbulb icon.
+ */
 export const LightBulbIcon = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-12 fill-primary">
@@ -393,6 +425,10 @@ export const LightBulbIcon = () => {
   );
 };
 
+/**
+ * Renders the wallet icon.
+ * @returns {JSX.Element} The rendered wallet icon.
+ */
 export const WalletIcon = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-12 fill-primary">
@@ -479,6 +515,10 @@ export const WalletIcon = () => {
   );
 };
 
+/**
+ * Renders the chart icon.
+ * @returns {JSX.Element} The rendered chart icon.
+ */
 export const ChartIcon = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" className="w-12 fill-primary">
@@ -615,6 +655,10 @@ export const MagnifierIcon = () => {
   );
 };
 
+/**
+ * Renders the database icon.
+ * @returns {JSX.Element} The rendered database icon.
+ */
 export const DatabaseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -638,6 +682,10 @@ export const DatabaseIcon = () => (
   </svg>
 );
 
+/**
+ * Renders the users icon.
+ * @returns {JSX.Element} The rendered users icon.
+ */
 export const UsersIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -655,6 +703,10 @@ export const UsersIcon = () => (
   </svg>
 );
 
+/**
+ * Renders the briefcase icon.
+ * @returns {JSX.Element} The rendered briefcase icon.
+ */
 export const BriefcaseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

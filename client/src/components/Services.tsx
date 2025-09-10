@@ -3,10 +3,18 @@ import { Badge } from "./ui/badge";
 import { MagnifierIcon, WalletIcon, ChartIcon } from "./Icons";
 import servicePicture from "../assets/undraw_business-chat_xea1.svg";
 
+/**
+ * Props for a single service item.
+ * @interface ServiceProps
+ */
 interface ServiceProps {
+  /** The title of the service. */
   title: string;
+  /** A brief description of the service. */
   description: string;
+  /** The icon representing the service. */
   icon: React.JSX.Element;
+  /** Optional details about the service, revealed on hover. */
   details?: string;
 }
 
@@ -37,6 +45,14 @@ const serviceList: ServiceProps[] = [
   },
 ];
 
+/**
+ * Renders the Services section of the website.
+ *
+ * This component displays a list of services offered by the company, each with
+ * an icon, title, description, and optional details that are revealed on hover.
+ *
+ * @returns {JSX.Element} The rendered Services section.
+ */
 export const Services = () => {
   return (
     <section id="services" className="container py-24 sm:py-32">
