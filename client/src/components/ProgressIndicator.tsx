@@ -1,11 +1,20 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Props for the ProgressIndicator component.
+ * @interface ProgressIndicatorProps
+ */
 interface ProgressIndicatorProps {
+  /** The scroll progress as a percentage (0-100). */
   progress: number;
+  /** A set of all sections the user has visited. */
   visitedSections: Set<string>;
+  /** The current section the user is viewing. */
   currentSection: string;
+  /** An optional CSS class name to be applied to the component. */
   className?: string;
+  /** Whether to show the details of the current section and visited sections. */
   showDetails?: boolean;
 }
 
@@ -23,6 +32,16 @@ const SECTION_LABELS = {
   contact: "Contact",
 };
 
+/**
+ * A progress indicator that shows the user's scroll progress.
+ *
+ * This component displays a progress bar that fills as the user scrolls down
+ * the page. It can also show details about the current section and the number
+ * of visited sections.
+ *
+ * @param {ProgressIndicatorProps} props The props for the component.
+ * @returns {JSX.Element} The rendered progress indicator.
+ */
 export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   progress,
   visitedSections,

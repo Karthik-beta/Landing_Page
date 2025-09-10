@@ -3,6 +3,10 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * An image element with a fallback for representing a user.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<AvatarPrimitive.AvatarProps> & React.RefAttributes<HTMLSpanElement>>}
+ */
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
@@ -15,6 +19,10 @@ const Avatar = React.forwardRef<
 ));
 Avatar.displayName = AvatarPrimitive.Root.displayName;
 
+/**
+ * The image of an avatar.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<AvatarPrimitive.AvatarImageProps> & React.RefAttributes<HTMLImageElement>>}
+ */
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
@@ -27,6 +35,10 @@ const AvatarImage = React.forwardRef<
 ));
 AvatarImage.displayName = AvatarPrimitive.Image.displayName;
 
+/**
+ * A fallback for an avatar, displayed if the image fails to load.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<AvatarPrimitive.AvatarFallbackProps> & React.RefAttributes<HTMLSpanElement>>}
+ */
 const AvatarFallback = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Fallback>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>

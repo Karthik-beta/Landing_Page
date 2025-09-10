@@ -1,10 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { MedalIcon, MapIcon, PlaneIcon, GiftIcon } from "../components/Icons";
 
+/**
+ * Props for a single feature in the "How It Works" section.
+ * @interface FeatureProps
+ */
 interface FeatureProps {
+  /** A unique key for the feature. */
   key: string;
+  /** The icon representing the feature. */
   icon: React.JSX.Element;
+  /** The title of the feature. */
   title: string;
+  /** A brief description of the feature. */
   description: string;
 }
 
@@ -35,6 +43,14 @@ const features: FeatureProps[] = [
   },
 ];
 
+/**
+ * Renders the "How It Works" section of the website.
+ *
+ * This component displays a four-step guide to the company's process, with
+ * each step presented in a card containing an icon, title, and description.
+ *
+ * @returns {JSX.Element} The rendered "How It Works" section.
+ */
 export const HowItWorks = () => {
   return (
     <section id="howItWorks" className="container text-center py-24 sm:py-32">

@@ -5,14 +5,30 @@ import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * The root component for a sheet.
+ */
 const Sheet = SheetPrimitive.Root;
 
+/**
+ * A button that toggles the open state of a sheet.
+ */
 const SheetTrigger = SheetPrimitive.Trigger;
 
+/**
+ * A button that closes a sheet.
+ */
 const SheetClose = SheetPrimitive.Close;
 
+/**
+ * A portal for rendering the sheet in a different part of the DOM.
+ */
 const SheetPortal = SheetPrimitive.Portal;
 
+/**
+ * A dark overlay that appears behind the sheet.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<SheetPrimitive.DialogOverlayProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
@@ -47,10 +63,18 @@ const sheetVariants = cva(
   },
 );
 
+/**
+ * Props for the SheetContent component.
+ * @interface SheetContentProps
+ */
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {}
 
+/**
+ * The content of a sheet.
+ * @type {React.ForwardRefExoticComponent<SheetContentProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
@@ -68,11 +92,21 @@ const SheetContent = React.forwardRef<
 ));
 SheetContent.displayName = SheetPrimitive.Content.displayName;
 
+/**
+ * The header of a sheet.
+ * @param {React.HTMLAttributes<HTMLDivElement>} props The props for the component.
+ * @returns {JSX.Element} The rendered sheet header.
+ */
 const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div className={cn("flex flex-col space-y-2 text-center sm:text-left", className)} {...props} />
 );
 SheetHeader.displayName = "SheetHeader";
 
+/**
+ * The footer of a sheet.
+ * @param {React.HTMLAttributes<HTMLDivElement>} props The props for the component.
+ * @returns {JSX.Element} The rendered sheet footer.
+ */
 const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
@@ -81,6 +115,10 @@ const SheetFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 );
 SheetFooter.displayName = "SheetFooter";
 
+/**
+ * The title of a sheet.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<SheetPrimitive.DialogTitleProps> & React.RefAttributes<HTMLHeadingElement>>}
+ */
 const SheetTitle = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
@@ -93,6 +131,10 @@ const SheetTitle = React.forwardRef<
 ));
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
+/**
+ * The description of a sheet.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<SheetPrimitive.DialogDescriptionProps> & React.RefAttributes<HTMLParagraphElement>>}
+ */
 const SheetDescription = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>

@@ -5,8 +5,15 @@ import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * The provider for the toast component.
+ */
 const ToastProvider = ToastPrimitives.Provider;
 
+/**
+ * The viewport for the toast component.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<ToastPrimitives.ToastViewportProps> & React.RefAttributes<HTMLOListElement>>}
+ */
 const ToastViewport = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Viewport>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
@@ -38,6 +45,10 @@ const toastVariants = cva(
   },
 );
 
+/**
+ * A toast notification component.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<ToastPrimitives.ToastProps> & VariantProps<typeof toastVariants> & React.RefAttributes<HTMLLIElement>>}
+ */
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants>
@@ -52,6 +63,10 @@ const Toast = React.forwardRef<
 });
 Toast.displayName = ToastPrimitives.Root.displayName;
 
+/**
+ * An action button for a toast notification.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<ToastPrimitives.ToastActionProps> & React.RefAttributes<HTMLButtonElement>>}
+ */
 const ToastAction = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Action>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action>
@@ -67,6 +82,10 @@ const ToastAction = React.forwardRef<
 ));
 ToastAction.displayName = ToastPrimitives.Action.displayName;
 
+/**
+ * A close button for a toast notification.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<ToastPrimitives.ToastCloseProps> & React.RefAttributes<HTMLButtonElement>>}
+ */
 const ToastClose = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Close>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close>
@@ -85,6 +104,10 @@ const ToastClose = React.forwardRef<
 ));
 ToastClose.displayName = ToastPrimitives.Close.displayName;
 
+/**
+ * The title of a toast notification.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<ToastPrimitives.ToastTitleProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const ToastTitle = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Title>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
@@ -93,6 +116,10 @@ const ToastTitle = React.forwardRef<
 ));
 ToastTitle.displayName = ToastPrimitives.Title.displayName;
 
+/**
+ * The description of a toast notification.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<ToastPrimitives.ToastDescriptionProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const ToastDescription = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Description>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
@@ -105,8 +132,16 @@ const ToastDescription = React.forwardRef<
 ));
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
 
+/**
+ * Props for the Toast component.
+ * @interface ToastProps
+ */
 type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>;
 
+/**
+ * An action element for a toast notification.
+ * @interface ToastActionElement
+ */
 type ToastActionElement = React.ReactElement<typeof ToastAction>;
 
 export {

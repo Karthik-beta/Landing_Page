@@ -10,8 +10,14 @@ import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { ProgressIndicator } from "./ProgressIndicator";
 
+/**
+ * Props for a single route in the navigation bar.
+ * @interface RouteProps
+ */
 interface RouteProps {
+  /** The URL of the route. */
   href: string;
+  /** The label for the route. */
   label: string;
 }
 
@@ -52,6 +58,17 @@ interface CompanionData {
   currentSection: string;
 }
 
+/**
+ * Renders the navigation bar for the website.
+ *
+ * This component includes the logo, navigation links, and a mode toggle. It is
+ * responsive and provides a mobile-friendly menu. It can also display a
+ * progress indicator based on the user's scroll position.
+ *
+ * @param {object} props - The component props.
+ * @param {CompanionData} [props.companion] - Optional data for the progress indicator.
+ * @returns {JSX.Element} The rendered navigation bar.
+ */
 export const Navbar = ({ companion }: { companion?: CompanionData }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

@@ -4,11 +4,20 @@ import { Card, CardContent } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { HelpCircle, X, ChevronUp, Lightbulb, ArrowDown } from "lucide-react";
 
+/**
+ * Props for the CompanionHelper component.
+ * @interface CompanionHelperProps
+ */
 interface CompanionHelperProps {
+  /** The current section the user is viewing. */
   currentSection: string;
+  /** A set of all sections the user has visited. */
   visitedSections: Set<string>;
+  /** The number of interactions the user has had with the helper. */
   interactionCount: number;
+  /** A callback function to be called when the user interacts with the helper. */
   onInteraction: () => void;
+  /** An optional CSS class name to be applied to the component. */
   className?: string;
 }
 
@@ -57,6 +66,16 @@ const SECTION_HINTS = {
   },
 };
 
+/**
+ * A floating helper component that provides contextual hints to the user.
+ *
+ * This component displays hints based on the current section of the page the
+ * user is viewing. It can be expanded, dismissed, and provides a progress
+ * indicator for visited sections.
+ *
+ * @param {CompanionHelperProps} props The props for the component.
+ * @returns {JSX.Element | null} The rendered component, or null if it's not visible.
+ */
 export const CompanionHelper: React.FC<CompanionHelperProps> = ({
   currentSection,
   visitedSections,
