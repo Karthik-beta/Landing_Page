@@ -1,6 +1,20 @@
+/**
+ * Renders a section with key statistics.
+ *
+ * This component displays a grid of statistics, such as customer support
+ * availability, efficiency gains, and cost reduction.
+ *
+ * @returns {JSX.Element} The rendered statistics section.
+ */
 export const Statistics = () => {
+  /**
+   * Props for a single statistic item.
+   * @interface statsProps
+   */
   interface statsProps {
+    /** The numerical value or quantity of the statistic. */
     quantity: string;
+    /** A brief description of the statistic. */
     description: string;
   }
 

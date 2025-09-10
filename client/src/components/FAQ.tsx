@@ -5,9 +5,16 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+/**
+ * Props for a single FAQ item.
+ * @interface FAQProps
+ */
 interface FAQProps {
+  /** The question for the FAQ item. */
   question: string;
+  /** The answer to the question. */
   answer: string;
+  /** A unique value for the accordion item. */
   value: string;
 }
 
@@ -66,6 +73,15 @@ const FAQList: FAQProps[] = [
   },
 ];
 
+/**
+ * Renders the Frequently Asked Questions (FAQ) section.
+ *
+ * This component displays a list of questions and answers in an accordion,
+ * allowing users to expand each question to see the answer. It also includes
+ * a link to the contact section for further inquiries.
+ *
+ * @returns {JSX.Element} The rendered FAQ section.
+ */
 export const FAQ = () => {
   return (
     <section id="faq" className="container py-24 sm:py-32">

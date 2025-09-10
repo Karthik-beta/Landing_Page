@@ -8,6 +8,14 @@ import {
 import { useTheme } from "@/components/theme-provider";
 import { Moon, Sun } from "lucide-react";
 
+/**
+ * A dropdown menu for toggling between light, dark, and system themes.
+ *
+ * This component uses the `useTheme` hook to provide theme-switching
+ * functionality.
+ *
+ * @returns {JSX.Element} The rendered mode toggle dropdown.
+ */
 export function ModeToggle() {
   const { setTheme } = useTheme();
 

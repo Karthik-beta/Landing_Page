@@ -5,6 +5,15 @@ import iso from "../assets/iso_27001.png";
 import gdpr from "../assets/gdpr.jpg";
 import csa from "../assets/csa_star.png";
 
+/**
+ * Renders the Certifications section of the website.
+ *
+ * This component displays a grid of certifications, including ISO 27001, SOC 2,
+ * GDPR, and CSA STAR. Each certification is presented in a card with its logo,
+ * title, and a brief description.
+ *
+ * @returns {JSX.Element} The rendered Certifications section.
+ */
 export const Certifications = () => {
   return (
     <section id="certifications" className="py-16 bg-muted">

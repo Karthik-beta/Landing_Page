@@ -8,6 +8,10 @@ const labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
 );
 
+/**
+ * A component for displaying a label for a form element.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<LabelPrimitive.LabelProps> & React.RefAttributes<HTMLLabelElement>>}
+ */
 const Label = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>

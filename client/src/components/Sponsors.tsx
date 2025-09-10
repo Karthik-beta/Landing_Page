@@ -9,11 +9,19 @@ import planafin from "../assets/planafin.png";
 import adian from "../assets/Adian.png";
 import irTech from "../assets/IR_tech.png"; // Assuming you have this image
 
+/**
+ * Props for a single client item.
+ * @interface ClientProps
+ */
 interface ClientProps {
   // Renamed interface for clarity
+  /** An optional icon for the client. */
   icon?: React.JSX.Element; // Icon is optional, you'll likely use images for logos
+  /** The URL of the client's logo. */
   image?: string; // Added image property for logos
+  /** The name of the client. */
   name: string;
+  /** An optional URL for the client's website or case study. */
   url?: string; // Optional: Add URL for clicking through to client websites/case studies
 }
 
@@ -78,6 +86,14 @@ const clients: ClientProps[] = [
   },
 ];
 
+/**
+ * Renders a section displaying the logos of trusted clients.
+ *
+ * This component features two horizontally scrolling rows of client logos,
+ * creating a dynamic and visually engaging display.
+ *
+ * @returns {JSX.Element} The rendered clients section.
+ */
 // Renamed component for clarity - you can keep 'Sponsors' if you prefer
 export const ClientsSection = () => {
   // Renamed component for clarity
