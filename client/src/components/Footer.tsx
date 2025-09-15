@@ -57,6 +57,17 @@ export const Footer = () => {
               LinkedIn
             </a>
           </div>
+
+          <div>
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href="https://www.facebook.com/share/p/15xx9bH76o/"
+              className="opacity-60 hover:opacity-100"
+            >
+              Facebook
+            </a>
+          </div>
         </div>
 
         <div className="flex flex-col gap-2">
