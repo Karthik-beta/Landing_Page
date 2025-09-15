@@ -2,6 +2,10 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * A standard HTML textarea element with default styling.
+ * @type {React.ForwardRefExoticComponent<React.TextareaHTMLAttributes<HTMLTextAreaElement> & React.RefAttributes<HTMLTextAreaElement>>}
+ */
 const Textarea = React.forwardRef<HTMLTextAreaElement, React.ComponentProps<"textarea">>(
   ({ className, ...props }, ref) => {
     return (

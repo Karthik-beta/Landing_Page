@@ -9,15 +9,29 @@ import {
 } from "@/components/ui/card";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 
+/**
+ * Props for a single team member.
+ * @interface TeamProps
+ */
 interface TeamProps {
+  /** The URL of the team member's image. */
   imageUrl: string;
+  /** The name of the team member. */
   name: string;
+  /** The position of the team member. */
   position: string;
+  /** An array of social media links for the team member. */
   socialNetworks: SociaNetworkslProps[];
 }
 
+/**
+ * Props for a single social media link.
+ * @interface SociaNetworkslProps
+ */
 interface SociaNetworkslProps {
+  /** The name of the social media platform. */
   name: string;
+  /** The URL of the social media profile. */
   url: string;
 }
 
@@ -93,6 +107,14 @@ const teamList: TeamProps[] = [
   },
 ];
 
+/**
+ * Renders the team section of the website.
+ *
+ * This component displays a grid of team members, each with their image, name,
+ * position, and social media links.
+ *
+ * @returns {JSX.Element} The rendered team section.
+ */
 export const Team = () => {
   const socialIcon = (iconName: string) => {
     switch (iconName) {

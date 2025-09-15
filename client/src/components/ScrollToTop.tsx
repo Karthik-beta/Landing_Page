@@ -2,6 +2,14 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "./ui/button";
 import { ArrowUpToLine } from "lucide-react";
 
+/**
+ * A button that appears when the user scrolls down the page, allowing them to
+ * quickly scroll back to the top.
+ *
+ * This component uses a throttled scroll handler for better performance.
+ *
+ * @returns {JSX.Element} The rendered scroll-to-top button, or null if not visible.
+ */
 export const ScrollToTop = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
 

@@ -1,6 +1,16 @@
 import userAvatar from "@/assets/undraw_all-the-data_5lil.svg";
 import { useState, useEffect, useRef, useCallback } from "react";
 
+/**
+ * Renders an interactive set of cards for the hero section.
+ *
+ * This component displays a main image that reacts to mouse movement, creating a
+ * 3D-like effect. It also includes several decorative elements, such as
+ * floating particles, pulse indicators, and a cursor follower, to enhance the
+ * visual experience.
+ *
+ * @returns {JSX.Element} The rendered hero cards.
+ */
 export const HeroCards = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);

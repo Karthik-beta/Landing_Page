@@ -5,6 +5,14 @@ import { Textarea } from "./ui/textarea";
 import { useToast } from "../hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 
+/**
+ * Renders a contact form and a Google Maps embed.
+ *
+ * This component provides a form for users to send messages, which are handled
+ * by Formspree. It also displays the company's location on a Google Map.
+ *
+ * @returns {JSX.Element} The rendered contact form section.
+ */
 export const ContactForm = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);

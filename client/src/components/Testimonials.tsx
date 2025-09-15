@@ -1,10 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+/**
+ * Props for a single testimonial item.
+ * @interface TestimonialProps
+ */
 interface TestimonialProps {
+  /** The URL of the user's image. */
   image: string;
+  /** The name of the user. */
   name: string;
+  /** The username of the user. */
   userName: string;
+  /** The user's comment or testimonial. */
   comment: string;
 }
 
@@ -53,6 +61,14 @@ const testimonials: TestimonialProps[] = [
   },
 ];
 
+/**
+ * Renders the testimonials section of the website.
+ *
+ * This component displays a grid of testimonials from users, each in its own
+ * card.
+ *
+ * @returns {JSX.Element} The rendered testimonials section.
+ */
 export const Testimonials = () => {
   return (
     <section id="testimonials" className="container py-24 sm:py-32">

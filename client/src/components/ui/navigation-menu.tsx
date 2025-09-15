@@ -5,6 +5,10 @@ import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * The root component for a navigation menu.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<NavigationMenuPrimitive.NavigationMenuProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
@@ -20,6 +24,10 @@ const NavigationMenu = React.forwardRef<
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
 
+/**
+ * A list of navigation menu items.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<NavigationMenuPrimitive.NavigationMenuListProps> & React.RefAttributes<HTMLUListElement>>}
+ */
 const NavigationMenuList = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.List>
@@ -32,12 +40,22 @@ const NavigationMenuList = React.forwardRef<
 ));
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 
+/**
+ * A single item in a navigation menu.
+ */
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
+/**
+ * The style variants for the navigation menu trigger.
+ */
 const navigationMenuTriggerStyle = cva(
   "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/50 data-[state=open]:bg-accent/50",
 );
 
+/**
+ * A button that toggles the open state of a navigation menu.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<NavigationMenuPrimitive.NavigationMenuTriggerProps> & React.RefAttributes<HTMLButtonElement>>}
+ */
 const NavigationMenuTrigger = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Trigger>
@@ -56,6 +74,10 @@ const NavigationMenuTrigger = React.forwardRef<
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
 
+/**
+ * The content of a navigation menu.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<NavigationMenuPrimitive.NavigationMenuContentProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const NavigationMenuContent = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>
@@ -71,8 +93,15 @@ const NavigationMenuContent = React.forwardRef<
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
 
+/**
+ * A link in a navigation menu.
+ */
 const NavigationMenuLink = NavigationMenuPrimitive.Link;
 
+/**
+ * The viewport for the navigation menu.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<NavigationMenuPrimitive.NavigationMenuViewportProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
@@ -90,6 +119,10 @@ const NavigationMenuViewport = React.forwardRef<
 ));
 NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName;
 
+/**
+ * An indicator for the current navigation menu item.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<NavigationMenuPrimitive.NavigationMenuIndicatorProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const NavigationMenuIndicator = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Indicator>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Indicator>

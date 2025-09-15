@@ -43,6 +43,15 @@ type StepperInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "onCh
   onValueChange: (v: string) => void;
 };
 
+/**
+ * A reusable stepper input component for number inputs.
+ *
+ * This component provides a number input with increment and decrement buttons,
+ * as well as keyboard support for stepping up and down.
+ *
+ * @param {StepperInputProps} props The props for the component.
+ * @returns {JSX.Element} The rendered stepper input.
+ */
 export const StepperInput: React.FC<StepperInputProps> = ({
   value,
   onValueChange,
@@ -144,6 +153,18 @@ export const StepperInput: React.FC<StepperInputProps> = ({
 };
 
 // ================== Animation hook (count-up, respects reduced motion) ==================
+/**
+ * A custom hook for animating a number count-up effect.
+ *
+ * This hook takes a target value and animates the display of the number from 0
+ * to the target value over a specified duration. It also respects the user's
+ * preference for reduced motion.
+ *
+ * @param {number | null} value The target value to animate to.
+ * @param {boolean} run Whether the animation should run.
+ * @param {number} [duration=800] The duration of the animation in milliseconds.
+ * @returns {number} The current display value of the animation.
+ */
 function useCountUp(value: number | null, run: boolean, duration = 800) {
   const [display, setDisplay] = useState(0);
   const raf = useRef<number | null>(null);
@@ -183,6 +204,14 @@ function useCountUp(value: number | null, run: boolean, duration = 800) {
 }
 
 // ================== Main Component ==================
+/**
+ * An interactive calculator for estimating Return on Investment (ROI).
+ *
+ * This component allows users to input data about their company to calculate
+ * potential savings. It features real-time calculations and animated results.
+ *
+ * @returns {JSX.Element} The rendered ROI calculator.
+ */
 export const ROICalculator: React.FC = () => {
   // Defaults tailored to Indian MSME context
   const [employees, setEmployees] = useState<string>("20");

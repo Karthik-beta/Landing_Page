@@ -22,10 +22,19 @@ const badgeVariants = cva(
   },
 );
 
+/**
+ * Props for the Badge component.
+ * @interface BadgeProps
+ */
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
 
+/**
+ * A component for displaying a badge or a tag.
+ * @param {BadgeProps} props The props for the component.
+ * @returns {JSX.Element} The rendered badge.
+ */
 function Badge({ className, variant, ...props }: BadgeProps) {
   return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
 }

@@ -4,9 +4,16 @@ import cloudImage from "../assets/undraw_cloud-hosting_tfeh.svg";
 import serverImage from "../assets/undraw_secure-server_lz9x.svg";
 import iotImage from "../assets/undraw_visionary-technology_6ouq.svg";
 
+/**
+ * Props for a single feature item.
+ * @interface FeatureProps
+ */
 interface FeatureProps {
+  /** The title of the feature. */
   title: string;
+  /** A description of the feature. */
   description: string;
+  /** The URL of the image associated with the feature. */
   image: string;
 }
 
@@ -47,6 +54,15 @@ const featureList: string[] = [
   "Infrastructure",
 ];
 
+/**
+ * Renders the Core Capabilities section of the website.
+ *
+ * This component showcases the main features and solutions offered by the
+ * company, such as SaaS, infrastructure services, and IoT integrations. It
+ * also displays a list of related keywords as badges.
+ *
+ * @returns {JSX.Element} The rendered Core Capabilities section.
+ */
 export const Features = () => {
   return (
     <section id="features" className="container py-24 sm:py-32 space-y-8">

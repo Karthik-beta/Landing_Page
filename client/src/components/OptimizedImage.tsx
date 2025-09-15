@@ -5,27 +5,50 @@ import {
 } from "@/utils/react19-performance";
 
 /**
- * React 19 Optimized Image Component
- * Enhanced image loading with modern performance features
+ * Props for the OptimizedImage component.
+ * @interface OptimizedImageProps
  */
-
 interface OptimizedImageProps {
+  /** The source URL of the image. */
   src: string;
+  /** The alternative text for the image. */
   alt: string;
+  /** The width of the image. */
   width?: number;
+  /** The height of the image. */
   height?: number;
+  /** Additional CSS classes for the component. */
   className?: string;
+  /** Whether the image should be loaded with high priority. */
   priority?: boolean;
+  /** The type of placeholder to display while the image is loading. */
   placeholder?: "blur-sm" | "empty";
+  /** The data URL for the blur-up placeholder. */
   blurDataURL?: string;
+  /** The sizes attribute for the image. */
   sizes?: string;
+  /** The quality of the image (0-100). */
   quality?: number;
+  /** The loading strategy for the image. */
   loading?: "lazy" | "eager";
+  /** A callback function to be called when the image has loaded. */
   onLoad?: () => void;
+  /** A callback function to be called if the image fails to load. */
   onError?: () => void;
+  /** Additional inline styles for the component. */
   style?: React.CSSProperties;
 }
 
+/**
+ * An optimized image component for React 19.
+ *
+ * This component provides enhanced image loading with modern performance
+ * features, including lazy loading, placeholders, and error handling. It also
+ * includes utilities for preloading images.
+ *
+ * @param {OptimizedImageProps} props The props for the component.
+ * @returns {JSX.Element} The rendered image component.
+ */
 const OptimizedImageComponent: React.FC<OptimizedImageProps> = memo(
   ({
     src,
@@ -178,7 +201,13 @@ OptimizedImageComponent.displayName = "OptimizedImage";
 export const OptimizedImage = OptimizedImageComponent;
 
 /**
- * React 19: Preload utility for critical images
+ * Preloads a single image.
+ *
+ * This utility function can be used to preload critical images before they are
+ * displayed, improving perceived performance.
+ *
+ * @param {string} src The source URL of the image to preload.
+ * @returns {Promise<void>} A promise that resolves when the image has loaded.
  */
 export const preloadImage = (src: string): Promise<void> => {
   return new Promise((resolve, reject) => {
@@ -190,7 +219,13 @@ export const preloadImage = (src: string): Promise<void> => {
 };
 
 /**
- * React 19: Batch image preloader
+ * Preloads multiple images in batch.
+ *
+ * This utility function can be used to preload an array of images, which is
+ * useful for improving the performance of image-heavy sections of the site.
+ *
+ * @param {string[]} srcs An array of image source URLs to preload.
+ * @returns {Promise<void[]>} A promise that resolves when all images have loaded.
  */
 export const preloadImages = (srcs: string[]): Promise<void[]> => {
   return Promise.all(srcs.map(preloadImage));

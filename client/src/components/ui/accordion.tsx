@@ -4,8 +4,16 @@ import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+/**
+ * A vertically stacked set of interactive headings that each reveal a section of content.
+ * @type {React.ForwardRefExoticComponent<AccordionPrimitive.AccordionSingleProps & React.RefAttributes<HTMLDivElement>> | React.ForwardRefExoticComponent<AccordionPrimitive.AccordionMultipleProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const Accordion = AccordionPrimitive.Root;
 
+/**
+ * An item within an accordion.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<AccordionPrimitive.AccordionItemProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
@@ -14,6 +22,10 @@ const AccordionItem = React.forwardRef<
 ));
 AccordionItem.displayName = "AccordionItem";
 
+/**
+ * A button that toggles the open state of an accordion item.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<AccordionPrimitive.AccordionTriggerProps> & React.RefAttributes<HTMLButtonElement>>}
+ */
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
@@ -34,6 +46,10 @@ const AccordionTrigger = React.forwardRef<
 ));
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
+/**
+ * The content of an accordion item.
+ * @type {React.ForwardRefExoticComponent<React.PropsWithoutRef<AccordionPrimitive.AccordionContentProps> & React.RefAttributes<HTMLDivElement>>}
+ */
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>

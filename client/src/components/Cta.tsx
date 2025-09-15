@@ -1,6 +1,16 @@
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 
+/**
+ * Renders the Call to Action (CTA) section of the website.
+ *
+ * This component displays a headline, a brief description, and two buttons:
+ * "Request a Demo" and "View all features". Clicking these buttons will
+ * trigger a toast notification and scroll the user to the corresponding
+ * section of the page.
+ *
+ * @returns {JSX.Element} The rendered CTA section.
+ */
 export const Cta = () => {
   const handleDemoRequest = () => {
     toast.success("🎯 Great choice! Taking you to our contact form.", {

@@ -2,6 +2,15 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/
 import bentoGrid from "../assets/undraw_bento-grid.svg";
 import { InfoIcon, LucidePuzzle, Network } from "lucide-react";
 
+/**
+ * Renders the Products section of the website.
+ *
+ * This component provides an overview of the Pivotr Business Operating System,
+ * highlighting its key features and benefits. It includes a section with
+ * product details and an illustration, as well as a grid of feature cards.
+ *
+ * @returns {JSX.Element} The rendered Products section.
+ */
 export const Products = () => {
   return (
     <section id="products" className="container py-20 sm:py-28 space-y-16">
