@@ -138,7 +138,8 @@ function LiveMetricsTicker() {
     return () => clearTimeout(id);
   }, []);
 
-  const metrics = useMemo(() => computeDeterministicMetrics(bucket), [bucket]);
+  const snapshot = useMemo(() => buildSnapshotPayload(bucket), [bucket]);
+  const metrics = snapshot.metrics;
 
   // Accessible summary: voiced only, not visible
   const a11yText = useMemo(() => {
@@ -146,10 +147,10 @@ function LiveMetricsTicker() {
     const uptime = safeToFixed(by("uptime")?.value, 2);
     const deployments = safeInt(by("deployments")?.value);
     const onprem = safeInt(by("onprem")?.value);
-    const cloud = safeInt(by("cloud")?.value);
-    const invoices = safeInt(by("invoices")?.value);
+    const edge = safeInt(by("edge")?.value);
+    const workOrders = safeInt(by("workOrders")?.value);
     const latency = safeInt(by("latency")?.value);
-    return `Status: ${deployments} active deployments with ${onprem} on‑prem and ${cloud} cloud, ${invoices} invoices processed today, average response ${latency} milliseconds, SLA uptime ${uptime} percent.`;
+    return `Status: ${deployments} active deployments across ${onprem} on-prem sites and ${edge} edge gateways, ${workOrders} work orders processed today, average edge latency ${latency} milliseconds, SLA uptime ${uptime} percent.`;
   }, [metrics]);
 
   // Desktop/tablet marquee
@@ -192,7 +193,7 @@ function LiveMetricsTicker() {
           <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-400/70" />
           <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
         </span>
-        <span className="font-medium">Live Service Snapshot (IST)</span>
+        <span className="font-medium">Current Ops Snapshot (IST)</span>
       </div>
 
       <div
@@ -312,7 +313,7 @@ function MetricIcon({ type }: { type: string }) {
           <path d="M7 11V6h10v5" stroke="currentColor" strokeWidth="1.5" />
         </svg>
       );
-    case "cloud":
+    case "edge":
       return (
         <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
@@ -322,7 +323,7 @@ function MetricIcon({ type }: { type: string }) {
           />
         </svg>
       );
-    case "invoices":
+    case "workOrders":
       return (
         <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M6 3h9l3 3v15H6z" stroke="currentColor" strokeWidth="1.5" />
@@ -479,10 +480,11 @@ function clamp01(n: number) {
 }
 
 /**
- * Computes deterministic, time-bucketed metrics. Seeds include UTC bucket, IST day, and IST month
- * to produce plausible day/night and monthly variability without API calls.
+ * Builds a deterministic, API-shaped payload sized for a lean manufacturing startup.
+ * Seeds derive from UTC bucket + IST day/month so every client sees the same payload
+ * without a network call while still mimicking server-provided data.
  */
-function computeDeterministicMetrics(bucketMs: number): MetricItem[] {
+function buildSnapshotPayload(bucketMs: number) {
   const utcBucketKey = `pivotr|bucket|${bucketMs}`;
   const dayKey = `pivotr|day|${istDayKey(bucketMs)}`;
   const monthKey = `pivotr|month|${istMonthKey(bucketMs)}`;
@@ -491,39 +493,38 @@ function computeDeterministicMetrics(bucketMs: number): MetricItem[] {
   const rngDay = rngFromSeed(dayKey);
   const rngMonth = rngFromSeed(monthKey);
 
-  const onpremBase = 30 + Math.floor(rngMonth() * 40);
-  const cloudBase = 15 + Math.floor(rngMonth() * 30);
-  const deployments = onpremBase + cloudBase;
+  const onpremSites = 2 + Math.floor(rngMonth() * 4); // 2–5 small footprint plants
+  const edgeGateways = 1 + Math.floor(rngMonth() * 3); // 1–3 edge drops
+  const deployments = clamp(onpremSites + edgeGateways + Math.floor(rngBucket() * 2), 3, 10);
 
-  const modules = deployments * (2 + Math.floor(rngMonth() * 6));
+  const modules = deployments * (1 + Math.floor(rngMonth() * 3)); // modest module stack
 
-  const slaDaily = 99.93 + rngDay() * 0.06;
-  const sla = clamp(slaDaily + (rngBucket() - 0.5) * 0.01, 99.9, 99.995);
+  const slaDaily = 99.35 + rngDay() * 0.5;
+  const sla = clamp(slaDaily + (rngBucket() - 0.5) * 0.08, 99.3, 99.85);
 
   const f = istFractionOfDay(bucketMs);
-  const workBand = clamp01((f - 0.25) / 0.5);
-  const wave = easeInOutSine(workBand);
-  const usersMax = 2200 + Math.floor(rngDay() * 800);
-  const usersMin = 200 + Math.floor(rngDay() * 200);
-  // Derived user count kept for potential future use; not displayed currently.
-  void Math.round(usersMin + (usersMax - usersMin) * wave + (rngBucket() - 0.5) * 40);
+  const progress = easeInOutSine(clamp01((f - 0.18) / 0.72));
+  const targetTotal = 60 + Math.floor(rngDay() * 240); // 60–300 work orders per day
+  const workOrders = Math.max(0, Math.floor(targetTotal * progress));
 
-  const targetTotal = 18000 + Math.floor(rngDay() * 12000);
-  const progress = easeInOutSine(Math.min(1, Math.max(0, (f - 0.17) / 0.7)));
-  const invoices = Math.max(0, Math.floor(targetTotal * progress));
+  const baseLatency = 145 + Math.sin(TAU * f) * 12;
+  const latency = Math.round(clamp(baseLatency + (rngBucket() - 0.5) * 16, 110, 190));
 
-  const baseLatency = 170 + Math.sin(TAU * f) * 15;
-  const latency = Math.round(clamp(baseLatency + (rngBucket() - 0.5) * 20, 140, 240));
-
-  return [
+  const metrics: MetricItem[] = [
     { key: "deployments", label: "Active Deployments", value: deployments, type: "int" },
-    { key: "onprem", label: "On‑prem Instances", value: onpremBase, type: "int" },
-    { key: "cloud", label: "Cloud Instances", value: cloudBase, type: "int" },
-    { key: "invoices", label: "Invoices Processed (Today)", value: invoices, type: "int" },
+    { key: "onprem", label: "On-prem Sites", value: onpremSites, type: "int" },
+    { key: "edge", label: "Edge Gateways", value: edgeGateways, type: "int" },
+    { key: "workOrders", label: "Work Orders (Today)", value: workOrders, type: "int" },
     { key: "modules", label: "Modules Enabled", value: modules, type: "int" },
-    { key: "latency", label: "Avg Response (India)", value: latency, type: "int", suffix: "ms" },
-    { key: "uptime", label: "SLA Uptime (90d)", value: sla, type: "float", suffix: "%" },
+    { key: "latency", label: "Edge Latency (India)", value: latency, type: "int", suffix: "ms" },
+    { key: "uptime", label: "Uptime (90d)", value: sla, type: "float", suffix: "%" },
   ];
+
+  return {
+    generatedAt: bucketMs,
+    bucketMs: BUCKET_MS,
+    metrics,
+  };
 }
 
 /**
