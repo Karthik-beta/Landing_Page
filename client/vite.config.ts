@@ -1,7 +1,6 @@
 import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import viteCompression from "vite-plugin-compression";
 import { visualizer } from "rollup-plugin-visualizer";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -12,16 +11,7 @@ export default defineConfig({
       jsxRuntime: "automatic",
     }),
     tailwindcss(),
-    viteCompression({
-      algorithm: "brotliCompress",
-      threshold: 1024, // Only compress files larger than 1KB
-      compressionOptions: { level: 11 }, // Maximum compression
-    }),
-    viteCompression({
-      algorithm: "gzip",
-      threshold: 1024,
-      compressionOptions: { level: 9 },
-    }),
+    // Note: Vercel handles brotli/gzip compression automatically at the edge.
     visualizer({
       filename: "dist/stats.html",
       open: false,
