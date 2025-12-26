@@ -1,6 +1,12 @@
 // React 19: Enhanced loader hook with use() for better suspense
 import { use, useMemo } from "react";
 
+type SchedulerPriority = "background" | "user-blocking" | "user-visible";
+type Scheduler = {
+  postTask?: (callback: () => void, options?: { priority?: SchedulerPriority }) => void;
+};
+type WindowWithScheduler = Window & { scheduler?: Scheduler };
+
 interface LoaderOptions {
   priority: "high" | "medium" | "low";
   preload?: boolean;
@@ -28,13 +34,11 @@ export function createOptimizedLoader<T>(
           const deferredPromise = new Promise<{ default: T }>((resolve) => {
             if (options.priority === "low") {
               // Use scheduler.postTask for low priority loads
-              if ("scheduler" in window && "postTask" in (window as any).scheduler) {
-                (window as any).scheduler.postTask(
-                  () => {
-                    componentPromise.then(resolve);
-                  },
-                  { priority: "background" },
-                );
+              const scheduler = (window as WindowWithScheduler).scheduler;
+              if (scheduler?.postTask) {
+                scheduler.postTask(() => {
+                  componentPromise.then(resolve);
+                }, { priority: "background" });
               } else {
                 // Fallback to requestIdleCallback
                 requestIdleCallback(() => {

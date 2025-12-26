@@ -10,18 +10,9 @@ export const useOptimizedDeferredValue = <T>(value: T): T => {
   return useDeferredValue(value);
 };
 
-// Simple pass-through to useCallback; kept to centralize future tweaks without changing call sites.
-export const useOptimizedCallback = <T extends (...args: any[]) => any>(
-  callback: T,
-  deps: React.DependencyList,
-): T => {
-  return useCallback(callback, deps);
-};
-
-// Pass-through to useMemo; matches the official signature.
-export const useOptimizedMemo = <T>(factory: () => T, deps: React.DependencyList): T => {
-  return useMemo(factory, deps);
-};
+// Alias the official React hooks directly to avoid wrapper patterns that can't be statically analyzed.
+export const useOptimizedCallback: typeof useCallback = useCallback;
+export const useOptimizedMemo: typeof useMemo = useMemo;
 
 // useTransition wrapper to keep naming consistent and avoid repeating the pattern.
 export const useOptimizedTransition = () => {
@@ -43,7 +34,7 @@ export const useOptimizedTransition = () => {
 };
 
 // React 19: Component preloading utility
-export const preloadComponent = (importFunc: () => Promise<any>) => {
+export const preloadComponent = (importFunc: () => Promise<unknown>) => {
   if (typeof window !== "undefined" && "requestIdleCallback" in window) {
     requestIdleCallback(() => {
       importFunc().catch(() => {
@@ -54,17 +45,12 @@ export const preloadComponent = (importFunc: () => Promise<any>) => {
 };
 
 // React 19: Enhanced lazy loading with priority
-export const createLazyComponent = (
-  importFunc: () => Promise<{ default: React.ComponentType<any> }>,
+export const createLazyComponent = <P extends object>(
+  importFunc: () => Promise<{ default: React.ComponentType<P> }>,
   options?: { priority?: "high" | "low" },
 ) => {
-  return React.lazy(() => {
-    if (options?.priority === "high") {
-      // React 19: High priority loading
-      return importFunc();
-    }
-    return importFunc();
-  });
+  void options;
+  return React.lazy(importFunc);
 };
 
 // React 19: Optimized image loading with priority hints
@@ -145,7 +131,7 @@ export const usePerformanceMonitor = (componentName: string) => {
 // React 19: Bundle size optimization helper
 export const createOptimizedBundle = {
   // Dynamic imports with better chunk naming
-  createChunk: (name: string, factory: () => Promise<any>) => {
+  createChunk: (name: string, factory: () => Promise<unknown>) => {
     // Note: name parameter is reserved for future chunk naming features
     void name;
     return factory();

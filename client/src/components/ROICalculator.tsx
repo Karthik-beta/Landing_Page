@@ -37,6 +37,22 @@ const formatNumberCompact = (value: number, maxFrac: number = 2) =>
 const clampNumber = (n: number, min = 0, max = Number.POSITIVE_INFINITY) =>
   Number.isFinite(n) ? Math.min(Math.max(n, min), max) : NaN;
 
+const parseNum = (v: string) => parseFloat(v);
+
+const computeMonthlySavingsForReduction = (
+  numEmployees: number,
+  avgSalary: number,
+  hoursSpent: number,
+  weeklyHours: number,
+  weeks: number,
+  reductionFraction: number,
+) => {
+  const timeSavedPerEmployeePerWeek = hoursSpent * reductionFraction;
+  const totalTimeSavedPerMonth = timeSavedPerEmployeePerWeek * numEmployees * weeks;
+  const hourlyRate = avgSalary / (weeklyHours * weeks);
+  return totalTimeSavedPerMonth * hourlyRate;
+};
+
 // ================== Reusable Stepper Input ==================
 type StepperInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value"> & {
   value: string;
@@ -255,23 +271,8 @@ export const ROICalculator: React.FC = () => {
     return () => obs.disconnect();
   }, []);
 
-  const parseNum = (v: string) => parseFloat(v);
-
-  const computeMonthlySavingsForReduction = (
-    numEmployees: number,
-    avgSalary: number,
-    hoursSpent: number,
-    weeklyHours: number,
-    weeks: number,
-    reductionFraction: number,
-  ) => {
-    const timeSavedPerEmployeePerWeek = hoursSpent * reductionFraction;
-    const totalTimeSavedPerMonth = timeSavedPerEmployeePerWeek * numEmployees * weeks;
-    const hourlyRate = avgSalary / (weeklyHours * weeks);
-    return totalTimeSavedPerMonth * hourlyRate;
-  };
-
-  const calculate = () => {
+  // Real-time recalculation when inputs change
+  useEffect(() => {
     const numEmployees = clampNumber(parseNum(employees));
     const avgSalary = clampNumber(parseNum(salary));
     const hoursSpent = clampNumber(parseNum(hours));
@@ -338,11 +339,6 @@ export const ROICalculator: React.FC = () => {
     setDailySavings(perDay);
     setRangeMonthlyMin(rangeMin);
     setRangeMonthlyMax(rangeMax);
-  };
-
-  // Real-time recalculation when inputs change
-  useEffect(() => {
-    calculate();
   }, [employees, salary, hours, timeReductionPct, workHoursPerWeek, weeksPerMonth]);
 
   const hasResults =

@@ -27,7 +27,7 @@ export function extractCriticalCSS() {
           });
         }
       });
-    } catch (e) {
+    } catch {
       // Cross-origin stylesheets may throw errors
     }
   });
@@ -54,11 +54,14 @@ export function analyzeResourceTiming() {
 
   const resources = performance.getEntriesByType("resource") as PerformanceResourceTiming[];
 
+  type SlowResource = { name: string; duration: number; type: string };
+  type LargeResource = { name: string; size: number; type: string };
+
   const analysis = {
     totalRequests: resources.length,
     totalBytes: 0,
-    slowestResources: [] as any[],
-    largestResources: [] as any[],
+    slowestResources: [] as SlowResource[],
+    largestResources: [] as LargeResource[],
     byType: {} as Record<string, number>,
   };
 

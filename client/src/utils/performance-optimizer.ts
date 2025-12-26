@@ -1,4 +1,56 @@
 // Modern browser performance utilities
+
+type SchedulerPriority = "background" | "user-blocking" | "user-visible";
+
+type Scheduler = {
+  postTask?: (callback: () => void, options?: { priority?: SchedulerPriority }) => void;
+};
+
+type WindowWithScheduler = Window & { scheduler?: Scheduler };
+
+type FetchPriority = "high" | "low" | "auto";
+
+interface PerformanceEventTiming extends PerformanceEntry {
+  processingStart: number;
+}
+
+interface LayoutShift extends PerformanceEntry {
+  value: number;
+  hadRecentInput: boolean;
+}
+
+type PerformanceWithMemory = Performance & {
+  memory?: {
+    usedJSHeapSize: number;
+    jsHeapSizeLimit: number;
+  };
+};
+
+type NetworkInformation = {
+  effectiveType?: string;
+};
+
+type NavigatorWithConnection = Navigator & {
+  connection?: NetworkInformation;
+};
+
+type BatteryManager = {
+  charging: boolean;
+  level: number;
+  chargingTime: number;
+  dischargingTime: number;
+};
+
+type NavigatorWithBattery = Navigator & {
+  getBattery?: () => Promise<BatteryManager>;
+};
+
+type ServiceWorkerRegistrationWithSync = ServiceWorkerRegistration & {
+  sync: {
+    register: (tag: string) => Promise<void>;
+  };
+};
+
 export class PerformanceOptimizer {
   private static instance: PerformanceOptimizer;
   private observer: PerformanceObserver | null = null;
@@ -32,7 +84,7 @@ export class PerformanceOptimizer {
         this.observer.observe({
           entryTypes: ["largest-contentful-paint", "first-input", "layout-shift"],
         });
-      } catch (e) {
+      } catch {
         console.warn("Performance monitoring not fully supported");
       }
     }
@@ -47,12 +99,12 @@ export class PerformanceOptimizer {
         this.metrics.set("LCP", entry.startTime);
         break;
       case "first-input":
-        this.metrics.set("FID", (entry as any).processingStart - entry.startTime);
+        this.metrics.set("FID", (entry as PerformanceEventTiming).processingStart - entry.startTime);
         break;
       case "layout-shift":
-        if (!(entry as any).hadRecentInput) {
+        if (!(entry as LayoutShift).hadRecentInput) {
           const currentCLS = this.metrics.get("CLS") || 0;
-          this.metrics.set("CLS", currentCLS + (entry as any).value);
+          this.metrics.set("CLS", currentCLS + (entry as LayoutShift).value);
         }
         break;
     }
@@ -60,8 +112,8 @@ export class PerformanceOptimizer {
 
   // Memory usage monitoring with Memory API
   private monitorMemoryUsage() {
-    if ("memory" in performance) {
-      const memInfo = (performance as any).memory;
+    const memInfo = (performance as PerformanceWithMemory).memory;
+    if (memInfo) {
       this.metrics.set("JSHeapSize", memInfo.usedJSHeapSize);
       this.metrics.set("JSHeapLimit", memInfo.jsHeapSizeLimit);
     }
@@ -95,9 +147,7 @@ export class PerformanceOptimizer {
 
   // Priority hints for images
   static addImagePriorityHint(img: HTMLImageElement, priority: "high" | "low" | "auto") {
-    if ("fetchPriority" in img) {
-      (img as any).fetchPriority = priority;
-    }
+    (img as HTMLImageElement & { fetchPriority?: FetchPriority }).fetchPriority = priority;
   }
 
   // Service Worker for caching
@@ -116,7 +166,8 @@ export class PerformanceOptimizer {
   static requestBackgroundSync(tag: string) {
     if ("serviceWorker" in navigator && "sync" in window.ServiceWorkerRegistration.prototype) {
       navigator.serviceWorker.ready.then((registration) => {
-        return (registration as any).sync.register(tag);
+        const reg = registration as ServiceWorkerRegistrationWithSync;
+        return reg.sync.register(tag);
       });
     }
   }
@@ -126,8 +177,9 @@ export class PerformanceOptimizer {
     callback: () => void,
     priority: "background" | "user-blocking" | "user-visible" = "user-visible",
   ) {
-    if ("scheduler" in window && "postTask" in (window as any).scheduler) {
-      (window as any).scheduler.postTask(callback, { priority });
+    const scheduler = (window as WindowWithScheduler).scheduler;
+    if (scheduler?.postTask) {
+      scheduler.postTask(callback, { priority });
     } else if ("requestIdleCallback" in window) {
       requestIdleCallback(callback);
     } else {
@@ -137,26 +189,25 @@ export class PerformanceOptimizer {
 
   // Connection-aware loading
   static getConnectionSpeed(): "slow" | "fast" | "unknown" {
-    if ("connection" in navigator) {
-      const connection = (navigator as any).connection;
-      if (connection.effectiveType === "4g") return "fast";
-      if (connection.effectiveType === "3g" || connection.effectiveType === "2g") return "slow";
-    }
+    const connection = (navigator as NavigatorWithConnection).connection;
+    if (connection?.effectiveType === "4g") return "fast";
+    if (connection?.effectiveType === "3g" || connection?.effectiveType === "2g") return "slow";
     return "unknown";
   }
 
   // Battery-aware optimizations
   static async getBatteryInfo() {
-    if ("getBattery" in navigator) {
+    const nav = navigator as NavigatorWithBattery;
+    if (nav.getBattery) {
       try {
-        const battery = await (navigator as any).getBattery();
+        const battery = await nav.getBattery();
         return {
           charging: battery.charging,
           level: battery.level,
           chargingTime: battery.chargingTime,
           dischargingTime: battery.dischargingTime,
         };
-      } catch (e) {
+      } catch {
         return null;
       }
     }
