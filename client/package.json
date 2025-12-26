@@ -68,6 +68,10 @@
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
+  "resolutions": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^24.10.4",

@@ -1,0 +1,6 @@
+# Bun configuration for proper React deduplication
+# This ensures a single React instance in the production bundle
+
+[install]
+# Ensure exact versions to prevent version mismatches
+exact = true
