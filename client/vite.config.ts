@@ -34,6 +34,8 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    // Prevent multiple copies of React in the production bundle (can cause hooks dispatcher to be null).
+    dedupe: ["react", "react-dom"],
   },
   build: {
     target: "es2022", // Modern target for better optimizations
@@ -44,11 +46,6 @@ export default defineConfig({
     },
     // React 19: Optimize chunk generation
     rollupOptions: {
-      treeshake: {
-        preset: "smallest", // Maximum tree shaking
-        propertyReadSideEffects: false,
-        tryCatchDeoptimization: false,
-      },
       output: {
         manualChunks(id) {
           // More granular chunking for better caching
@@ -67,7 +64,9 @@ export default defineConfig({
           // Separate vendor libraries by size
           if (id.includes("node_modules")) {
             // Large libraries get their own chunks
-            if (id.includes("react") || id.includes("react-dom")) {
+            const isReact = /[\\/]node_modules[\\/]react[\\/]/.test(id);
+            const isReactDom = /[\\/]node_modules[\\/]react-dom[\\/]/.test(id);
+            if (isReact || isReactDom) {
               return "react-vendor";
             }
             // Medium-sized utilities
@@ -88,7 +87,7 @@ export default defineConfig({
             return "feature-components";
           }
         },
-        chunkFileNames: (chunkInfo) => {
+        chunkFileNames: (_chunkInfo) => {
           // Add hashing for long-term caching
           return `assets/[name]-[hash].js`;
         },

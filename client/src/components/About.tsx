@@ -12,7 +12,7 @@ import { useState, useEffect, useRef } from "react";
  * @returns {JSX.Element} The rendered About Us section.
  */
 export const About = () => {
-  const paragraphText = `At Pivotr, we are a software-first company dedicated to delivering integrated solutions built in-house. When a deployment calls for specific devices, we source them from trusted partners and bring everything together to ensure seamless performance. Our emphasis is on the complete solution—hardware is included only when needed to support our software, rather than as a standalone offering.`;
+  const paragraphText = `At Pivotr, we are a software-first company dedicated to delivering integrated solutions built in-house. When a deployment calls for specific devices, we source them from trusted partners and bring everything together to ensure seamless performance. Our emphasis is on the complete solution—hardware is included only when needed to support our software, rather than as a standalone offering.`;
 
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);

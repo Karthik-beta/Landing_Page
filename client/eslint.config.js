@@ -17,8 +17,8 @@ export default tseslint.config(
     ],
   },
   {
-    files: ["**/*.{ts,tsx}", "**/*.js"],
-    extends: [js.configs.recommended],
+    files: ["**/*.{ts,tsx}"],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -27,7 +27,6 @@ export default tseslint.config(
       },
       globals: {
         ...globals.browser,
-        React: "readonly",
       },
     },
     plugins: {
@@ -36,14 +35,18 @@ export default tseslint.config(
       "react-refresh": reactRefresh,
     },
     rules: {
-      ...tseslint.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": "off",
-      "no-undef": "off",
-      "no-irregular-whitespace": "off",
+      // Prefer the TS-aware variant; avoid duplicates.
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": "off",
-      "react-hooks/exhaustive-deps": "off",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-explicit-any": "warn",
+
+      // Useful correctness rules that are cheap to satisfy.
+      "prefer-const": "error",
+      "no-irregular-whitespace": "error",
+      "no-debugger": "error",
+
+      // Hooks correctness.
+      "react-hooks/exhaustive-deps": "warn",
     },
   },
 );

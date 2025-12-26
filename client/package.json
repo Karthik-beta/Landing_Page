@@ -38,7 +38,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "build:analyze": "tsc && vite build && echo 'Bundle analysis saved to dist/stats.html'",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
@@ -63,6 +63,10 @@
     "react-intersection-observer": "^9.16.0",
     "sonner": "^2.0.7",
     "tailwind-merge": "^2.6.0"
+  },
+  "overrides": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
