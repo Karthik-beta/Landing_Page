@@ -1,49 +1,35 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useDeferredValue, useMemo, useCallback, useTransition } from "react";
 
 /**
  * React 19 Performance Optimizations
- * Enhanced utilities leveraging React 19's new features
+ * Utility wrappers aligned to the official React 19 APIs.
  */
 
-// React 19: Enhanced useDeferredValue with priority hints
-export const useOptimizedDeferredValue = <T>(
-  value: T,
-  options?: { priority?: "high" | "low" | "user-visible" },
-): T => {
-  const deferredValue = useDeferredValue(value);
-
-  // React 19: Add priority hint for better scheduling
-  // Note: options parameter is reserved for future React 19 features
-  void options;
-
-  return deferredValue;
+// Wrapper around the official useDeferredValue (no priority options are supported in React 19).
+export const useOptimizedDeferredValue = <T>(value: T): T => {
+  return useDeferredValue(value);
 };
 
-// React 19: Optimized useCallback with automatic dependency tracking
+// Simple pass-through to useCallback; kept to centralize future tweaks without changing call sites.
 export const useOptimizedCallback = <T extends (...args: any[]) => any>(
   callback: T,
   deps: React.DependencyList,
-  options?: { stable?: boolean },
 ): T => {
-  // Note: options parameter is reserved for future React 19 features
-  void options;
   return useCallback(callback, deps);
 };
 
-// React 19: Enhanced useMemo with better caching
+// Pass-through to useMemo; matches the official signature.
 export const useOptimizedMemo = <T>(factory: () => T, deps: React.DependencyList): T => {
   return useMemo(factory, deps);
 };
 
-// React 19: Smart transition management
+// useTransition wrapper to keep naming consistent and avoid repeating the pattern.
 export const useOptimizedTransition = () => {
   const [isPending, startTransitionCallback] = useTransition();
 
   const startOptimizedTransition = useCallback(
     (callback: () => void) => {
       startTransitionCallback(() => {
-        // React 19: Enhanced transition with better scheduling
         callback();
       });
     },
@@ -102,7 +88,6 @@ export const useOptimizedImage = (
   );
 };
 
-// React 19: Enhanced intersection observer with better performance
 export const useOptimizedIntersectionObserver = (
   ref: React.RefObject<Element>,
   options?: IntersectionObserverInit,
@@ -130,6 +115,7 @@ export const useOptimizedIntersectionObserver = (
 
     return () => {
       observer.unobserve(element);
+      observer.disconnect();
     };
   }, [ref, options]);
 
