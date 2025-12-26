@@ -20,56 +20,52 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "What is Pivotr's core approach to technology solutions?",
+    question: "Do you support on-prem and air-gapped plants?",
     answer:
-      "We utilize an integrated three-layer approach combining Enterprise Solutions, Infrastructure Services, and Hardware Solutions to deliver comprehensive business transformation.",
+      "Yes. We deploy on-prem with edge gateways that sync when connectivity is available, keeping production, maintenance, and workforce data flowing even in low-bandwidth sites.",
     value: "item-1",
   },
   {
-    question: "What types of enterprise software solutions do you offer?",
+    question: "Can we use perpetual licenses with a small team?",
     answer:
-      "Our Enterprise Solutions include cutting-edge SaaS Products, comprehensive ERP Systems, and advanced IoT Integrations designed to optimize operations and drive digital innovation.",
+      "Absolutely. We offer perpetual licensing with light support retainers so lean teams can stay compliant and keep costs predictable.",
     value: "item-2",
   },
   {
-    question: "What kind of infrastructure services does Pivotr provide?",
+    question: "How fast can we go live in a brownfield environment?",
     answer:
-      "We offer scalable cloud and network solutions, robust computing power, flexible storage solutions, and enterprise-level security measures for your infrastructure needs.",
+      "Most customers start in 2–4 weeks: connect a few lines, baseline data flows, and expand in phases without disrupting existing systems.",
     value: "item-3",
   },
   {
-    question: "How do you ensure the security of the solutions?",
+    question: "How do you handle plant-floor integrations?",
     answer:
-      "Security is built-in. We protect your business with military-grade security embedded across all platforms and provide advanced security measures for your infrastructure.",
+      "We connect to common PLC/SCADA signals, sensors, and existing ERPs via lightweight adapters and APIs, keeping your current stack intact.",
     value: "item-4",
   },
   {
-    // Based on Page 7: Scalable Solutions and Page 5: Scalable Storage
-    question: "Are your technology solutions scalable?",
+    question: "Who owns the data and where is it stored?",
     answer:
-      "Yes, our solutions are designed to be highly scalable, offering flexible technology that adapts to your business growth and includes scalable cloud storage options.",
+      "You own your data. For on-prem, it stays within your network; for hybrid, we follow your residency and retention rules.",
     value: "item-5",
   },
   {
-    // Based on Page 11: Transform Your Business Today (Process)
-    question: "What is the typical process when implementing a new solution?",
+    question: "What uptime and support do you provide?",
     answer:
-      "We follow a four-step process: Consult (understand needs), Design (craft tailored solutions), Implement (seamless integration), and Support (ongoing assistance and optimization).",
-    value: "item-6", // Added a new item
+      "We target >99.5% for on-prem/edge footprints and provide business-hours support with an option for 24/7 coverage when needed.",
+    value: "item-6",
   },
   {
-    // Based on Page 10: 24/7 Support
-    question: "What kind of support is available?",
+    question: "Can you work with low or unstable bandwidth?",
     answer:
-      "We provide 24/7 dedicated technical support with round-the-clock expertise ready to assist you anytime, anywhere.",
-    value: "item-7", // Added a new item
+      "Yes. The edge layer buffers data and resyncs when links recover, so operators can continue locally without losing history.",
+    value: "item-7",
   },
   {
-    // Based on Page 10: Global Reach
-    question: "Do you provide services globally?",
+    question: "How do you keep changes manageable for operators?",
     answer:
-      "Yes, we support enterprises across 50+ countries with localized solutions and support.",
-    value: "item-8", // Added a new item
+      "We roll out in small steps with clear SOP updates, operator prompts, and optional training so shifts aren’t overwhelmed.",
+    value: "item-8",
   },
 ];
 

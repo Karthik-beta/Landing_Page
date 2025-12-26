@@ -85,14 +85,23 @@ export const Hero = () => {
             Transforming Obstacles into Opportunities with Pioneering Technology.
           </p>
 
-          <div className="space-y-4 md:space-y-0 md:space-x-4">
+          <div className="space-y-4 md:space-y-0 md:space-x-4 md:flex">
             <Button
-              className="w-full md:w-1/3"
+              className="w-full md:w-auto"
               onClick={() =>
                 document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
               }
             >
               Get Started
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full md:w-auto"
+              onClick={() =>
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Talk to us
             </Button>
           </div>
         </div>

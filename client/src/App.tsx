@@ -7,6 +7,7 @@ import { Toaster } from "./components/ui/toaster";
 import { Toaster as SonnerToaster } from "./components/ui/sonner";
 import { ScrollFadeIn } from "./components/ScrollFadeIn";
 import { Skeleton } from "./components/ui/skeleton";
+import { CompanionHelper } from "./components/CompanionHelper";
 import { useUserCompanion } from "./hooks/use-user-companion";
 import "./App.css";
 
@@ -148,6 +149,13 @@ function App() {
           <Footer />
         </ScrollFadeIn>
       </Suspense>
+
+      <CompanionHelper
+        currentSection={deferredCompanion.currentSection}
+        visitedSections={deferredCompanion.visitedSections}
+        interactionCount={deferredCompanion.interactionCount}
+        onInteraction={deferredCompanion.trackInteraction}
+      />
 
       <ScrollToTop />
       <Toaster />

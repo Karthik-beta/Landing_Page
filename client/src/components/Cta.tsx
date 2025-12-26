@@ -14,7 +14,7 @@ import { toast } from "sonner";
 export const Cta = () => {
   const handleDemoRequest = () => {
     toast.success("🎯 Great choice! Taking you to our contact form.", {
-      description: "We'll help you get started with a personalized demo.",
+      description: "We'll map a quick demo to your shop-floor and office workflows.",
       duration: 3000,
     });
 
@@ -24,7 +24,7 @@ export const Cta = () => {
   };
 
   const handleViewFeatures = () => {
-    toast.info("📋 Exploring our features and products", {
+    toast.info("📋 Exploring on-prem and edge-ready capabilities", {
       duration: 2500,
     });
 
@@ -40,13 +40,13 @@ export const Cta = () => {
             Ready to
             <span className="bg-linear-to-b from-primary/60 to-primary text-transparent bg-clip-text">
               {" "}
-              Transform Your Business{" "}
+              Modernize Your Operations{" "}
             </span>
             ?
           </h2>
           <p className="text-muted-foreground text-xl mt-4 mb-8 lg:mb-0">
-            Streamline operations, boost efficiency, and drive enterprise growth with our integrated
-            technology solutions.
+            Serve your plants with on-prem and edge-ready deployments, perpetual licensing, and a
+            lean team on your side to keep production, maintenance, and workforce data in sync.
           </p>
         </div>
 
