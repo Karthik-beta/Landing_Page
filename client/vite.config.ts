@@ -33,6 +33,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      react: path.resolve(__dirname, "./node_modules/react"),
+      "react-dom": path.resolve(__dirname, "./node_modules/react-dom"),
     },
     // Prevent multiple copies of React in the production bundle (can cause hooks dispatcher to be null).
     dedupe: ["react", "react-dom"],
@@ -48,43 +50,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // More granular chunking for better caching
-          if (id.includes("framer-motion")) {
-            return "framer-motion";
-          }
-          if (id.includes("@radix-ui")) {
-            return "radix-ui";
-          }
-          if (id.includes("lucide-react")) {
-            return "lucide-react";
-          }
-          if (id.includes("react-intersection-observer")) {
-            return "intersection-observer";
-          }
-          // Separate vendor libraries by size
           if (id.includes("node_modules")) {
-            // Large libraries get their own chunks
-            const isReact = /[\\/]node_modules[\\/]react[\\/]/.test(id);
-            const isReactDom = /[\\/]node_modules[\\/]react-dom[\\/]/.test(id);
-            if (isReact || isReactDom) {
-              return "react-vendor";
-            }
-            // Medium-sized utilities
-            if (
-              id.includes("clsx") ||
-              id.includes("class-variance-authority") ||
-              id.includes("tailwind-merge")
-            ) {
-              return "utils";
-            }
-            // Everything else
             return "vendor";
-          }
-          // Component chunks by route/feature
-          if (id.includes("src/components/")) {
-            if (id.includes("ui/")) return "ui-components";
-            if (id.includes("Hero") || id.includes("Navbar")) return "critical-components";
-            return "feature-components";
           }
         },
         chunkFileNames: (_chunkInfo) => {
